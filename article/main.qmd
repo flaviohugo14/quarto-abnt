@@ -1,0 +1,385 @@
+---
+title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL EMPÍRICA E EXPLORATÓRIA DO SETOR BANCÁRIO NAS PRINCIPAIS REGIÕES METROPOLITANAS DO BRASIL, NO PERÍODO 2010-2022."
+author: "Flávio Hugo Pangracio Silva"
+registration_number: 99079
+advisor: "Igor Santos Tupy"
+institution: "UNIVERSIDADE FEDERAL DE VIÇOSA"
+city: "VIÇOSA"
+state: "MG"
+year: "2023"
+bibliography: referencies/ref.bib
+csl: cite_styles/abnt.csl
+number-sections: true
+lang: pt-BR
+linkcolor: "black"
+highlight-style: kate
+format:
+    pdf:
+        template-partials:
+            - tex_files/before-body.tex
+            - tex_files/doc-class.tex
+---
+
+\pagestyle{fancy} <!-- Show the page number --> \justify
+
+# INTRODUÇÃO
+
+Na literatura sobre economia regional, há poucos trabalhos analisando a moeda e o seu papel para o desenvolvimento regional. Modelos como o neoclássico, o de causação cumulativa e o de insumo-produto, não consideram o impacto da moeda e de variáveis financeiras. Segundo Crocco et al., [-@crocco2006], essas variáveis são tratadas em modelos econométricos como exógenas, de forma que afetam a determinação regional de renda em razão das características específicas de cada região. Logo, a moeda e os fluxos monetários têm sido explicados como o resultado da diferença entre as regiões e não como os causadores dessa diferença.
+
+Além disso, Amado (1998) destaca que variáveis monetárias e financeiras são recorrentemente negligenciadas em estudos sobre a questão regional. Para a autora, essa perspctiva pode ser justificada por três fatores: (1) a influência das escolas convencionais de economia nos estudos regionais, que caracterizam a moeda como elemento neutro, não sendo capaz de afetar as variáveis reais da economia; (2) a aceitação, por parte dos que não concordam com as hipóteses das escolas convencionais, mas concordam com a concepção horizontalista de oferta de moeda, ou seja, que a oferta de moeda é acomodativa das pressões reais, sendo capaz de variar para atender qualquer padrão de demanda por moeda. Logo, não seria capaz de afetar a dinâmica real da economia; (3) ausência de dados satisfatórios para uma análise da questão regional sob a ótica financeira e monetária.
+
+Greenwald, Levinson e Stiglitz [-@greenwald], Roberts e Fishkind [-@roberts], Moore e Hill [-@moore] e Beare [-@beare] são alguns dos autores ortodoxos que explicam a não neutralidade regional da moeda pela existência de falhas de mercado, relacionadas à oferta regional do crédito.
+
+Na corrente pós-keynesiana, no entanto, a moeda possui um papel central nas decisões econômicas dos agentes. Para autores como Rodriguez-Fuentes [-@rodriguez], Dow [-@dow99; -@dow87] e Crocco, Cavalcante e Castro [-@crocco2005], a oferta e a demanda de crédito são interdependentes e afetadas pela preferência pela liquidez, vinculada às expectativas que os agentes formam em um ambiente de incerteza. Para os bancos, a preferência pela liquidez reduzirá a sua disposição em emprestar na região caso possuam expectativas pessimistas ou pouco confiáveis sobre ela. Para o público, a preferência pela liquidez impactará sua definição de portfólio, ou seja, quanto maior a preferência por liquidez, maior a quantidade de ativos líquidos e menor demanda por ativos fixos.
+
+Nesse sentido, sobretudo do prisma pós-keynesiano, a atividade dos bancos e das instituições financeiras é fundamental para o desenvolvimento econômico nacional e também para explicar os diferentes padrões de desenvolvimento econômico regional. Portanto, é relevante analisar a atividade bancária e financeira sob a perspectiva da economia regional, levando em consideração fatores aglomerativos e desaglomerativos, fatores locacionais, inter-relações com outros agentes, história, distribuição, qualidade e diversidade das operações de crédito.
+
+Amado [-@amado2006] verificou um processo de concentração bancária e financeira (fusões bancárias) nos anos 1990, que prejudicou diretamente as economias periféricas, ao reforçar as restrições de liquidez que essas economias enfrentam. De acordo com a autora, as economias periféricas sofrem constantes vazamentos em seus fluxos financeiros. Esses vazamentos são drenados para as regiões centrais, que passam a apresentar vantagens comparativas em relação à periferia, por terem acesso a um volume maior de liquidez. Dessa forma, os bancos centrais ficam mais receosos em estender crédito à periferia, por terem expectativas menos sólidas em relação a essas regiões. Além disso, os bancos da periferia tendem a estender crédito a atividades que sejam mais fortemente relacionadas com a própria região, com intuito de evitar perda de reservas. Para Amado [-@amado2006], esse processo de concentração levará os bancos que assumem os bancos regionais a redirecionar suas atividades para as regiões em que possuem vantagens comparativas, como aconteceu com três bancos de caráter regional que foram absorvidos por bancos das regiões centrais: Econômico pelo Excel, Banorte pelo Bandeirantes e Bamerindus pelo HSBC.
+
+Martin e Sunley [-@martin2015] destacam que o acesso das empresas a empréstimos financeiros varia de acordo com a localidade, principalmente devido às práticas discriminatórias das instituições bancárias em relação ao financiamento. Dessa forma, empresas localizadas em regiões economicamente deprimidas podem ser consideradas de alto risco pelas instituições financeiras, resultando na recusa de crédito. O que reforça a importância dos bancos de caráter regional.
+
+De acordo com Selmier [-@selmier2016], essa característica é crucial para entender a capacidade do sistema bancário brasileiro de manter altas taxas de lucro. O autor destaca que ao longo do tempo, o sistema bancário do Brasil tem sido dominado por quatro grandes bancos. Essa estrutura de mercado oligopolizada proporciona estabilidade, uma vez que os lucros dos grandes bancos são sustentados, permitindo que eles se concentrem em seus mercados domésticos. Selmier [-@selmier2016] afirma que os "Big Four" do Brasil apresentam margens de lucro e de juros líquidos igualmente elevadas.
+
+Conforme ressaltado por Dow [-@dow2012], observa-se historicamente uma tendência à concentração no setor bancário. Esse processo se torna evidente quando ocorre alguma mudança no ambiente que abre o mercado e estimula a entrada de novas instituições. Assim, a concentração surge como uma resposta natural à necessidade dos bancos de inspirar confiança. Dow [-@dow2012] argumenta que, diante de qualquer dúvida sobre a viabilidade de novos bancos, há uma tendência dos negócios retornarem aos grandes e antigos bancos, resultando na redução da competitividade do setor.
+
+Dado o exposto, as principais questões que ficam para este trabalho são: Esses padrões de concentração bancária se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre bairros de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole?
+
+## JUSTIFICATIVA
+
+Para responder à essas perguntas, ressalta-se a necessidade de um trabalho que revisite as contribuições passadas sobre a questão regional do crédito e do setor bancário e utilize do grande volume de dados disponíveis nos dias atuais para testar hipóteses e realizar análises espaciais empíricas e exploratórias num nível ainda inexplorado: o urbano.
+
+## OBJETIVO
+
+O objetivo deste trabalho é, portanto, preencher essa lacuna da literatura econômica regional e analisar o comportamento da atividade bancária no espaço urbano, sob o prisma pós-keynesiano, realizando testes empíricos para verificar localização, distribuição, qualidade e diversidade do crédito nas principais Regiões Metropolitanas do Brasil, no período 2010-2022. Com isso, desdobram-se os seguintes objetivos específicos:
+
+-   Georreferenciar os dados das agências bancárias (ESTBAN);
+
+-   Agregar os dados por setor censitário;
+
+-   Cruzar com dados dos CENSO 2010 e 2022, agregados por setor censitário;
+
+-   Calcular índices de localização, distribuição, qualidade e diversidade do crédito;
+
+-   Realizar análise exploratória dos dados espaciais, por meio de clusters e técnicas de análise de componentes principais;
+
+-   Estimar modelo econométrico espacial com os índices criados;
+
+-   Interpretar e discutir os resultados.
+
+# ASPECTOS TEÓRICOS
+
+## *Economia Monetária de Produção*
+
+Segundo Keynes [-@keynes73b], vivemos em uma economia monetária de produção, em que a moeda exerce papel fundamental nas decisões econômicas dos agentes, pois empresários decidem produzir e contratar fatores de produção com expectativa de ganhar dinheiro com sua produção. Como não há nenhum mecanismo que garanta que a contratação de fatores será totalmente compensada pela venda do produto gerado e, considerando um contexto de incerteza sobre o futuro, os agentes podem optar por não gastar esse ativo, mantendo-o na sua forma líquida.
+
+Dessa forma, em uma economia monetária, o empresário possui interesse no dinheiro que será gerado a partir de suas atividades produtivas. Seu objetivo principal é aumentar sua riqueza de forma geral, ou seja, em sua forma monetária. Ele tomará a decisão de expandir sua produção se acreditar que isso resultará em um aumento de sua renda. A escolha entre oferecer ou não trabalho é, na verdade, uma decisão sobre como utilizar sua riqueza, seja investindo-a na produção ou mantendo-a na forma mais líquida (mantendo em dinheiro). Nesse tipo de economia, o produtor não é guiado pelo volume de produto que espera obter, mas sim pelas oportunidades alternativas de aumentar ou preservar sua riqueza [@keynes73a].
+
+Carvalho [-@carvalho92] apresentou uma síntese das características de uma economia monetária de produção, elencando seis princípios fundamentais de sua operação que garantem à moeda as funções de reserva de valor e de liquidez:
+
+-   
+
+    (i) Princípio da produção: o objetivo das firmas é gerar lucro monetário, o interesse não está na quantidade de produto produzida, mas no montante de dinheiro gerado.
+
+-   
+
+    (ii) Princípio da dominância estratégica: dada a escassez do capital em relação ao trabalho, trabalhadores e empresas encontram-se em condições desiguais no mercado, o que também é válido para o mercado de crédito, pois o poupador não consegue induzir o empresário a se endividar. Porém, no que diz respeito à obtenção de crédito, as empresas têm mais sucesso, mesmo que precisem oferecer taxas de juros mais altas aos potenciais credores. Isso demonstra claramente a predominância das empresas nos mercados.
+
+-   
+
+    (iii) Príncipio da temporalidade: O princípio da temporalidade na atividade econômica estabelece uma ordem sequencial no processo produtivo: a decisão de produzir ocorre antes da produção em si, que por sua vez precede a venda. Esse princípio é fundamentado na ideia de tempo histórico, irreversível, adotado pelos teóricos pós-keynesianos. Essa concepção reconhece o tempo como uma entidade contínua, sempre avançando do passado em direção ao futuro. Em outras palavras, as decisões tomadas em um determinado momento do tempo não podem ser desfeitas e têm implicações para o futuro.
+
+-   
+
+    (iv) Princípio da não-ergodicidade (da incerteza): o sistema econômico caminha, ao longo do tempo, de um passado irrevogável para um futuro incerto, estatisticamente imprevisível.
+
+-   
+
+    (v) Princípio da não pré-conciliação dos planos: não existe um plano perfeito que possa coordenar todos os mercados e determinar exatamente a quantidade a ser produzida com base na demanda futura. Os agentes econômicos podem tentar reduzir a incerteza recorrendo a contratos futuros denominados em moeda. Esses contratos permitem que os agentes fixem acordos antecipados para a compra ou venda de determinados bens ou serviços, proporcionando algum grau de segurança em relação às transações futuras.
+
+-   
+
+    (vi) Princípio das propriedades da moeda: Para que seja possível a realização de contratos futuros denominados em moeda, a moeda deve possuir duas propriedades fundamentais: elasticidade de produção e substituição próximas de zero. Essas características garantem à moeda sua função como reserva de valor e liquidez. Ao afirmar que a elasticidade de produção e substituição da moeda é próxima de zero, significa que um aumento na demanda por moeda não resulta em um aumento em sua disponibilidade e que nenhuma outra forma de ativo pode desempenhar suas funções. Dessa forma, a moeda adquire um caráter único e essencial na economia capitalista.
+
+## *Centro e periferia*
+
+Após uma análise dos elementos fundamentais das economias monetárias de produção, é possível realizar uma caracterização geral entre economias centrais e periféricas. Ao comparar essas economias, pode-se observar que as economias centrais tendem a ter trajetórias de crescimento mais estáveis, com a variável dinâmica sendo endógena. Além disso, apresentam uma menor propensão a importar, instituições mais desenvolvidas, mercados com maior liquidez de ativos e bases sólidas para a disseminação de informações. Isso resulta em um menor nível de incerteza. Em termos de estrutura produtiva, nas economias centrais a produção está concentrada principalmente nos setores secundário e terciário. Já nas economias periféricas, a produção se concentra nos setores primário e terciário [@dow82].
+
+Ao analisar a caracterização geral das economias centrais e periféricas, fica evidente uma tendência de maior preferência pela liquidez nas economias periféricas em comparação com as centrais. Isso ocorre devido à maior incerteza e à menor desenvoltura dos arranjos institucionais nas periferias. Consequentemente, a criação de meios de pagamento nessas economias pode enfrentar desafios, uma vez que os multiplicadores são menores devido à preferência pela liquidez mais pronunciada por parte dos agentes na periferia. É importante ressaltar que, ao contrário dos multiplicadores nacionais, os multiplicadores regionais são fortemente influenciados pelos vazamentos no fluxo financeiro entre diferentes regiões. Esses vazamentos podem ser de natureza real, como o saldo comercial, ou de natureza financeira, como as transações na conta de capitais. De todo modo, ambos tendem a drenar liquidez das economias periféricas em direção às economias centrais [@chick88].
+
+Para Amado [-@amado2006], os bancos são fundamentais nesse contexto, pois são os principais criadores de liquidez. Sendo assim, a autora defende que uma análise que procure observar o comportamento dos agentes em relação à moeda e aos limites que a liquidez pode gerar ao processo de crescimento de determinada economia deve ter por base a análise do comportamento dos bancos como criadores de liquidez.
+
+Sobre a tendência ao dreno de liquidez das regiões periféricas para as centrais, Dow [-@dow82] pontua dois problemas vividos pelos bancos na periferia: (i) perdem reservas continuamente para o centro e (ii) perdem mais reservas que os bancos do centro para o público em geral, já que este tem maior demanda por liquidez. Desse modo, tanto há problemas com o multiplicador bancário quanto com o multiplicando, e ambos tendem a limitar a criação de liquidez.
+
+Pensando que a liquidez é o primeiro limite à decisão de investir, o processo de crescimento da periferia será impedido por um limite de liquidez e o crescimento do centro é facilitado pelo mesmo motivo.
+
+# METODOLOGIA
+
+## *Fonte dos dados*
+
+Para que fosse possível uma análise espacial empírica e exploratória da atividade bancária no meio urbano, foi construída uma base de dados inédita, que integra conjuntos de informações provenientes de várias fontes, a saber:
+
+ESTBAN: subsistema estatístico do Sistema COSIF que disponibiliza arquivos gerados mensalmente com a informação da Estatística Bancária Mensal, contendo a posição mensal dos saldos das principais rubricas de balancetes dos bancos comerciais e dos bancos múltiplos com carteira comercial[^1].
+
+[^1]: https://www4.bcb.gov.br/fis/cosif/estban.asp?frame=1
+
+Relação de Agências - BCB: arquivos com informações sobre todas as agências do Brasil, disponibilizados pelo Banco Central do Brasil e extraídos do Sistema de Informações sobre Entidades de Interesse do Banco Central -- UNICAD, mensalmente. Contém informações como endereço completo e CNPJ de cada agência[^2].
+
+[^2]: https://www.bcb.gov.br/fis/info/agencias.asp?frame=1
+
+Google Maps API: Os endereços das agências foram submetidos à API do Google Maps, com intuito de georreferenciar a base, obtendo latitude e longitude de cada agência da Relação de Agências[^3].
+
+[^3]: Vale destacar que foram encontrados endereços de agências incorretos nos dados disponibilizados pelo BCB, o que resultou em um georreferenciamento incorreto. Assumiu-se um erro de apenas 5% dos dados nesse procedimento.
+
+Malha territorial das Regiões Metropolitanas, dividida em setores censitários - IBGE: Foram utilizados alguns shapefiles contendo informações vetoriais (polígonos) de cada setor censitário pertencentes às Regiões Metropolitanas analisadas.
+
+Dados de domicílio do CENSO 2010: Foram incluídos dados demográficos e socioeconômicos, agregados por setor censitário, disponibilizados pelo CENSO 2010 para a compreensão do contexto populacional subjacente às análises efetuadas no trabalho.
+
+Prentende-se incluir também, dados do CENSO 2022, que ainda não foram disponibilizados, considerando a presente data de escrita desse projeto de pesquisa.
+
+Para os dados da ESTBAN e da Relação de Agências - BCB, foi desenvolvido um *script* em Python para automatizar o processo de download, descompactação, leitura dos arquivos .csv ou .xls, transformação (padronização de nome e ordem de colunas), enriquecimento (dados de geolocalização do Google Maps API) e carregamento em banco de dados adequado para a análise (BigQuery). Para processar o grande volume de arquivos, foi utilizado PySpark [@spark].
+
+Os dados da malha territorial da Região Metropolitana de São Paulo foram obtidos através do pacote geobr do R [@geobr], utilizando as funções adequadas.
+
+Por fim, os dados de domicílios do CENSO 2010 foram baixados diretamente do site IBGE Downloads, na seção de "Resultados do Universo" e "Agregados por Setor Censitário" e carregados no R para serem cruzados com os demais dados.
+
+A Figura 1 mostra a localização das agências bancárias no Brasil, resultado do desenvolvimento da base de dados descrita acima.
+
+![Localização das agências bancárias no Brasil.](images/brasil.png){fig-align="center"} Fonte: Elaboração própria.
+
+## *Tratamento dos dados e construção de índices*
+
+Seguindo o referencial teórico pós-keynesiano de que vivemos em economia monetária de produção, o comportamento dos bancos e do público em relação à alocação de seus ativos pode ser mensurado em termos de preferência pela liquidez. Para tal mensuração, Crocco et al., [-@crocco2006] construíram dois indicadores financeiros: preferência pela liquidez do público (PLP) e preferência pela liquidez dos bancos (PLB).
+
+Segundo Crocco et al., [-@crocco2006], no balanço dos bancos, a conta de operações de crédito representa a porção de ativos com baixa liquidez relacionada aos empréstimos concedidos. Por outro lado, as contas de depósitos à vista, poupança e depósitos a prazo são registradas no passivo do balanço dos bancos e refletem o comportamento geral do público, agindo como intermediários financeiros. Segundo o enfoque pós-keynesiano, o público realiza suas decisões de alocação de ativos entre as contas mencionadas acima levando em consideração o nível de incerteza e a quantidade de informações disponíveis nas regiões. A decisão de alocação de portfólio envolve a escolha entre manter ativos mais líquidos, com retorno financeiro menor, em situações de maior incerteza econômica, ou optar por ativos menos líquidos, porém com potencial de maior rendimento financeiro, quando o cenário econômico se mostra mais confiável.
+
+Baseado no índice criado pelos autores, pode-se definir o índice de preferência pela liquidez do público (PLP) utilizado neste trabalho:
+
+$$
+PLP = \frac{DV}{DT}
+$$
+
+$DV =$ depósitos à vista[^4].
+
+[^4]: Na ESTBAN, é a soma das contas agregadas 400 (depósitos à vista do governo), que contém as subcontas: 401 (serviços públicos); 402 (atividades empresariais); 403 (especiais do tesouro nacional); 404 (saldo credores em contas de empréstimos e financiamentos - CFP). E 410 (depósitos à vista privado), que contém as subcontas: 411 (de pessoas físicas); 412 (de pessoas júridicas); 413 (de instituições do sistema financeiro); 414 (judiciais); 415 (obrigatórios); 416 (para investimentos); 417 (vinculados); 418 (demais depósitos); 419 (saldo credores em contas de empréstimos e financiamentos - Outros).
+
+$DT =$ depósitos totais (incluem depósitos a vista, depósitos de poupança[^5] e depósitos interfinanceiros[^6]).
+
+[^5]: Conta 420 da ESTBAN.
+
+[^6]: Conta 430 da ESTBAN, contém as subcontas: 431 (depósitos interfinanceiros), 432 (depósitos a prazo) e 433 (captações no mercado aberto).
+
+Quanto maior esse índice, maior é a preferência pela liquidez do público, pois aloca maior parcela de seus recursos em aplicações de maior liquidez.
+
+Para o índice de preferência de liquidez dos bancos (PLB), Crocco et al., [-@crocco2006] diz que o sistema bancário aloca seus recursos entre ativos de maior ou menor liquidez levando em conta o grau de desenvolvimento da região em que se encontra. Dessa forma, utilizaram a conta de operações de crédito para captar a disposição do banco à emprestar, e a conta de depósitos à vista, que representa a intenção do público bancarizado em manter seus ativos mais líquidos possíveis. O objetivo é medir como os bancos gerenciam seus balancetes e sua preferência pela liquidez, tornando seus ativos mais ou menos líquidos de acordo com as características econômicas da região a que pertecem. Neste trabalho, o PLB foi definido como:
+
+$$
+PLB = \frac{DV}{OPC}
+$$
+
+$DV =$ depósitos à vista.
+
+$OPC =$ operações de crédito[^7].
+
+[^7]: Representa o somatório das seguintes contas da ESTBAN: (161) empréstimos e títulos descontados, (162) financiamentos, (163) financiamentos rurais à agricultura -- custeio/investimento, (164) financiamentos rurais à pecuária - custeio/investimento, (165) financiamentos rurais à agricultura -- comercialização, (166) financiamentos rurais à pecuária -- comercialização, (167) financiamentos agroindustriais, (168) (rendas a apropriar de operações de financiamentos agroindustriais), (169) financiamentos imobiliários, (171) outras operações de crédito, (172) outros créditos, (173) provisão para operações de crédito créditos em liquidação e (176) operações especiais.
+
+Quanto maior o índice, maior a preferência pela liquidez dos bancos, pois estão emprestando menos (ficando com ativos mais líquidos).
+
+É esperado que PLP e PLB sejam mais baixos em regiões mais desenvolvidas, pois o público apresentaria menor preferência pela liquidez o que é sinônimo de prosperidade econômica segundo o arcabouço teórico pós-keynesiano. Da mesma forma, os bancos também terão menor preferência por liquidez e maior disposição à emprestar, dado o desempenho econômico dessas regiões.
+
+Cabe nessa análise, a introdução de um índice inédito na literatura, que complemente o PLB de Crocco et al., [-@crocco2006] e torne a preferência pela liquidez dos bancos dependente apenas de variáveis endógenas, ou seja, que considere apenas a escolha dos bancos entre seus ativos e desconsidere os depósitos à vista (variável exógena para os bancos). Isso é importante para que o índice não seja comprometido pelo volume de depósitos do público bancarizado, que tende a ser mais alto em regiões mais desenvolvidas, fazendo com que o PLB de Crocco et al., [-@crocco2006] fique alto nessas regiões. Dessa forma, pode-se definir um índicde de preferência pela liquidez dos bancos endógeno (PLBe), como a proporção de ativos líquidos sobre ativos totais:
+
+$$
+PLBen = \frac{D + E}{A}
+$$
+
+$D + E =$ Disponibilidades[^8] + Empréstimos e Títulos Descontados[^9].
+
+[^8]: Agregado das contas 111 (Caixa), 112 (Depósitos bancários), 113 (Reservas livres em espécie) e 114 (Aplicações temporárias em ouro).
+
+[^9]: Conta 161 da ESTBAN, representam o crédito mais líquido dentro das operações de crédito.
+
+$A =$ Total do ativo[^10].
+
+[^10]: Conta 399 da ESTBAN, contendo o somatório de todas as contas do ativo.
+
+Com interpretação semelhante ao PLB, espera-se que o PLBe seja menor em regiões mais desenvolvidas.
+
+Para mensurar a concentração, as centralidades financeiras e a desigualdade na oferta de crédito, calculou-se também alguns índices inpirados no "quociente locacional", como fez Tupy [-@igor], comparando a participação no crédito nacional de uma microrregião, com sua participação relativa no PIB nacional. Esse índice foi chamado de Índice Regional de Crédito (IRC), definido como:
+
+```{=tex}
+\begin{equation}
+IRC_{i} = \frac{\frac{cred_i}{\sum_{i=1}^n cred_i}}{\frac{pib_i}{\sum_{i=1}^n pib_i}}
+\end{equation}
+```
+Aqui, utilizou-se a renda dos setores censitários no lugar do PIB, para identificar os padrões de concentração de dispersão do crédito no meio urbano. Além disso, diferentes tipos de contas de crédito foram incorporadas para criar outros índices baseados no IRC, com a finalidade de comparar qualitativamente os padrões de concentração e dispersão de cada tipo de crédito (a referência da conta da ESTBAN foi mencionada entre parênteses). São eles:
+
+-   O próprio Índice Regional de Crédito (IRC):
+
+```{=tex}
+\begin{equation}
+IRC_{i} = \frac{\frac{OPC_i}{\sum_{i=1}^n OPC_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$OPC_i =$ Operações de crédito (160) ofertadas no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+-   Índice Regional de Empréstimos (IRE):
+
+```{=tex}
+\begin{equation}
+IRE_{i} = \frac{\frac{E_i}{\sum_{i=1}^n E_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$E_i =$ Empréstimos ofertados (161) no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+-   Índice Regional de Financiamentos (IRF):
+
+```{=tex}
+\begin{equation}
+IRF_{i} = \frac{\frac{F_i}{\sum_{i=1}^n F_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$F_i =$ Financiamentos ofertados (162) no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+-   Índice Regional de Lucro bancário (IRL):
+
+```{=tex}
+\begin{equation}
+IRL_{i} = \frac{\frac{L_i}{\sum_{i=1}^n L_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$L_i =$ Total das contas de resultado (710) no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+-   Índice Regional de Depósitos:
+
+```{=tex}
+\begin{equation}
+IRD_{i} = \frac{\frac{DV_i}{\sum_{i=1}^n DV_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$DV_i =$ Depósitos à vista no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+-   Índice Regional de Risco (IRR):
+
+```{=tex}
+\begin{equation}
+IRR_{i} = \frac{\frac{PC_i}{\sum_{i=1}^n PC_i}}{\frac{renda_i}{\sum_{i=1}^n renda_i}}
+\end{equation}
+```
+$PC_i =$ Provisão de crédito (174) no setor censitário $i$.
+
+$renda_i =$ Renda nominal do setor censitário $i$.
+
+Se os índices definidos acima são iguais a 1, a participação setor censitário $i$ no total da conta analisada é idêntica à sua participação na renda global. Se os índices recebem valores menores que 1, indica que o setor censitário $i$ participa menos do que o proporcial à sua participação na renda do que a conta analisada. Para o IRC, IRE, IRF, significaria menos crédito, empréstimo e financiamento, comparado a participação na renda global. Para valores maiores que 1, signifaria que a região recebe mais crédito do que participa da renda global [@igor]. A análise é semelhante para IRD, IRR e IRL, mas aqui, a precupação é com a distribuição dos depósitos em relação a distribuição da renda (IRD), com a percepção de risco que os bancos têm com cada região (IRR), e a distribuição dos lucros bancários em termos de resultado, comparada à distribuição da renda entre os setores censitários.
+
+Além desses índices de concentração e centralidade, foi calculado um índice de concentração de operações de crédito e um índice de concentração do setor bancário, ambos baseados no Índice de Hirschman-Herfindahl (IHH):
+
+Índice de concentração de operações (ICO): Consiste na soma de quadrados da participação relativa de todas as $N$ operações possíveis ofertadas no setor censitário: Empréstimos e Descontos de Títulos (161), Financiamentos (162), Financiamentos rurais à agricultura -- custeio/investimento (163), Financiamentos rurais à pecuária - custeio/investimento (164), Financiamentos rurais à agricultura -- comercialização (165), Financiamentos rurais à pecuária -- comercialização (166), Financiamentos agroindustriais (167_168), Financiamentos Imobiliários (169), Outras Operações de crédito (172), Outros créditos (173) e Arrendamento Mercantil (180). Pode ser calculado como:
+
+```{=tex}
+\begin{equation}
+ICO_{j} = \sum_{i=1}^N \Bigl(\frac{OP_{ij}}{OPC_{j}}\Bigr)^2
+\end{equation}
+```
+$OP_{ij} =$ Operação de crédito $i$ na região $j$ (Dentre as citadas acima).
+
+$OPC_{j} =$ Total das operações de crédito na região $j$
+
+$N =$ Número de operações totais.
+
+Índice de concentração do setor bancário (ICB): Consiste na soma de quadrados da participação relativa de todos os $N$ bancos (conglomerados) do setor bancário que operam no setor censitário, pode ser calculado como:
+
+```{=tex}
+\begin{equation}
+ICB_{j} = \sum_{i=1}^N \Bigl(\frac{x_{ij}}{x_{j}}\Bigr)^2
+\end{equation}
+```
+$x_{ij} =$ Operação de crédito do banco (conglomerado) $i$ na região $j$ (Dentre as citadas acima).
+
+$x_{j} =$ Total das operações de crédito na região $j$.
+
+$N =$ Número de conglomerados.
+
+Quando todos os $N$ bancos possuem a mesma participação de mercado, o índice de concentração do setor bancário atinge o seu valor mínimo, que é $ICB = \frac{1}{N}$. Por outro lado, no caso oposto, em que uma única instituição atua como um monopolista e detém todo o mercado de serviços bancários, o índice de concentração atinge o seu valor máximo, que é igual a $1$ [@igor; @paula]. O mesmo vale para operações de crédito, quando elas são bem diversificadas e apresentam a mesma distribuição, tem-se que $ICO = \frac{1}{N}$, enquanto uma baixa diversificação aproxima cada vez mais o índice à $ICO = 1$. Esses índices serão utilizados para mensurar a qualidade e a diversidade do mercado de crédito nas regiões.
+
+## *Análise de Componentes Principais e Análise de Cluster*
+
+Após a criação das variáveis e dos índices, serão utilizadas duas técnicas estatísticas de análise multivariada: a análise de componentes principais (ACP) e a análise de cluster. Tais técnicas permitem apresentar as principais características de cada região e formar agrupamentos de regiões de acordo com a similaridade nos dados utilizados [@crocco2006].
+
+A técnica de ACP tem como objetivo construir um conjunto de variáveis estatisticamente independentes, formadas a partir de uma transformação linear do conjunto de variáveis e reduzir a dimensão da base de dados perdendo o mínimo de informação (variância) possível [@mingotti].
+
+Segundo Andrade [-@andrade], com $n$ variáveis, pode-se gerar até $n$ componentes. No entanto, quando há alta correlação entre as variáveis, o número de componentes necessários à explicação da maior parte da variância dos dados resume-se em a poucos componentes. Dessa forma, podemos até utilizar de técnicas de análise univariada, caso seja possível condensar as $n$ variáveis em poucos componentes.
+
+Pretende-se criar, portanto, alguns índices de centralidade e qualidade financeira, que resumam o grande número de variáveis da base de dados original, juntamente com os índices criados na seção 3.2. Esses índices serão utilizados no modelo de Econometria de Espacial, definido na seção 3.4.
+
+Além disso, será feita uma análise de cluster utilizando o método de SKATER, para complementar a Análise de Componentes Principais e verificar a similaridade de desempenho entre as regiões, nos índices criados. Essa análise permite explorar visualmente as aglomerações causadas pela concentração financeira.
+
+## *Análise Espacial*
+
+Todo o processo que se dá no espaço está sujeito à chamada Lei de Tobler, conhecida como a Primeira Lei da Geografia, que diz que "tudo depende de todo o restante, porém o que está mais próximo depende mais do que aquilo que está mais distante" [@almeida]. Logo, a proximidade influencia a interação dos agentes no espaço, de forma a tornar a distribuição dos eventos espaciais não-aleatórios. A análise espacial, portanto, consiste em revelar e interpretar essas relações de proximidade e influência entre regiões vizinhas.
+
+A Econometria Espacial, por sua vez, é um ramo da econometria convencional, tendo como escopo, estimar, testar e prever modelos teóricos, influenciados pelos efeitos espaciais [@almeida]. O Modelo Clássico de Regressão Linear (MCRL) tem a limitação de não ser capaz de controlar esses efeitos espaciais e, portanto, deve ser relaxado para incorporar tais efeitos.
+
+Segundo Almeida [-@almeida], os processos espaciais de dependência espacial, ou seja, aqueles em que uma variável aleatória $y_i$ da região $i$ é influenciada pela variável $y_j$ da região vizinha $j$, são classificados como Processos Autorregressivos Espaciais (SAR). Para análise desse tipo de processo, é realizada uma defasagem espacial sobre uma variável $y$ aleatória da média da vizinhaça ponderada por uma matriz de pesos espaciais $W$. O modelo SAR, em sua versão pura, é expresso como a seguir:
+
+```{=tex}
+\begin{equation}
+y = \rho Wy + \varepsilon
+\end{equation}
+```
+Em que $Wy$ é um vetor $n$ por 1 de defasagens espaciais para a variável dependente, $\rho$ é o coeficiente autorregressivo espacial e $\varepsilon$ é o vetor de termos de erro.
+
+A versão mista do modelo SAR, incorpora também uma matriz $X$ de variáveis exógenas:
+
+```{=tex}
+\begin{equation}
+y = \rho Wy + X \beta + \varepsilon
+\end{equation}
+```
+Já os processos espaciais em que há influência de algo que não é capaz de ser modelado, podem ser encorporados na estrutura dos erros do modelo. Esses processos podem ser análisados pelo Modelo de Erro Autorregressivo Espacial (SEM), expresso por:
+
+```{=tex}
+\begin{equation}
+y = X \beta + \xi
+\end{equation}
+```
+```{=tex}
+\begin{equation}
+\xi = \lambda W \xi + \varepsilon
+\end{equation}
+```
+Rearranjando:x
+
+```{=tex}
+\begin{equation}
+y = X \beta + (I_n - \lambda W)^{-1}\varepsilon
+\end{equation}
+```
+A matriz de pesos espaciais $W$ escolhida será a que maximiza o coeficiente de correlação espacial I de Moran:
+
+```{=tex}
+\begin{equation}
+I = \frac{n}{\sum_i\sum_j w_{ij}}\frac{\sum_{i}\sum_{j} w_{ij}z_i z_j}{\sum_{i=1}^n z_{i}^2}
+\end{equation}
+```
+Em que $n$ é o número de regiões, $z$ denota os valores da variável de interesse padronizada e $w_{ij}$ os pesos espaciais, que descrevem as interações entre as regiões $i$ e $j$ [@almeida].
+
+Por fim, a expectativa é de que seja possível constatar correlação espacial nos processos financeiros e aglomeração da atividade bancária nas regiões centrais. Espera-se também, incluir os dados do CENSO 2022, para analisar a dinâmica do setor financeiro e seu impacto em variáveis reais.
+
+\newpage
+
+\pagestyle{empty} <!-- Hide the page number -->
+
+# REFERÊNCIAS
+
+::: {#refs}
+:::

@@ -1,0 +1,55 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[lmargin=3cm,tmargin=3cm,rmargin=2cm,bmargin=2cm]{geometry}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{blindtext}
+\usepackage[T1]{fontenc}
+% \usepackage[brazil]{babel}
+\usepackage[document]{ragged2e}
+\usepackage{pdflscape}
+
+\usepackage{graphicx, xcolor, comment, enumerate, multirow, multicol}
+\usepackage{indentfirst}
+
+\usepackage{amsfonts, amsthm, amsmath, amssymb, dsfont, mathtools}
+\usepackage{tikz, tkz-base, tkz-fct}
+\usepackage[style=abnt]{biblatex}
+
+\usepackage{titlesec}
+
+\setlength{\parindent}{15pt}
+
+\titleformat{\section}
+{\normalsize\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}
+{\normalsize}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}
+{\normalsize}{\thesubsubsection.}{1em}{}
+
+\newcommand{\PR}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\PC}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\chav}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\system}[1]{\ensuremath{\left\{#1\right}}
+\newcommand{\floor}[1]{\ensuremath{\left \lfloor #1\right \rfloor}}
+\newcommand{\FontTable}[1]{\vspace{-\baselineskip}\begin{footnotesize}#1\end{footnotesize}}
+
+% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
+\newlength{\ABNTEXcitacaorecuo}% recuo de 4 cm da margem esquerda
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\newcommand{\ABNTEXfontereduzida}{\footnotesize}
+\newenvironment*{citacao}[1][default]{%
+   \list{}%
+   \ABNTEXfontereduzida%
+   \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+   \item[]%
+   \singlespacing
+   \ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+ }{%
+   \endlist}%
+% ---
+
+\newenvironment{invisible}{\color{white}}{}
