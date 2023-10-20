@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage[notransparent]{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[lmargin=3cm,tmargin=3cm,rmargin=2cm,bmargin=2cm]{geometry}
 \usepackage{fancyhdr}
@@ -11,6 +12,8 @@
 % \usepackage[brazil]{babel}
 \usepackage[document]{ragged2e}
 \usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{float}
 
 \usepackage{graphicx, xcolor, comment, enumerate, multirow, multicol}
 \usepackage{indentfirst}
@@ -20,6 +23,7 @@
 \usepackage[style=abnt]{biblatex}
 
 \usepackage{titlesec}
+\usepackage{adjustbox}
 
 \setlength{\parindent}{15pt}
 
@@ -51,5 +55,20 @@
  }{%
    \endlist}%
 % ---
+
+\newcommand{\fig}[4]{%
+  \begin{figure}[H]
+    \centering
+    \caption{#1}
+    \label{#2}
+    \includegraphics{#3}
+    
+    \vspace{0.5cm}
+    
+    \begin{footnotesize}
+      Fonte: #4
+    \end{footnotesize}
+  \end{figure}
+}
 
 \newenvironment{invisible}{\color{white}}{}
