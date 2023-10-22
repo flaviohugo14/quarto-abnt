@@ -398,7 +398,7 @@ I = \frac{n}{\sum_i\sum_j w_{ij}}\frac{\sum_{i}\sum_{j} w_{ij}z_i z_j}{\sum_{i=1
 ```
 Em que $n$ é o número de regiões, $z$ denota os valores da variável de interesse padronizada e $w_{ij}$ os pesos espaciais, que descrevem as interações entre as regiões $i$ e $j$ [@almeida].
 
-Por fim, a expectativa é de que seja possível constatar correlação espacial nos processos financeiros e aglomeração da atividade bancária nas regiões centrais. Espera-se também, incluir os dados do CENSO 2022, para analisar a dinâmica do setor financeiro e seu impacto em variáveis reais.
+Por fim, a expectativa é de que seja possível constatar correlação espacial nos processos financeiros e aglomeração da atividade bancária nas regiões centrais.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(bigrquery)
@@ -426,7 +426,7 @@ sql <- "SELECT * FROM estban.estban_agencias_geolocalizadas WHERE data_base = '2
 
 query <- bigrquery::bq_project_query(
   project_id,
-  sql
+  sql,
 )
 
 agencias_2010 <- bigrquery::bq_table_download(query)
@@ -452,17 +452,17 @@ sp_ct_capital <- sp_ct |> dplyr::filter(code_muni == "3550308")
 # Polígono do município de São Paulo
 sp_capital <- geobr::read_municipality(code_muni = 3550308, showProgress = FALSE)
 
-library(h3)
-
-hex <- h3::geo_to_h3(centroids, res = 7)
-hex_map <- h3::h3_to_geo_boundary_sf(hex) |> st_transform(4674)
-
-sp_ct_capital$area <- sp_ct_capital |> st_area() |> as.numeric()
-
-
-st_intersection(hex_map[1,1], sp_ct_capital) |>
-  mutate(intersect_area = sf::st_area(.),
-         pct_intersect = intersect_area / area)
+# library(h3)
+# 
+# hex <- h3::geo_to_h3(centroids, res = 7)
+# hex_map <- h3::h3_to_geo_boundary_sf(hex) |> st_transform(4674)
+# 
+# sp_ct_capital$area <- sp_ct_capital |> st_area() |> as.numeric()
+# 
+# 
+# st_intersection(hex_map[1,1], sp_ct_capital) |>
+#   mutate(intersect_area = sf::st_area(.),
+#          pct_intersect = intersect_area / area)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
@@ -489,6 +489,36 @@ populacao_sp_capital <- readxl::read_xls("data/Basico_SP1.xls") |>
   dplyr::select(c("code_tract", "V002")) |>
   dplyr::filter(V002 != "X")
 
+domicilios_sp_capital <- readxl::read_excel("data/Domicilio01_SP1.xls") |>
+  dplyr::mutate(code_tract = as.character(Cod_setor)) |>
+  dplyr::select(
+    c(
+      "code_tract",
+      "V001",
+      "V002",
+      "V003",
+      "V004",
+      "V005",
+      "V006",
+      "V007",
+      "V008",
+      "V009",
+      "V010",
+      "V011",
+      "V012",
+      "V017",
+      "V024",
+      "V043"
+    )
+  )
+
+domicilios_sp_capital$domicilios <- as.numeric(domicilios_sp_capital$V002)
+
+domicilios_sp_capital$agua_encanada <- as.numeric(domicilios_sp_capital$V012)
+domicilios_sp_capital$esgoto <- as.numeric(domicilios_sp_capital$V017)
+domicilios_sp_capital$domicilios_com_banheiro <- as.numeric(domicilios_sp_capital$V024)
+domicilios_sp_capital$energia_eletrica <- as.numeric(domicilios_sp_capital$V043)
+
 renda_sp_capital$renda_nominal <- as.numeric(renda_sp_capital$V002) +
   as.numeric(renda_sp_capital$V003) +
   as.numeric(renda_sp_capital$V004)
@@ -507,6 +537,10 @@ sp_ct_capital <- sp_ct_capital |>
   dplyr::left_join(
     populacao_sp_capital,
     by = "code_tract"
+  ) |>
+  dplyr::left_join(
+    domicilios_sp_capital,
+    by = "code_tract"
   )
 
 # Agrupando por bairro
@@ -516,7 +550,12 @@ sp_capital_bairros <- sp_ct_capital |>
   dplyr::group_by(code_district) |>
   dplyr::summarise(
     renda_nominal = sum(ifelse(is.na(renda_nominal), 0, renda_nominal)),
-    populacao = sum(ifelse(is.na(populacao), 0, populacao))
+    populacao = sum(ifelse(is.na(populacao), 0, populacao)),
+    domicilios = sum(ifelse(is.na(populacao), 0, domicilios)),
+    agua_encanada = sum(ifelse(is.na(populacao), 0, agua_encanada)),
+    esgoto = sum(ifelse(is.na(populacao), 0, esgoto)),
+    banheiro = sum(ifelse(is.na(populacao), 0, domicilios_com_banheiro)),
+    energia_eletrica = sum(ifelse(is.na(populacao), 0, energia_eletrica))
   )
 
 # Juntando com shapefile por bairro
@@ -556,8 +595,12 @@ shape_final <- shape_censo_agencias_bairros |>
     depositos_inter = sum(`430`),
     relacoes_interfinanceiras = sum(`444_445_446_447_456_458`),
     resultado = sum(`710`),
-    renda = sum(renda_nominal),
-    populacao = sum(populacao)
+    renda = max(renda_nominal),
+    populacao = max(populacao),
+    agua_encanada = max(agua_encanada),
+    esgoto = max(esgoto),
+    banheiro = max(banheiro),
+    energia_eletrica = max(energia_eletrica)
   ) |>
   dplyr::filter(populacao > 0)
 
@@ -710,7 +753,11 @@ shape_final |>
       "IRR",
       "ICO",
       "ICB",
-      "rpc"
+      "rpc",
+      "agua_encanada",
+      "esgoto",
+      "banheiro",
+      "energia_eletrica"
     )
   ) |>
   sf::write_sf("data/shapefinal/shapefinal.shp")
@@ -781,7 +828,7 @@ irc_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -837,12 +884,14 @@ irc_cow <- irc_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
+irc_cow
+
 ggsave("exports/irc.pdf", plot = irc_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice Regional do Crédito (IRC) no município de São Paulo (2010).}{fig:irc}{exports/irc.pdf}{Elaboração própria.}
-
 É possível observar, por meio da figura \ref{fig:irc}, a alta concentração de crédito ofertado no centro histórico de São Paulo (Sé), bastante dominado pelos 5 maiores bancos do Brasil, especialmente pelo Santander, maior ofertante de crédito nessa região, em 2010. Além do centro histórico (Sé), regiões como Vila Curuçá, Jabaquara, Consolação, Santo Amaro, Bela Vista e Itaim Bibi também concentraram a oferta de crédito acima da concentração de renda. A concentração de crédito em regiões próximas dos aeroportos de Guarulhos e Congonhas (Vila Curuçá e Jabaquara) pode ser explicada pela presença de empresas e instituições financeiras nessas regiões. Esses empreendimentos costumam ter maior necessidade de crédito, o que pode justificar a concentração de crédito nessas regiões.
+
+\fig{Índice Regional do Crédito (IRC) no município de São Paulo (2010).}{fig:irc}{exports/irc.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -856,7 +905,7 @@ ire_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `161`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -915,9 +964,9 @@ ire_cow <- ire_map |> cowplot::ggdraw() +
 ggsave("exports/ire.pdf", plot = ire_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice Regional de Empréstimos (IRE) no município de São Paulo (2010).}{fig:ire}{exports/ire.pdf}{Elaboração própria.}
-
 A figura \ref{fig:ire} mostra que a concentração de empréstimos é semelhante à concentração de crédito como um todo. Isso significa que os bancos estão mais propensos a conceder empréstimos para clientes em regiões com maior renda. No entanto, há uma dispersão um pouco maior, comparada à oferta de crédito como um todo.
+
+\fig{Índice Regional de Empréstimos (IRE) no município de São Paulo (2010).}{fig:ire}{exports/ire.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -931,7 +980,7 @@ irf_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -990,9 +1039,9 @@ irf_cow <- irf_map |> cowplot::ggdraw() +
 ggsave("exports/irf.pdf", plot = irf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice Regional de Financiamentos (IRF) no município de São Paulo (2010).}{fig:irf}{exports/irf.pdf}{Elaboração própria.}
-
 A figura \ref{fig:irf} mostra um padrão ainda mais nítido de concentração financeira, em que pouquíssimos distritos contam com agências que fazem financiamentos. Distritos como Brasilândia, Cidade Tiradentes, Pedreira, Jardim Helena, Anhanguera e Marsilac não têm 1 centavo em financiamento no momento da análise. As regiões centrais, por sua vez, concentram uma oferta de financiamento muito superior ao nível de renda da região.
+
+\fig{Índice Regional de Financiamentos (IRF) no município de São Paulo (2010).}{fig:irf}{exports/irf.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1006,7 +1055,7 @@ ird_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `401_402`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1066,8 +1115,6 @@ ird_cow <- ird_map |> cowplot::ggdraw() +
 ggsave("exports/ird.pdf", plot = ird_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird.pdf}{Elaboração própria.}
-
 O Índice Regional de Depósitos, presente na figura \ref{fig:ird}, mostra que os depósitos estão mais bem distribuídos do que o crédito. Isso pode ser um indício de que as agências sejam eficientes em captar depósitos em todo espaço geográfico, diferentemente do que acontece na oferta de crédito.
 
 Existem algumas possíveis explicações para esse resultado:
@@ -1080,6 +1127,8 @@ A concentração um pouco maior nos regiões centrais pode ser explicada por alg
 - A maior renda e população nas regiões centrais.
 - A maior concentração de empresas e instituições nas regiões centrais.
 - A maior presença de agências bancárias nas regiões centrais.
+
+\fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1096,7 +1145,7 @@ irl_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1167,7 +1216,7 @@ irr_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`174`))) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1227,17 +1276,17 @@ irr_cow <- irr_map |> cowplot::ggdraw() +
 ggsave("exports/irr.pdf", plot = irr_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice Regional de Risco (IRR) no município de São Paulo (2010).}{fig:irr}{exports/irr.pdf}{Elaboração própria.}
-
 O Índice Regional de Risco da figura \ref{fig:irr} nos dá indício de como os bancos enxergam centro e periferia. As regiões periféricas no entorno do centro têm agências que provisionam muito mais crédito, em relação à renda da região, para cobrir possíveis inadimplências. Essa percepção de risco dos bancos pode ser determinante na oferta de crédito, pois os bancos estão mais propensos a conceder crédito para clientes em regiões consideradas de menor risco, como o centro da cidade. Essa dinâmica pode ter um impacto negativo no desenvolvimento econômico das regiões periféricas. A falta de acesso ao crédito pode dificultar a geração de renda e a criação de empregos nessas regiões.
 
-\fig{Índice Regional de Lucros (IRL) no município de São Paulo (2010).}{fig:irl}{exports/irl.pdf}{Elaboração própria.}
+\fig{Índice Regional de Risco (IRR) no município de São Paulo (2010).}{fig:irr}{exports/irr.pdf}{Elaboração própria.}
 
 A observação do resultado das agências e sua distribuição no espaço pelo IRL da figura \ref{fig:irl}, confirma a percepção de risco dos bancos em relação às regiões periféricas. As agências localizadas nessas regiões, apesar de terem um índice de risco mais alto, apresentaram resultados financeiros melhores do que as agências localizadas em regiões centrais. Esse resultado pode ser explicado por duas hipóteses:
 
 - Operações mais lucrativas: as agências localizadas nas regiões periféricas podem ter realizado operações mais lucrativas, como empréstimos pessoais e cheque especial. Essas operações costumam ter taxas de juros mais altas, o que pode compensar o risco de inadimplência.
 
 - Taxas diferentes: as agências localizadas nas regiões periféricas podem ter operado com taxas diferentes em cada região. Essas taxas podem ser mais altas nas regiões periféricas, o que também pode compensar o risco de inadimplência.
+
+\fig{Índice Regional de Lucros (IRL) no município de São Paulo (2010).}{fig:irl}{exports/irl.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1250,7 +1299,7 @@ plp_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`420`))) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1310,8 +1359,6 @@ plp_cow <- plp_map |> cowplot::ggdraw() +
 ggsave("exports/plp.pdf", plot = plp_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Preferência por liquidez do público (PLP) no município de São Paulo (2010).}{fig:plp}{exports/plp.pdf}{Elaboração própria.}
-
 Como era esperado pela literatura [@dow82;@chick88;@crocco2006], as regiões periféricas apresentam maior preferência por liquidez (Figura \ref{fig:plp}). Isso pode ser explicado por alguns fatores, como:
 
 - A maior incerteza financeira: as pessoas que moram em regiões periféricas tendem a ter renda menor e a enfrentar mais incerteza financeira. Isso pode levar a uma maior preferência por liquidez, para garantir que haja dinheiro disponível para despesas inesperadas.
@@ -1319,6 +1366,8 @@ Como era esperado pela literatura [@dow82;@chick88;@crocco2006], as regiões per
 - A menor oferta de crédito: a oferta de crédito é mais limitada nas regiões periféricas. Isso pode levar as pessoas a manter mais dinheiro em conta corrente ou em aplicações de liquidez imediata, para evitar a necessidade de recorrer ao crédito.
 
 - A menor penetração de serviços bancários: os serviços bancários são menos acessíveis nas regiões periféricas. Isso pode levar as pessoas a manter mais dinheiro em conta corrente ou em aplicações de liquidez imediata, para evitar a necessidade de se deslocar para agências bancárias.
+
+\fig{Preferência por liquidez do público (PLP) no município de São Paulo (2010).}{fig:plp}{exports/plp.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1332,7 +1381,7 @@ plb_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1392,8 +1441,6 @@ plb_cow <- plb_map |> cowplot::ggdraw() +
 ggsave("exports/plb.pdf", plot = plb_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Preferência por liquidez dos bancos (PLB) no município de São Paulo (2010).}{fig:plb}{exports/plb.pdf}{Elaboração própria.}
-
 Assim como o PLP, o PLB também se mostrou maior nas regiões periféricas em comparação com as regiões centrais (Figura \ref{fig:plb}), indo de encontro com os resultados de Crocco et al., [-@crocco2006]. Isso significa que as agências no centro da cidade têm uma menor propensão a manter reservas em dinheiro ou ativos líquidos, como títulos do governo ou depósitos interbancários.
 
 Existem várias explicações possíveis para esse fenômeno. Uma explicação é que as agências no centro da cidade têm acesso a uma maior diversidade de clientes e de fontes de financiamento. Isso lhes permite ser mais seletivos em suas decisões de empréstimo e, portanto, ter menos necessidade de manter reservas líquidas para atender às demandas de retirada dos clientes [@quaresma].
@@ -1401,6 +1448,8 @@ Existem várias explicações possíveis para esse fenômeno. Uma explicação �
 Outra explicação é que as agências no centro da cidade estão sujeitos a um menor risco de liquidez. Isso ocorre porque eles estão localizados em áreas com maior densidade populacional e econômica, o que torna mais fácil para eles obterem financiamento de emergência [@drehmann].
 
 Independentemente da explicação, o PLB menor das agências no centro da cidade tem implicações importantes para a política monetária. Isso ocorre porque a PLB é um fator que determina a quantidade de moeda que as agências estão dispostas a emprestar. Quando o PLB é menor, as agências estão dispostas a emprestar mais dinheiro, o que pode ajudar a estimular o crescimento econômico, dentro de uma perspectiva pós-keynesiana.
+
+\fig{Preferência por liquidez dos bancos (PLB) no município de São Paulo (2010).}{fig:plb}{exports/plb.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1414,7 +1463,7 @@ plbe_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `399`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1474,13 +1523,11 @@ plbe_cow <- plbe_map |> cowplot::ggdraw() +
 ggsave("exports/plbe.pdf", plot = plbe_cow, width = 5700, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Preferência por liquidez dos bancos - endógena (PLBe) no município de São Paulo (2010).}{fig:plbe}{exports/plbe.pdf}{Elaboração própria.}
-
 As diferenças na Preferência por liquidez dos bancos entre as regiões ficaram ainda mais claras quando se olha para o PLBe da figura \ref{fig:plbe}. Como esse indicador isola a ação do público (depósitos) e considera apenas variáveis endógenas para a agência, vemos que de fato há maior preferêcia por liquidez nas regiões periféricas por parte das agências, contrastando com a baixa preferência por liquidez nas regiões centrais.
 
 Esse comportamento da agência em manter ativos mais líquidos na periferia pode estar ligado à maior incerteza econômica vivida nas regiões periféricas, o que também vai de encontro com a literatura pós-keynesiana apresentada [@dow82; @chick88; @crocco2006].
 
-
+\fig{Preferência por liquidez dos bancos - endógena (PLBe) no município de São Paulo (2010).}{fig:plbe}{exports/plbe.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1493,7 +1540,7 @@ ico_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1553,13 +1600,13 @@ ico_cow <- ico_map |> cowplot::ggdraw() +
 ggsave("exports/ico.pdf", plot = ico_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice de Concentração de Operações (ICO) no município de São Paulo (2010).}{fig:ico}{exports/ico.pdf}{Elaboração própria.}
-
 O Índice de Concentração de Operações (ICO), presente na figura \ref{fig:ico}, mostra como há distritos com baixíssima diversidade de operações, localizados principalmente no extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nessas regiões as agências praticamente só oferecem empréstimos pessoais em 2010, zero financiamento ou operações de longo prazo. Vale lembrar o contexto histórico dessas regiões, visto que o extremo sul e o extremo leste de São Paulo são regiões historicamente marginalizadas, com altos índices de pobreza e desemprego.
 
 A grande questão é se pobreza e desemprego fizeram com que as agências não oferecessem crédito diversificado nessas regiões, ou, se a falta de crédito diversificado fez com que essas regiões enfrentassem pobreza e desemprego.
 
 Independentemente da resposta, fica clara a grande diferença entre centro e periferia no que tange ao número de operações realizadas nas agências: As agências centrais oferecem todo tipo de crédito, enquanto agências periféricas oferecem pouquíssimas opções.
+
+\fig{Índice de Concentração de Operações (ICO) no município de São Paulo (2010).}{fig:ico}{exports/ico.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
@@ -1572,7 +1619,7 @@ icb_map <- ggplot2::ggplot(final2) +
   ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
   ggplot2::scale_colour_manual(
-    values = alpha(cols, 0.5),
+    values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
@@ -1633,9 +1680,9 @@ icb_cow <- icb_map |> cowplot::ggdraw() +
 ggsave("exports/icb.pdf", plot = icb_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
-\fig{Índice de Concentração Bancária (ICB) no município de São Paulo (2010).}{fig:icb}{exports/icb.pdf}{Elaboração própria.}
-
 O Índice de Concentração Bancária (figura \ref{fig:icb}) ficou alto em distritos com poucas agências, como os da periferia, mas também ficou elevado em alguns distritos com grande volume de agências, como Sé, República e Consolação (Centro). Mesmo onde há maior diversificação, o ICB é próximo de $0.2$, o que significa que todo volume de operações de crédito é dividido entre aproximadamente 5 bancos, o que condiz com o conhecido domínio dos 5 grandes bancos no Brasil (Santander, Bradesco, Itaú, Banco do Brasil e Caixa).
+
+\fig{Índice de Concentração Bancária (ICB) no município de São Paulo (2010).}{fig:icb}{exports/icb.pdf}{Elaboração própria.}
 
 \newpage
 
@@ -1679,7 +1726,7 @@ dplyr::tibble(matrix(seq(1:11), nrow = 11)) %>%
 
 \newpage
 
-Com auxílio do critério de Kaiser e do modelo Broken-Stick (@fig-acp), foram escolhidos 2 componentes para serem analisados, pois já concentram 66% da variância total e condensam múltiplas dimensões para uma análise bidimensional.
+Com auxílio do critério de Kaiser e do modelo Broken-Stick (@fig-acp), foram escolhidos 2 componentes para serem analisados, pois já concentram 71,7% da variância total e condensam múltiplas dimensões para uma análise bidimensional.
 
 ```{r echo=FALSE}
 #| label: fig-acp
@@ -2101,9 +2148,9 @@ i_moran_icf |> stargazer::stargazer(
   )
 ```
 
-As figuras \ref{fig:moran} e \ref{fig:moranicf} mostram a relação entre $y$ e $Wy$ (*lagged*), sendo $y =$ IQF ou ICF e $W =$ matriz de pesos de 5 (IQF) e 7 (ICF) vizinhos mais próximos. Ambos índices de Moran foram estatisticamente diferentes de zero, o que significa que há autocorrelação espacial para IQF e ICF, no entanto, a autocorrelação espacial do IQF é muito mais forte, indicando que o espaço importa mais na difusão de qualidade e diversidade de crédito, do que na questão de centralidade e volume de crédito. Como o bairro Sé é um *outlier* na centralidade do crédito, é possível que ele esteja mascarando algum aspecto das demais centralidades de crédito.
+As figuras \ref{fig:moran} e \ref{fig:moranicf} mostram a relação entre $y$ e $Wy$ (*lagged*), sendo $y =$ IQF ou ICF e $W =$ matriz de pesos de 5 (IQF) e 6 (ICF) vizinhos mais próximos. Ambos índices de Moran foram estatisticamente diferentes de zero, o que significa que há autocorrelação espacial para IQF e ICF, no entanto, a autocorrelação espacial do IQF é muito mais forte, indicando que o espaço importa mais na difusão de qualidade e diversidade de crédito, do que na questão de centralidade e volume de crédito. Como o bairro Sé é um *outlier* na centralidade do crédito, é possível que ele esteja mascarando algum aspecto das demais centralidades de crédito.
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE,warning=FALSE}
 #| label: fig-moran
 #| fig-cap: "I de Moran para o IQF."
 
@@ -2111,6 +2158,8 @@ moran_i <- spdep::moran.test(shape$comp2, knn5_lista)
 moran_local <- spdep::localmoran(shape$comp2, knn5_lista, alternative = "two.sided")
 
 shape$ylag <- spdep::lag.listw(knn5_lista, shape$comp2)
+
+shape$p_value <- moran_local[,5]
 
 shape$quadrante <- ifelse(shape$p_value <= 0.05,
   ifelse(
@@ -2124,9 +2173,6 @@ shape$quadrante <- ifelse(shape$p_value <= 0.05,
   ), "Não significativo"
 )
 
-
-shape$p_value <- moran_local[,5]
-
 i_moran_iqf <- ggplot2::ggplot(shape, aes(x = comp2, y = ylag)) +
   ggplot2::geom_point(
     mapping = aes(colour = factor(quadrante)),
@@ -2138,7 +2184,8 @@ i_moran_iqf <- ggplot2::ggplot(shape, aes(x = comp2, y = ylag)) +
       "Não significativo" = "grey85",
       "High-High" = "#f8766d",
       "Low-Low" = "#00b4ef",
-      "High-Low" = "#00bc59"
+      "High-Low" = "#00bc59",
+      "Low-High" = "#bf80ff"
     )
   ) +
   ggplot2::geom_abline(slope = as.numeric(moran_i$estimate)[1], color = "#7159c1", linewidth = 1) +
@@ -2162,16 +2209,18 @@ ggsave("exports/imoraniqf.pdf", plot = i_moran_iqf, width = 40, height = 20, uni
 
 \fig{I de Moran para o IQF}{fig:moran}{exports/imoraniqf.pdf}{Elaboração própria.}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, eval=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 #| label: fig-moran-icf
 #| fig-cap: "I de Moran para o ICF."
 
-moran_i_icf <- spdep::moran.test(shape$comp1, knn7_lista)
-moran_local_icf <- spdep::localmoran(shape$comp1, knn7_lista, alternative = "two.sided")
+moran_i_icf <- spdep::moran.test(shape$comp1, knn6_lista)
+moran_local_icf <- spdep::localmoran(shape$comp1, knn6_lista, alternative = "two.sided")
 
 shape$ylag_icf <- lag.listw(knn7_lista, shape$comp1)
 
-shape$quadrante_icf <- ifelse(shape$p_value <= 0.05,
+shape$p_value_icf <- moran_local_icf[,5]
+
+shape$quadrante_icf <- ifelse(shape$p_value_icf <= 0.05,
   ifelse(
     shape$comp1 > 0 & shape$ylag_icf > 0, "High-High",
     ifelse(
@@ -2183,8 +2232,6 @@ shape$quadrante_icf <- ifelse(shape$p_value <= 0.05,
   ), "Não significativo"
 )
 
-
-shape$p_value_icf <- moran_local_icf[,5]
 
 i_moran_icf <- ggplot2::ggplot(shape, aes(x = comp1, y = ylag_icf)) +
   ggplot2::geom_point(
@@ -2222,7 +2269,13 @@ ggsave("exports/imoranicf.pdf", plot = i_moran_icf, width = 40, height = 20, uni
 
 \fig{I de Moran para o ICF}{fig:moranicf}{exports/imoranicf.pdf}{Elaboração própria.}
 
-```{r, echo=FALSE, eval=FALSE}
+As figuras \ref{fig:moranlocal} e \ref{fig:moranlocalicf} mostram a dispersão geográfica dos *clusters* LISA (*Local Indicators of Spatial Association*), baseado no I de Moran Local. Esses *clusters* mostram se determinada região tem padrão semelhante aos seus vizinhos, classificados em quatro tipos: High-High (Pontos com valores altos cercados por outros pontos com valores altos); Low-Low (Pontos com valores baixos cercados por outros pontos com valores baixos); High-Low (Pontos com valores altos cercados por outros pontos com valores baixos); e Low-High (Pontos com valores baixos cercados por outros pontos com valores altos). Nas figuras foram destacadas apenas as regiões significativas ($p \leq 0.05$) no teste do I de Moran Local.
+
+Pode-se observar uma formação de cluster *Low-Low* na Zona Leste (extremo leste) de São Paulo para o IQF, indicando que se trata de uma periferia em termos de qualidade de serviço financeiro, aglomerando distritos que compartilham dos mesmos baixos índices. Ainda em relação ao IQF, observa-se um cluster *High-High* contendo alguns dos distritos mais ricos da cidade de São Paulo: Campo Belo e Moema. Indicando que se trata de um forte centro financeiro, rodeado de distritos com qualidade financeira similar.
+
+Sobre o ICF, vemos a formação de um grupo bem no centro da cidade, composto exclusivamente por *outliers* em termos de centralidade financeira, e que formam um espécie de anel em torno do centro histórico (Sé). Os clusters *Low-High* nesse anel indicam que há distritos com baixa concentração de crédito, mas que estão cercados por distritos concentradores de crédito, que formam clusters *High-High*.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 
 moranlocal_map <- ggplot2::ggplot() +
   ggplot2::geom_sf(data = shape, mapping = aes(fill = quadrante), lwd = 0, colour = NA) +
@@ -2232,11 +2285,12 @@ moranlocal_map <- ggplot2::ggplot() +
       "Não significativo" = "grey85",
       "High-High" = "#f8766d",
       "Low-Low" = "#00b4ef",
-      "High-Low" = "#00bc59"
+      "High-Low" = "#00bc59",
+      "Low-High" = "#bf80ff"
     )
   ) +
   ggrepel::geom_text_repel(
-    data = subset(shape, shape$quadrante %in% c("High-High", "High-Low", "Low-Low")),
+    data = subset(shape, shape$quadrante %in% c("High-High", "High-Low", "Low-Low", "Low-High")),
     aes(label = name_district, geometry=geometry),
     stat = "sf_coordinates",
     min.segment.length = 0,
@@ -2301,7 +2355,7 @@ ggsave("exports/moranlocal.pdf", plot = moranlocal_map, width = 5000, height = 5
 
 \fig{Clusters LISA (I de Moran Local) - IQF}{fig:moranlocal}{exports/moranlocal.pdf}{Elaboração própria.}
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 
 moranlocalicf_map <- ggplot2::ggplot() +
   ggplot2::geom_sf(data = shape, mapping = aes(fill = quadrante_icf), lwd = 0, colour = NA) +
@@ -2316,7 +2370,7 @@ moranlocalicf_map <- ggplot2::ggplot() +
     )
   ) +
   ggrepel::geom_text_repel(
-    data = subset(shape, shape$quadrante %in% c("High-High", "High-Low", "Low-Low")),
+    data = subset(shape, shape$quadrante_icf %in% c("High-High", "High-Low", "Low-Low", "Low-High")),
     aes(label = name_district, geometry=geometry),
     stat = "sf_coordinates",
     min.segment.length = 0,
@@ -2381,12 +2435,6 @@ ggsave("exports/moranlocalicf.pdf", plot = moranlocalicf_map, width = 5000, heig
 
 \fig{Clusters LISA (I de Moran Local) - ICF}{fig:moranlocalicf}{exports/moranlocalicf.pdf}{Elaboração própria.}
 
-As figuras \ref{fig:moranlocal} e \ref{fig:moranlocalicf} mostram a dispersão geográfica dos *clusters* LISA (*Local Indicators of Spatial Association*), baseado no I de Moran Local. Esses *clusters* mostram se determinada região tem padrão semelhante aos seus vizinhos, classificados em quatro tipos: High-High (Pontos com valores altos cercados por outros pontos com valores altos); Low-Low (Pontos com valores baixos cercados por outros pontos com valores baixos); High-Low (Pontos com valores altos cercados por outros pontos com valores baixos); e Low-High (Pontos com valores baixos cercados por outros pontos com valores altos). Nas figuras foram destacadas apenas as regiões significativas ($p \leq 0.05$) no teste do I de Moran Local.
-
-Pode-se observar uma formação de cluster *Low-Low* na Zona Leste (extremo leste) de São Paulo para ambos os índices, indicando que se trata de uma periferia em termos de crédito, aglomerando distritos que compartilham dos mesmos baixos índices.
-
-Além disso, observa-se que o distrito Jardim Paulista se encontra em clusters *High-High* em ambos os índices, o que demonstra uma certa influência sobre os seus vizinhos, positiva para o IQF e negativa para o ICF, ou seja, compartilha de qualidade e diversidade de crédito com os distritos próximos e compete em termos de operações e centralidade de crédito. Surpreende o distrito Sé, com alto ICF não ter formado um cluster *High-High* ou *High-Low*.
-
 Agora, podemos estimar alguns modelos de regressão e verificar o impacto dos índices de qualidade e centralidade financeira na renda *per capita* dos distritos.
 
 Começando pelo MQO sem efeitos espaciais, expresso por:
@@ -2405,7 +2453,7 @@ RPC = \beta_{1} ICF + \beta_{2} IQF + \varepsilon
 spatial$ICF <- spatial$comp1
 spatial$IQF <- spatial$comp2
 
-equacaoabsoluta = rpc ~ ICF + IQF
+equacaoabsoluta = rpc ~ 1 + ICF + IQF + ag_ncnd + banheir + esgoto + enrg_lt
 
 options(scipen=11)
 
@@ -2491,7 +2539,7 @@ Pela estatística dos testes, devemos escolher o modelo de *lag* espacial, o que
 #| label: tbl-lrteste
 #| tbl-cap: "Resultado do teste LR entre os modelos SLX e SLM."
 
-reg_slx <- spatialreg::lmSLX(formula = "rpc ~ ICF + IQF", data=spatial, listw=knn4_lista)
+reg_slx <- spatialreg::lmSLX(formula = "rpc ~ 1 + ICF + IQF + ag_ncnd + banheir + esgoto + enrg_lt", data=spatial, listw=knn4_lista)
 
 reg_sdm <- spatialreg::lagsarlm(equacaoabsoluta, data=spatial, listw=knn4_lista, type="mixed")
 
@@ -2514,7 +2562,7 @@ lr_test_print |>
 
 Como o teste LR disse que os modelos são estatísticamente diferentes e o que tem melhor ajuste é o SLX, opta-se por escolhê-lo neste trabalho. A @tbl-slx mostra seu resultado: 
 
-```{r echo=FALSE, results='asis', warning=FALSE}
+```{r echo=FALSE, results='asis'}
 #| label: tbl-slx
 #| tbl-cap: Resultados do modelo SLX.
 
@@ -2530,9 +2578,9 @@ reg_slx %>%
     digits = 6
   )
 ```
+
 \newpage
 
 # REFERÊNCIAS
-
 ::: {#refs}
 :::
