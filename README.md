@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Quarto ABNT" title="Quarto ABNT" src=".github/logo.png" width="300px" />
+  <img alt="Quarto ABNT" title="Quarto ABNT" src="logo.png" width="300px" />
 </h1>
 
 <p align="center">
