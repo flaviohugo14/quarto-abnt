@@ -17,16 +17,16 @@
 
 ---
 
-Quarto ABNT é um template para escrita de artigos científicos com as normas da ABNT que utiliza o [Quarto](https://quarto.org/). O objetivo do projeto é fornecer uma estrutura pré-pronta para que qualquer pesquisador gere estudos reprodutíveis, e bem formatados, de forma ágil.
+Quarto ABNT é um template para escrita de artigos científicos com as normas da ABNT que utiliza o [Quarto](https://quarto.org/). O objetivo do projeto é fornecer uma estrutura pré-pronta para que qualquer pesquisador gere estudos reprodutíveis e bem formatados, de forma ágil.
 
-## Principais tecnologias
+## Principais tecnologias 🚀
 
 - [R](https://www.r-project.org/)
 - [Markdown](https://www.markdownguide.org/)
 - [Latex](https://www.latex-project.org/)
 - [Quarto](https://quarto.org/)
 
-## Estrutura
+## Estrutura ⚙️
 Os principais arquivos do projeto estão dentro da pasta `article`:
 
 ```
@@ -132,7 +132,25 @@ O arquivo `article/tex_files/doc_class.tex` contém todos os pacotes, funções 
 
 As demais pastas são completamente opcionais e serviram apenas para organizar o projeto: separar imagens, dados, arquivos .pdf gerados com `ggplot`, etc.
 
-## 💡Como contribuir:
+## Como utilizar 🧑‍🏫
+Clone o repositório:
+```{sh}
+git clone https://github.com/flaviohugo14/quarto-abnt.git
+```
+
+Acesse a pasta do projeto:
+```{sh}
+cd quarto-abnt
+```
+
+Abra o projeto no seu editor de código preferido:
+```{sh}
+code .
+```
+
+Leia a documentação do [Quarto](https://quarto.org/) para entender seu funcionamento.
+
+## Como contribuir 💡
 - Realize um fork do repositório
 
 ```
