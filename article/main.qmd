@@ -1726,9 +1726,9 @@ dplyr::tibble(matrix(seq(1:11), nrow = 11)) %>%
 
 \newpage
 
-Com auxílio do critério de Kaiser e do modelo Broken-Stick (@fig-acp), foram escolhidos 2 componentes para serem analisados, pois já concentram 71,7% da variância total e condensam múltiplas dimensões para uma análise bidimensional.
+Com auxílio do critério de Kaiser e do modelo Broken-Stick (Figura \ref{fig-acp}), foram escolhidos 2 componentes para serem analisados, pois já concentram 71,7% da variância total e condensam múltiplas dimensões para uma análise bidimensional.
 
-```{r echo=FALSE}
+```{r echo=FALSE, result='asis'}
 #| label: fig-acp
 #| fig-cap: "Autovalores e modelo Broken-Stick."
 
