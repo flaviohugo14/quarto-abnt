@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Quarto ABNT" title="Quarto ABNT" src="logo.png" width="300px" />
+  <img alt="Quarto ABNT" title="Quarto ABNT" src=".github/logo.png" width="300px" />
 </h1>
 
 <p align="center">
@@ -17,7 +17,7 @@
 
 ---
 
-Quarto ABNT é um template para escrita de artigos científicos com as normas da ABNT que utiliza o [Quarto](https://quarto.org/).
+Quarto ABNT é um template para escrita de artigos científicos com as normas da ABNT que utiliza o [Quarto](https://quarto.org/). O objetivo do projeto é fornecer uma estrutura pré-pronta para que qualquer pesquisador gere estudos reprodutíveis, e bem formatados, de forma ágil.
 
 ## Principais tecnologias
 
@@ -25,6 +25,112 @@ Quarto ABNT é um template para escrita de artigos científicos com as normas da
 - [Markdown](https://www.markdownguide.org/)
 - [Latex](https://www.latex-project.org/)
 - [Quarto](https://quarto.org/)
+
+## Estrutura
+Os principais arquivos do projeto estão dentro da pasta `article`:
+
+```
+article
+├── cite_styles
+│   └── abnt.csl
+├── data
+│   ├── Basico_SP1.csv
+│   ├── Basico_SP1.xls
+│   ├── Domicilio01_SP1.xls
+│   ├── DomicilioRenda_SP1.csv
+│   ├── matrix
+│   │   ├── distance2.gwt
+│   │   ├── knn4.gwt
+│   │   └── rainha1.gal
+│   └── shapefinal
+│       ├── shapefinal.dbf
+│       ├── shapefinal.prj
+│       ├── shapefinal.shp
+│       └── shapefinal.shx
+├── exports
+│   ├── icb.pdf
+│   ├── icf.pdf
+│   ├── ico.pdf
+│   ├── imoranicf.pdf
+│   ├── imoraniqf.pdf
+│   ├── iqf.pdf
+│   ├── irc.pdf
+│   ├── ird.pdf
+│   ├── ire.pdf
+│   ├── irf.pdf
+│   ├── irl.pdf
+│   ├── irr.pdf
+│   ├── moranlocal.pdf
+│   ├── moranlocalicf.pdf
+│   ├── plb.pdf
+│   ├── plbe.pdf
+│   └── plp.pdf
+├── images
+│   ├── brasil.png
+│   └── ufv2.png
+├── main.pdf
+├── main.qmd
+├── referencies
+│   └── ref.bib
+└── tex_files
+    ├── before-body.tex
+    └── doc-class.tex
+```
+
+O arquivo `main.qmd` concentra quase todo código e texto do artigo. Esse arquivo é formado por um *header* e *chunks* de código.
+
+Exemplo de *header* utilizado no artigo:
+
+```
+---
+title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL EMPÍRICA E EXPLORATÓRIA DO SETOR BANCÁRIO NO MUNICÍPIO DE SÃO PAULO, NO ANO DE 2010."
+author: "Flávio Hugo Pangracio Silva"
+registration_number: 99079
+advisor: "Igor Santos Tupy"
+institution: "UNIVERSIDADE FEDERAL DE VIÇOSA"
+city: "VIÇOSA"
+state: "MG"
+year: "2023"
+bibliography: referencies/ref.bib
+csl: cite_styles/abnt.csl
+number-sections: true
+lang: pt-BR
+linkcolor: "black"
+highlight-style: kate
+fig-cap-location: top
+format:
+    pdf:
+        template-partials:
+            - tex_files/before-body.tex
+            - tex_files/doc-class.tex
+---
+```
+
+Exemplo de um *chunk* de código R:
+```
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+# Download ESTBAN data from BigQuery
+project_id <- "cloud-learning-doing"
+
+sql <- "SELECT * FROM estban.estban_agencias_geolocalizadas WHERE data_base = '2010-12-01'"
+
+query <- bigrquery::bq_project_query(
+  project_id,
+  sql,
+)
+
+agencias_2010 <- bigrquery::bq_table_download(query)```
+```
+
+A folha de estilo das citações ABNT é definida no arquivo `article/cite_styles/abnt.csl`, é lá que você precisará alterar para adequar sua citação à uma norma específica.
+
+As referências podem ser incluídas no arquivo `article/referencies/ref.bib`, utilizando o já conhecido BibTeX.
+
+O arquivo `article/tex_files/before-body.tex` contém o código LaTeX que gera a capa do artigo. Edite para se adequar às suas necessidades.
+
+O arquivo `article/tex_files/doc_class.tex` contém todos os pacotes, funções e definições do projeto LaTeX. É possível incrementar bibliotecas por lá.
+
+As demais pastas são completamente opcionais e serviram apenas para organizar o projeto: separar imagens, dados, arquivos .pdf gerados com `ggplot`, etc.
 
 ## 💡Como contribuir:
 - Realize um fork do repositório
