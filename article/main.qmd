@@ -25,49 +25,20 @@ format:
 
 # INTRODUÇÃO
 
-Na literatura sobre economia regional, há poucos trabalhos analisando a moeda e o seu papel para o desenvolvimento regional. Modelos como o neoclássico, o de causação cumulativa e o de insumo-produto, não consideram o impacto da moeda e de variáveis financeiras. Segundo Crocco et al., [-@crocco2006], essas variáveis são tratadas em modelos econométricos como exógenas, de forma que afetam a determinação regional de renda em razão das características específicas de cada região. Logo, a moeda e os fluxos monetários têm sido explicados como o resultado da diferença entre as regiões e não como os causadores dessa diferença.
+Na literatura sobre economia regional, há poucos trabalhos analisando a moeda e o seu papel para o desenvolvimento regional. Modelos como o neoclássico, o de causação cumulativa e o de insumo-produto, não consideram o impacto da moeda e de variáveis financeiras. Segundo Crocco *et al*., [-@crocco2006], essas variáveis são tratadas em modelos econométricos como exógenas, de forma que afetam a determinação regional de renda em razão das características específicas de cada região. Logo, a moeda e os fluxos monetários têm sido explicados como o resultado da diferença entre as regiões e não como os causadores dessa diferença. Amado [-@amado2006] também destaca que variáveis monetárias e financeiras são recorrentemente negligenciadas em estudos sobre a questão regional.
 
-Além disso, Amado (1998) destaca que variáveis monetárias e financeiras são recorrentemente negligenciadas em estudos sobre a questão regional. Para a autora, essa perspctiva pode ser justificada por três fatores: (1) a influência das escolas convencionais de economia nos estudos regionais, que caracterizam a moeda como elemento neutro, não sendo capaz de afetar as variáveis reais da economia; (2) a aceitação, por parte dos que não concordam com as hipóteses das escolas convencionais, mas concordam com a concepção horizontalista de oferta de moeda, ou seja, que a oferta de moeda é acomodativa das pressões reais, sendo capaz de variar para atender qualquer padrão de demanda por moeda. Logo, não seria capaz de afetar a dinâmica real da economia; (3) ausência de dados satisfatórios para uma análise da questão regional sob a ótica financeira e monetária.
+Além disso, há uma lacuna na literatura quanto ao papel da moeda no desenvolvimento urbano, sobretudo quanto aos fatores distributivos e qualitativos na oferta de crédito dentro das cidades. Trabalhos como o de Hashimoto, Pažitka e Wójcik [-@hashimoto2022], Hashimoto e Wójcik [-@hashimoto2021], Tupy [-@tupy2016], Crocco [-@crocco2012] e Parr e Budd [-@parr] focaram na questão locacional e hierárquica dos serviços financeiros, utilizando-se de dados de emprego no setor financeiro e número de agências para determinar coeficientes de localização e centralidade dessas atividades. Outros trabalhos, como os de Memarian *et al*., [-@memarian2023] e Chauvet e Jacolin [-@chauvet2017] exploraram o impacto da concentração bancária no acesso ao crédito por parte das firmas, ao utilizarem dados do endividamento das firmas e obstáculos geográficos até a agência bancária. Todas essas contribuições tangenciam de alguma forma o papel da moeda no desenvolvimento urbano, mas não discutem concentração de crédito e desigualdade financeira dentro das cidades.
 
-Greenwald, Levinson e Stiglitz [-@greenwald], Roberts e Fishkind [-@roberts], Moore e Hill [-@moore] e Beare [-@beare] são alguns dos autores ortodoxos que explicam a não neutralidade regional da moeda pela existência de falhas de mercado, relacionadas à oferta regional do crédito.
+Por conta disso, faz-se necessário um trabalho que dê palco central para a distribuição do crédito no espaço urbano, revisite as contribuições passadas sobre a questão regional do crédito e do setor bancário e utilize do grande volume de dados disponíveis nos dias atuais para testar hipóteses, realizar análises espaciais e dar condições para formulação de políticas públicas de acesso à crédito no âmbito urbano.
 
-Na corrente pós-keynesiana, no entanto, a moeda possui um papel central nas decisões econômicas dos agentes. Para autores como Rodriguez-Fuentes [-@rodriguez], Dow [-@dow99; -@dow87] e Crocco, Cavalcante e Castro [-@crocco2005], a oferta e a demanda de crédito são interdependentes e afetadas pela preferência pela liquidez, vinculada às expectativas que os agentes formam em um ambiente de incerteza. Para os bancos, a preferência pela liquidez reduzirá a sua disposição em emprestar na região caso possuam expectativas pessimistas ou pouco confiáveis sobre ela. Para o público, a preferência pela liquidez impactará sua definição de portfólio, ou seja, quanto maior a preferência por liquidez, maior a quantidade de ativos líquidos e menor demanda por ativos fixos.
+Nesse sentido, ainda há muitas questões a se explorar e responder sobre o tema da moeda no espaço: As concentrações bancárias já identificadas por Selmier [-@selmier2016], Tupy [-@igor], Dow [-@dow2012], Amado [-@amado2006] e outros autores se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre distritos de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole? Volume e qualidade do crédito impactam na renda per capita dos bairros/distritos da cidade?
 
-Nesse sentido, sobretudo do prisma pós-keynesiano, a atividade dos bancos e das instituições financeiras é fundamental para o desenvolvimento econômico nacional e também para explicar os diferentes padrões de desenvolvimento econômico regional. Portanto, é relevante analisar a atividade bancária e financeira sob a perspectiva da economia regional, levando em consideração fatores aglomerativos e desaglomerativos, fatores locacionais, inter-relações com outros agentes, história, distribuição, qualidade e diversidade das operações de crédito.
+Diante dos questionamentos e da lacuna literária, o presente trabalho pretende aprofundar as discussões sobre centralidade financeira no espaço urbano, por meio de uma análise espacial empírica e exploratória do setor bancário do município de São Paulo, em 2010. Essa análise é importante para compreender como a oferta de crédito está dispersa no espaço e como ela influencia o desenvolvimento econômico e social das cidades, servindo de base para formulação de políticas de desenvolvimento regional no combate às desigualdades regionais.
 
-Amado [-@amado2006] verificou um processo de concentração bancária e financeira (fusões bancárias) nos anos 1990, que prejudicou diretamente as economias periféricas, ao reforçar as restrições de liquidez que essas economias enfrentam. De acordo com a autora, as economias periféricas sofrem constantes vazamentos em seus fluxos financeiros. Esses vazamentos são drenados para as regiões centrais, que passam a apresentar vantagens comparativas em relação à periferia, por terem acesso a um volume maior de liquidez. Dessa forma, os bancos centrais ficam mais receosos em estender crédito à periferia, por terem expectativas menos sólidas em relação a essas regiões. Além disso, os bancos da periferia tendem a estender crédito a atividades que sejam mais fortemente relacionadas com a própria região, com intuito de evitar perda de reservas. Para Amado [-@amado2006], esse processo de concentração levará os bancos que assumem os bancos regionais a redirecionar suas atividades para as regiões em que possuem vantagens comparativas, como aconteceu com três bancos de caráter regional que foram absorvidos por bancos das regiões centrais: Econômico pelo Excel, Banorte pelo Bandeirantes e Bamerindus pelo HSBC.
+Para atingir esses objetivos será necessário construir uma base de dados com os arquivos disponibilizados mensalmente pelo BACEN da estatística bancária de cada agência (ESTBAN) e georreferenciar esses dados. Com isso, será possível agrupar os dados por setor censitário da malha territorial de São Paulo (IBGE) e cruzar com os dados de renda e domicílio do CENSO 2010. Depois, calcularemos alguns índices de localização, distribuição, qualidade e diversidade do crédito, que serão apresentados na seção de metodologia. Em seguida, realizaremos uma análise exploratória desses dados, por meio de técnicas de clusters e análise de componentes principais. Além disso, estimaremos um modelo econométrico espacial (SLX) com os índices criados para mensurar o impacto da oferta de crédito local e dos vizinhos mais próximos na renda per capita das regiões. Por fim, avaliaremos e discutiremos os resultados encontrados, sob o referencial pós-keynesiano.
 
-Martin e Sunley [-@martin2015] destacam que o acesso das empresas a empréstimos financeiros varia de acordo com a localidade, principalmente devido às práticas discriminatórias das instituições bancárias em relação ao financiamento. Dessa forma, empresas localizadas em regiões economicamente deprimidas podem ser consideradas de alto risco pelas instituições financeiras, resultando na recusa de crédito. O que reforça a importância dos bancos de caráter regional.
-
-De acordo com Selmier [-@selmier2016], essa característica é crucial para entender a capacidade do sistema bancário brasileiro de manter altas taxas de lucro. O autor destaca que ao longo do tempo, o sistema bancário do Brasil tem sido dominado por quatro grandes bancos. Essa estrutura de mercado oligopolizada proporciona estabilidade, uma vez que os lucros dos grandes bancos são sustentados, permitindo que eles se concentrem em seus mercados domésticos. Selmier [-@selmier2016] afirma que os "Big Four" do Brasil apresentam margens de lucro e de juros líquidos igualmente elevadas.
-
-Conforme ressaltado por Dow [-@dow2012], observa-se historicamente uma tendência à concentração no setor bancário. Esse processo se torna evidente quando ocorre alguma mudança no ambiente que abre o mercado e estimula a entrada de novas instituições. Assim, a concentração surge como uma resposta natural à necessidade dos bancos de inspirar confiança. Dow [-@dow2012] argumenta que, diante de qualquer dúvida sobre a viabilidade de novos bancos, há uma tendência dos negócios retornarem aos grandes e antigos bancos, resultando na redução da competitividade do setor.
-
-Dado o exposto, as principais questões que ficam para este trabalho são: Esses padrões de concentração bancária se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre distritos de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole?
-
-## JUSTIFICATIVA
-
-Para responder à essas perguntas, ressalta-se a necessidade de um trabalho que revisite as contribuições passadas sobre a questão regional do crédito e do setor bancário e utilize do grande volume de dados disponíveis nos dias atuais para testar hipóteses e realizar análises espaciais empíricas e exploratórias num nível ainda inexplorado: o urbano.
-
-## OBJETIVO
-
-O objetivo deste trabalho é, portanto, preencher essa lacuna da literatura econômica regional e analisar o comportamento da atividade bancária no espaço urbano, sob o prisma pós-keynesiano, realizando testes empíricos para verificar localização, distribuição, qualidade e diversidade do crédito no município de São Paulo, no ano de 2010. Com isso, desdobram-se os seguintes objetivos específicos:
-
--   Georreferenciar os dados das agências bancárias (ESTBAN);
-
--   Agregar os dados por setor censitário;
-
--   Cruzar com dados dos CENSO 2010, agregados por setor censitário;
-
--   Agregar por distritos;
-
--   Calcular índices de localização, distribuição, qualidade e diversidade do crédito;
-
--   Realizar análise exploratória dos dados espaciais, por meio de clusters e técnicas de análise de componentes principais;
-
--   Estimar modelo econométrico espacial com os índices criados;
-
--   Interpretar e discutir os resultados.
+Esse trabalho divide-se em 5 capítulos, incluindo essa introdução. No próximo, são tratados os aspectos teóricos importantes para a análise exploratória e empírica que será realizada neste trabalho, abordando os fundamentos de Economia Monetária 
+de Produção, da caracterização de Centro e Periferia e das principais questões existentes sobre os Serviços financeiros no meio urbano. A metodologia é apresentada no terceiro capítulo, subdividida em seções para tratar separadamente a fonte dos dados e cada um dos métodos utilizados. No capítulo 4 são apresentados os resultados, discutindo-os. Por fim, são apresentadas as considerações finais do trabalho.
 
 # ASPECTOS TEÓRICOS
 
@@ -79,29 +50,17 @@ Dessa forma, em uma economia monetária, o empresário possui interesse no dinhe
 
 Carvalho [-@carvalho92] apresentou uma síntese das características de uma economia monetária de produção, elencando seis princípios fundamentais de sua operação que garantem à moeda as funções de reserva de valor e de liquidez:
 
--   
+- (i) Princípio da produção: o objetivo das firmas é gerar lucro monetário, o interesse não está na quantidade de produto produzida, mas no montante de dinheiro gerado.
 
-    (i) Princípio da produção: o objetivo das firmas é gerar lucro monetário, o interesse não está na quantidade de produto produzida, mas no montante de dinheiro gerado.
+- (ii) Princípio da dominância estratégica: dada a escassez do capital em relação ao trabalho, trabalhadores e empresas encontram-se em condições desiguais no mercado, o que também é válido para o mercado de crédito, pois o poupador não consegue induzir o empresário a se endividar. Porém, no que diz respeito à obtenção de crédito, as empresas têm mais sucesso, mesmo que precisem oferecer taxas de juros mais altas aos potenciais credores. Isso demonstra claramente a predominância das empresas nos mercados.
 
--   
+- (iii) Príncipio da temporalidade: O princípio da temporalidade na atividade econômica estabelece uma ordem sequencial no processo produtivo: a decisão de produzir ocorre antes da produção em si, que por sua vez precede a venda. Esse princípio é fundamentado na ideia de tempo histórico, irreversível, adotado pelos teóricos pós-keynesianos. Essa concepção reconhece o tempo como uma entidade contínua, sempre avançando do passado em direção ao futuro. Em outras palavras, as decisões tomadas em um determinado momento do tempo não podem ser desfeitas e têm implicações para o futuro.
 
-    (ii) Princípio da dominância estratégica: dada a escassez do capital em relação ao trabalho, trabalhadores e empresas encontram-se em condições desiguais no mercado, o que também é válido para o mercado de crédito, pois o poupador não consegue induzir o empresário a se endividar. Porém, no que diz respeito à obtenção de crédito, as empresas têm mais sucesso, mesmo que precisem oferecer taxas de juros mais altas aos potenciais credores. Isso demonstra claramente a predominância das empresas nos mercados.
+- (iv) Princípio da não-ergodicidade (da incerteza): o sistema econômico caminha, ao longo do tempo, de um passado irrevogável para um futuro incerto, estatisticamente imprevisível.
 
--   
+- (v) Princípio da não pré-conciliação dos planos: não existe um plano perfeito que possa coordenar todos os mercados e determinar exatamente a quantidade a ser produzida com base na demanda futura. Os agentes econômicos podem tentar reduzir a incerteza recorrendo a contratos futuros denominados em moeda. Esses contratos permitem que os agentes fixem acordos antecipados para a compra ou venda de determinados bens ou serviços, proporcionando algum grau de segurança em relação às transações futuras.
 
-    (iii) Príncipio da temporalidade: O princípio da temporalidade na atividade econômica estabelece uma ordem sequencial no processo produtivo: a decisão de produzir ocorre antes da produção em si, que por sua vez precede a venda. Esse princípio é fundamentado na ideia de tempo histórico, irreversível, adotado pelos teóricos pós-keynesianos. Essa concepção reconhece o tempo como uma entidade contínua, sempre avançando do passado em direção ao futuro. Em outras palavras, as decisões tomadas em um determinado momento do tempo não podem ser desfeitas e têm implicações para o futuro.
-
--   
-
-    (iv) Princípio da não-ergodicidade (da incerteza): o sistema econômico caminha, ao longo do tempo, de um passado irrevogável para um futuro incerto, estatisticamente imprevisível.
-
--   
-
-    (v) Princípio da não pré-conciliação dos planos: não existe um plano perfeito que possa coordenar todos os mercados e determinar exatamente a quantidade a ser produzida com base na demanda futura. Os agentes econômicos podem tentar reduzir a incerteza recorrendo a contratos futuros denominados em moeda. Esses contratos permitem que os agentes fixem acordos antecipados para a compra ou venda de determinados bens ou serviços, proporcionando algum grau de segurança em relação às transações futuras.
-
--   
-
-    (vi) Princípio das propriedades da moeda: Para que seja possível a realização de contratos futuros denominados em moeda, a moeda deve possuir duas propriedades fundamentais: elasticidade de produção e substituição próximas de zero. Essas características garantem à moeda sua função como reserva de valor e liquidez. Ao afirmar que a elasticidade de produção e substituição da moeda é próxima de zero, significa que um aumento na demanda por moeda não resulta em um aumento em sua disponibilidade e que nenhuma outra forma de ativo pode desempenhar suas funções. Dessa forma, a moeda adquire um caráter único e essencial na economia capitalista.
+- (vi) Princípio das propriedades da moeda: Para que seja possível a realização de contratos futuros denominados em moeda, a moeda deve possuir duas propriedades fundamentais: elasticidade de produção e substituição próximas de zero. Essas características garantem à moeda sua função como reserva de valor e liquidez. Ao afirmar que a elasticidade de produção e substituição da moeda é próxima de zero, significa que um aumento na demanda por moeda não resulta em um aumento em sua disponibilidade e que nenhuma outra forma de ativo pode desempenhar suas funções. Dessa forma, a moeda adquire um caráter único e essencial na economia capitalista.
 
 ## *Centro e periferia*
 
@@ -114,6 +73,26 @@ Para Amado [-@amado2006], os bancos são fundamentais nesse contexto, pois são 
 Sobre a tendência ao dreno de liquidez das regiões periféricas para as centrais, Dow [-@dow82] pontua dois problemas vividos pelos bancos na periferia: (i) perdem reservas continuamente para o centro e (ii) perdem mais reservas que os bancos do centro para o público em geral, já que este tem maior demanda por liquidez. Desse modo, tanto há problemas com o multiplicador bancário quanto com o multiplicando, e ambos tendem a limitar a criação de liquidez.
 
 Pensando que a liquidez é o primeiro limite à decisão de investir, o processo de crescimento da periferia será impedido por um limite de liquidez e o crescimento do centro é facilitado pelo mesmo motivo.
+
+Amado [-@amado2006] verificou um processo de concentração bancária e financeira (fusões bancárias) nos anos 1990, que prejudicou diretamente as economias periféricas, ao reforçar as restrições de liquidez que essas economias enfrentam. De acordo com a autora, as economias periféricas sofrem constantes vazamentos em seus fluxos financeiros. Esses vazamentos são drenados para as regiões centrais, que passam a apresentar vantagens comparativas em relação à periferia, por terem acesso a um volume maior de liquidez. Dessa forma, os bancos centrais ficam mais receosos em estender crédito à periferia, por terem expectativas menos sólidas em relação a essas regiões. Além disso, os bancos da periferia tendem a estender crédito a atividades que sejam mais fortemente relacionadas com a própria região, com intuito de evitar perda de reservas. Para Amado [-@amado2006], esse processo de concentração levará os bancos que assumem os bancos regionais a redirecionar suas atividades para as regiões em que possuem vantagens comparativas, como aconteceu com três bancos de caráter regional que foram absorvidos por bancos das regiões centrais: Econômico pelo Excel, Banorte pelo Bandeirantes e Bamerindus pelo HSBC.
+
+Martin e Sunley [-@martin2015] destacam que o acesso das empresas a empréstimos financeiros varia de acordo com a localidade, principalmente devido às práticas discriminatórias das instituições bancárias em relação ao financiamento. Dessa forma, empresas localizadas em regiões economicamente deprimidas podem ser consideradas de alto risco pelas instituições financeiras, resultando na recusa de crédito. O que reforça a importância dos bancos de caráter regional.
+
+De acordo com Selmier [-@selmier2016], essa característica é crucial para entender a capacidade do sistema bancário brasileiro de manter altas taxas de lucro. O autor destaca que ao longo do tempo, o sistema bancário do Brasil tem sido dominado por quatro grandes bancos. Essa estrutura de mercado oligopolizada proporciona estabilidade, uma vez que os lucros dos grandes bancos são sustentados, permitindo que eles se concentrem em seus mercados domésticos. Selmier [-@selmier2016] afirma que os "Big Four" do Brasil apresentam margens de lucro e de juros líquidos igualmente elevadas.
+
+## *O papel da centralidade no meio urbano*
+
+Além da diferenciação entre centro e periferia, é importante compreender a dinâmica espacial dos serviços financeiros. Parr e Budd [-@parr] se baseiam na Teoria do Lugar Central, desenvolvida por Christaller [-@christaller], para explicar a localização dos serviços financeiros.
+
+A Teoria do Lugar Central foi originalmente desenvolvida para explicar a localização de atividades de varejo e não de serviços financeiros. No entanto, a Teoria do Lugar Central pode ser útil para entender a organização espacial de serviços financeiros, especialmente em relação à hierarquia urbana e à distribuição de centros financeiros em diferentes níveis de centros urbanos. Segundo Crocco [-@crocco2010], a centralidade de uma região, que depende de fatores como tamanho da população, renda e diversidade industrial, pode influenciar a atividade bancária na região.
+
+Parr e Budd [-@parr] argumentam que as economias de escala e escopo desempenham um papel significativo na decisão de onde uma atividade no setor financeiro deve ser localizada. Isso tem um impacto crucial nos mercados financeiros, instituições intermediárias e produtos financeiros, resultando em efeitos notáveis na eficácia estratégica e comparativa das atividades financeiras. Além disso, esses fatores também restringem o número de locais disponíveis para a prestação de determinados serviços financeiros.
+
+Memarian *et al*. [-@memarian2023] mostram que a informação, crucial para a tomada de decisões nos mercados financeiros, não é facilmente transferível pelo espaço, e os centros urbanos se beneficiam das economias de aglomeração e do fluxo de informações facilitado, o que reduz os custos de globais de transação, a assimetria de informações e os riscos de risco moral. O que corrobora com a tese de que há formação de centros financeiros nos centros urbanos.
+
+Embora o acesso ao crédito para as empresas seja facilitado pela formação das centralidades no centro urbano [@memarian2023; @lee2018; @wood2005], a grande concentração financeira pode desfavorecer o público periférico, que enfrentará maiores problemas de acesso, devido aos maiores custos de transação e transporte, já que muitos dos serviços financeiros só podem ser contratados de forma presencial, exigindo um contato face-a-face.
+
+Mesmo em grandes centros urbanos, com alta densidade populacional, há heterogeneidade espacial, como demonstrado por Memarian *et al.* [-@memarian2023], que utilizaram imagens de satélites para identificar obstáculos de transporte e de crescimento da malha urbana. Outros estudos, como os de Pereira *et al.*[-@pereira2019desigualdades] e Pereira [-@pereira_distributive_2018] mostram como o acesso a oportunidades urbanas é desigual e como há diferentes custos de transportes envolvidos para atingir as oportunidades (dentre elas, as financeiras), que estão concentradas no centro.
 
 # METODOLOGIA
 
@@ -133,7 +112,7 @@ Google Maps API: Os endereços das agências foram submetidos à API do Google M
 
 [^3]: Vale destacar que foram encontrados endereços de agências incorretos nos dados disponibilizados pelo BCB, o que resultou em um georreferenciamento incorreto. Assumiu-se um erro de apenas 5% dos dados nesse procedimento.
 
-Malha territorial do município de São Paulo, dividida em setores censitários (e por distritos) - IBGE: Foram utilizados alguns shapefiles contendo informações vetoriais (polígonos) de cada setor censitário.
+Malha territorial do município de São Paulo, dividida em setores censitários (e por distritos) - IBGE: Foram utilizados alguns *shapefiles* contendo informações vetoriais (polígonos) de cada setor censitário.
 
 Dados de domicílio do CENSO 2010: Foram incluídos dados demográficos e socioeconômicos, agregados por setor censitário, disponibilizados pelo CENSO 2010 para a compreensão do contexto populacional subjacente às análises efetuadas no trabalho.
 
@@ -143,16 +122,17 @@ Os dados da malha territorial do município de São Paulo foram obtidos através
 
 Por fim, os dados de domicílios do CENSO 2010 foram baixados diretamente do site IBGE Downloads, na seção de "Resultados do Universo" e "Agregados por Setor Censitário" e carregados no R para serem cruzados com os demais dados.
 
+Todos os procedimentos e base de dados desta metodologia são contribuições acadêmicas reprodutíveis e, portanto, estão disponibilizadas para o público no endereço: https://github.com/flaviohugo14/quarto-abnt.
+
 A Figura 1 mostra a localização das agências bancárias no Brasil, resultado do desenvolvimento da base de dados descrita acima.
 
 \fig{Localização das agências bancárias no Brasil (2010).}{fig:brasil}{images/brasil.png}{Elaboração própria.}
 
-
 ## *Tratamento dos dados e construção de índices*
 
-Seguindo o referencial teórico pós-keynesiano de que vivemos em economia monetária de produção, o comportamento dos bancos e do público em relação à alocação de seus ativos pode ser mensurado em termos de preferência pela liquidez. Para tal mensuração, Crocco et al., [-@crocco2006] construíram dois indicadores financeiros: preferência pela liquidez do público (PLP) e preferência pela liquidez dos bancos (PLB).
+Seguindo o referencial teórico pós-keynesiano de que vivemos em economia monetária de produção, o comportamento dos bancos e do público em relação à alocação de seus ativos pode ser mensurado em termos de preferência pela liquidez. Para tal mensuração, Crocco *et al*. [-@crocco2006] construíram dois indicadores financeiros: preferência pela liquidez do público (PLP) e preferência pela liquidez dos bancos (PLB).
 
-Segundo Crocco et al., [-@crocco2006], no balanço dos bancos, a conta de operações de crédito representa a porção de ativos com baixa liquidez relacionada aos empréstimos concedidos. Por outro lado, as contas de depósitos à vista, poupança e depósitos a prazo são registradas no passivo do balanço dos bancos e refletem o comportamento geral do público, agindo como intermediários financeiros. Segundo o enfoque pós-keynesiano, o público realiza suas decisões de alocação de ativos entre as contas mencionadas acima levando em consideração o nível de incerteza e a quantidade de informações disponíveis nas regiões. A decisão de alocação de portfólio envolve a escolha entre manter ativos mais líquidos, com retorno financeiro menor, em situações de maior incerteza econômica, ou optar por ativos menos líquidos, porém com potencial de maior rendimento financeiro, quando o cenário econômico se mostra mais confiável.
+Segundo Crocco *et al*. [-@crocco2006], no balanço dos bancos, a conta de operações de crédito representa a porção de ativos com baixa liquidez relacionada aos empréstimos concedidos. Por outro lado, as contas de depósitos à vista, poupança e depósitos a prazo são registradas no passivo do balanço dos bancos e refletem o comportamento geral do público, agindo como intermediários financeiros. Segundo o enfoque pós-keynesiano, o público realiza suas decisões de alocação de ativos entre as contas mencionadas acima levando em consideração o nível de incerteza e a quantidade de informações disponíveis nas regiões. A decisão de alocação de portfólio envolve a escolha entre manter ativos mais líquidos, com retorno financeiro menor, em situações de maior incerteza econômica, ou optar por ativos menos líquidos, porém com potencial de maior rendimento financeiro, quando o cenário econômico se mostra mais confiável.
 
 Baseado no índice criado pelos autores, pode-se definir o índice de preferência pela liquidez do público (PLP) utilizado neste trabalho:
 
@@ -174,7 +154,7 @@ $DT =$ depósitos totais (incluem depósitos a vista, depósitos de poupança[^5
 
 Quanto maior esse índice, maior é a preferência pela liquidez do público, pois aloca maior parcela de seus recursos em aplicações de maior liquidez.
 
-Para o índice de preferência de liquidez dos bancos (PLB), Crocco et al., [-@crocco2006] diz que o sistema bancário aloca seus recursos entre ativos de maior ou menor liquidez levando em conta o grau de desenvolvimento da região em que se encontra. Dessa forma, utilizaram a conta de operações de crédito para captar a disposição do banco à emprestar, e a conta de depósitos à vista, que representa a intenção do público bancarizado em manter seus ativos mais líquidos possíveis. O objetivo é medir como os bancos gerenciam seus balancetes e sua preferência pela liquidez, tornando seus ativos mais ou menos líquidos de acordo com as características econômicas da região a que pertecem. Neste trabalho, o PLB foi definido como:
+Para o índice de preferência de liquidez dos bancos (PLB), Crocco *et al*. [-@crocco2006] diz que o sistema bancário aloca seus recursos entre ativos de maior ou menor liquidez levando em conta o grau de desenvolvimento da região em que se encontra. Dessa forma, utilizaram a conta de operações de crédito para captar a disposição do banco à emprestar, e a conta de depósitos à vista, que representa a intenção do público bancarizado em manter seus ativos mais líquidos possíveis. O objetivo é medir como os bancos gerenciam seus balancetes e sua preferência pela liquidez, tornando seus ativos mais ou menos líquidos de acordo com as características econômicas da região a que pertecem. Neste trabalho, o PLB foi definido como:
 
 ```{=tex}
 \begin{equation}
@@ -192,7 +172,7 @@ Quanto maior o índice, maior a preferência pela liquidez dos bancos, pois est�
 
 É esperado que PLP e PLB sejam mais baixos em regiões mais desenvolvidas, pois o público apresentaria menor preferência pela liquidez o que é sinônimo de prosperidade econômica segundo o arcabouço teórico pós-keynesiano. Da mesma forma, os bancos também terão menor preferência por liquidez e maior disposição à emprestar, dado o desempenho econômico dessas regiões.
 
-Cabe nessa análise, a introdução de um índice inédito na literatura, que complemente o PLB de Crocco et al., [-@crocco2006] e torne a preferência pela liquidez dos bancos dependente apenas de variáveis endógenas, ou seja, que considere apenas a escolha dos bancos entre seus ativos e desconsidere os depósitos à vista (variável exógena para os bancos). Isso é importante para que o índice não seja comprometido pelo volume de depósitos do público bancarizado, que tende a ser mais alto em regiões mais desenvolvidas, fazendo com que o PLB de Crocco et al., [-@crocco2006] fique alto nessas regiões. Dessa forma, pode-se definir um índicde de preferência pela liquidez dos bancos endógeno (PLBe), como a proporção de ativos líquidos sobre ativos totais:
+Cabe nessa análise, a introdução de um índice inédito na literatura, que complemente o PLB de Crocco *et al*. [-@crocco2006] e torne a preferência pela liquidez dos bancos dependente apenas de variáveis endógenas, ou seja, que considere apenas a escolha dos bancos entre seus ativos e desconsidere os depósitos à vista (variável exógena para os bancos). Isso é importante para que o índice não seja comprometido pelo volume de depósitos do público bancarizado, que tende a ser mais alto em regiões mais desenvolvidas, fazendo com que o PLB de Crocco *et al*. [-@crocco2006] fique alto nessas regiões. Dessa forma, pode-se definir um índicde de preferência pela liquidez dos bancos endógeno (PLBe), como a proporção de ativos líquidos sobre ativos totais:
 
 ```{=tex}
 \begin{equation}
@@ -1441,7 +1421,7 @@ plb_cow <- plb_map |> cowplot::ggdraw() +
 ggsave("exports/plb.pdf", plot = plb_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-Assim como o PLP, o PLB também se mostrou maior nas regiões periféricas em comparação com as regiões centrais (Figura \ref{fig:plb}), indo de encontro com os resultados de Crocco et al., [-@crocco2006]. Isso significa que as agências no centro da cidade têm uma menor propensão a manter reservas em dinheiro ou ativos líquidos, como títulos do governo ou depósitos interbancários.
+Assim como o PLP, o PLB também se mostrou maior nas regiões periféricas em comparação com as regiões centrais (Figura \ref{fig:plb}), indo de encontro com os resultados de Crocco *et al*. [-@crocco2006]. Isso significa que as agências no centro da cidade têm uma menor propensão a manter reservas em dinheiro ou ativos líquidos, como títulos do governo ou depósitos interbancários.
 
 Existem várias explicações possíveis para esse fenômeno. Uma explicação é que as agências no centro da cidade têm acesso a uma maior diversidade de clientes e de fontes de financiamento. Isso lhes permite ser mais seletivos em suas decisões de empréstimo e, portanto, ter menos necessidade de manter reservas líquidas para atender às demandas de retirada dos clientes [@quaresma].
 
@@ -1690,7 +1670,7 @@ O Índice de Concentração Bancária (figura \ref{fig:icb}) ficou alto em distr
 
 A @fig-cor-heatmap demonstra a correlação entre as variáveis criadas, fundamental para aplicação do método ACP.
 
-```{r echo=FALSE}
+```{r echo=FALSE, results='asis'}
 #| label: fig-cor-heatmap
 #| fig-cap: "Mapa de calor da matriz de correlação."
 
@@ -1740,14 +1720,18 @@ plot.BS = function(ACP) {
   bsm$p[1] = 1/n
   for (i in 2:n) bsm$p[i] = bsm$p[i-1] + (1/(n + 1 - i))
   bsm$p = 100*bsm$p/n
+
+  # Defina a família de fontes como "serif" no ambiente gráfico global
+  par(family = "serif", cex = 1)
+
   # Plotar os Autovalores e o % de variacao
   op = par(mfrow=c(2,1), omi=c(0.2,0.2,0.2,0.2), mar=c(2,2 , 2, 2))
-  barplot(ev, main="Autovalores", col="#9dbf9e", las=0.5)
+  barplot(ev, main="Autovalores", col="#9dbf9e", las=0.5, cex.main = 1)
   abline(h=mean(ev), col="#a84268")
   legend("topright", "Autovalor Medio", lwd=1, col=2, bty="n")
   barplot(t(cbind(100*ev/sum(ev), bsm$p[n:1])), beside=TRUE, 
-          main="% variância", col=c("#9dbf9e",2), las=0.5)
-  legend("topright", c("% autovalor", "Modelo 'Broken-Stick'"), 
+          main="% Variância", col=c("#9dbf9e",2), las=0.5, cex.main = 1)
+  legend("topright", c("% Autovalor", "Modelo 'Broken-Stick'"), 
          pch=10, col=c("#9dbf9e",2), bty="n")
   par(op)
 }
@@ -1788,10 +1772,9 @@ acp$loadings[,c(1, 2)] %>%
 
 A @fig-scores mostra a distribuição dos distritos paulistas segundo os componentes ICF e IQF.
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, result='asis'}
 #| label: fig-scores
 #| fig-cap: "Gráfico de dispersão dos distritos de São Paulo (2010), de acordo com os scores da ACP."
-#| fig-scap: "Fonte: Elaboração própria"
 
 
 br_bairros <- geobr::read_neighborhood(2010, showProgress = FALSE, simplified = FALSE)
@@ -1854,8 +1837,8 @@ ggplot2::ggplot(scores,  aes(x = comp1, y = comp2, label = name_district)) +
   ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "gray30") +
   ggplot2::theme_minimal() +
   ggplot2::theme(
-    text = element_text(size = 10, face = "bold"),
-    legend.text = element_text(size = 10, face = "plain"),
+    text = ggplot2::element_text(family = "serif", size = 10, face = "bold"),
+    legend.text = ggplot2::element_text(family = "serif", size = 10, face = "plain")
   )
 ```
 
