@@ -1,4 +1,6 @@
+% Capa
 \thispagestyle{empty}
+\pagenumbering{roman}
 
 \begin{center}
 $institution$
@@ -33,16 +35,170 @@ ORIENTADOR(A): $advisor$.
 
 $city$ - $state$
 
-$year$
+$month$ - $year$
     
 \end{center}
 
 \newpage
-\pagestyle{empty}
-\renewcommand{\contentsname}{Sumário}
-\tableofcontents
-\newpage
+% Folha de aprovação
+\thispagestyle{empty}
 
+\begin{center}
+$author-upper$
+\end{center}
+
+\vspace{1.0cm}
+
+\begin{center}
+    \textbf{$title$}
+\end{center}
+
+\vspace{3.0cm}
+
+\begin{adjustwidth}{7.5cm}{0cm}
+    \justifying
+    $confirm_text$
+\end{adjustwidth}
+
+\vspace{1.0cm}
+
+APROVADA: $confirm_date$
+
+\vspace{1.0cm}
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \rule{6cm}{0.4pt} \\
+    $examiner1$
+\end{minipage}%
+\hspace{0.1\textwidth}
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \rule{6cm}{0.4pt} \\
+    $examiner2$
+\end{minipage}
+
+\vspace{2.0cm}
+
+\centering
+\rule{6cm}{0.4pt} \\
+$advisor-name$ \\
+(Orientador)
+
+\vspace{2.0cm}
+
+\begin{center}
+
+$city$ - $state$
+
+$month$ - $year$
+    
+\end{center}
+
+\newpage
+% Folha de responsabilidade
+\thispagestyle{empty}
+
+\begin{invisible}
+.
+\end{invisible}
+
+\vspace{28\baselineskip}
+
+\textit{As opiniões expressas neste trabalho são de exclusiva responsabilidade do autor.}
+
+
+\newpage
+\pagestyle{fancy}
+% Dedicatoria
+
+\begin{invisible}
+.
+\end{invisible}
+
+\vspace{28\baselineskip}
+
+\begin{adjustwidth}{7.5cm}{0cm}
+    \justifying
+    \singlespacing
+    $dedication$
+\end{adjustwidth}
+
+\newpage
+\pagestyle{fancy}
+
+\newcommand{\resumo}{%
+\titleformat{\section}[block]{\bfseries\filcenter}{}{1em}{}
+}
+\resumo
+
+\section*{AGRADECIMENTO}
+\justify
+
+\begin{invisible}
+.
+\end{invisible}
+
+Gostaria de expressar minha profunda gratidão às pessoas e instituições que contribuíram significativamente para a conclusão desta monografia.
+
+Agradeço ao meu orientador, Professor Igor Santos Tupy, por sua orientação perspicaz, paciência e incentivo ao longo deste processo. Sua experiência e empenho foram fundamentais para o desenvolvimento deste trabalho.
+
+Agradeço aos membros da banca avaliadora por dedicarem seu tempo para revisar e avaliar este trabalho.
+
+À minha família, em especial a minha mãe Marlene, meu pai Emerson, meu irmão Paulo e meu padrasto Cidemir, pelo apoio incondicional, encorajamento e compreensão durante este período desafiador.
+
+À minha noiva, Natália Cristina, que esteve sempre ao meu lado, contribuiu em todas etapas da minha formação e não mediu esforços para me manter feliz e resiliente.
+
+Ao meu tio, Vinícius, que foi um grande parceiro nesse período, dividiu quarto e cuidou de mim desde o primeiro dia na UFV. Meu muito obrigado.
+
+Aos meus amigos, colegas de classe e de trabalho, obrigado por compartilharem ideias, sorrisos e por tornarem esta jornada acadêmica mais enriquecedora.
+
+Agradeço à Universidade Federal de Viçosa por fornecer o ambiente propício para realização deste trabalho.
+
+Agradeço ao IMPA e ao Instituto TIM pelo apoio financeiro em minha trajetória acadêmica, esse apoio foi fundamental para que eu pudesse concluir o bacharelado em Ciências Econômicas.
+
+Por último, agradeço a todos que, de alguma forma, contribuíram para este trabalho, direta ou indiretamente. Seus esforços não passaram despercebidos e são imensamente apreciados.
+
+\newpage
+% Resumo
+\pagestyle{fancy}
+
+\section*{RESUMO}
+
+
+\begin{spacing}{1.0}
+\justify
+
+\setlength{\parindent}{0pt}
+
+PANGRACIO SILVA, Flávio Hugo; Universidade Federal de Viçosa, Dezembro/2023. \textbf{As centralidades financeiras no espaço urbano: uma análise espacial empírica e exploratória do setor bancário no município de São Paulo, no ano de 2010.} Orientador: Prof. Dr. Igor Santos Tupy.
+
+O presente estudo investiga a centralidade financeira urbana no municipio de São Paulo em 2010, empregando métodos de análise regional e referenciais pós-keynesianos para avaliar o setor bancário. Por meio de dados da estatística bancária (ESTBAN), do CENSO 2010 e da RAIS, construiu-se uma base de dados georreferenciada que permitiu análises espaciais exploratórias e empíricas robustas. As análises revelaram uma concentração significativa de agências e crédito no centro da cidade, além de uma profunda desiguldade na qualidade de crédito ofertada entre os distritos periféricos e centrais. Por meio dos resultados do modelo econométrico espacial, pôde-se inferir que a qualidade financeira local e dos 5 vizinhos mais próximos influencia positivamente a renda \textit{per capita} dos distritos.
+
+\textbf{Palavras-chave:} $keywords$
+
+\setlength{\parindent}{15pt}
+
+\end{spacing}
+
+\newpage
+% Lista de figuras
+\renewcommand{\listfigurename}{LISTA DE FIGURAS}
+\pagestyle{fancy}
 \listoffigures
 
 \newpage
+% Lista de tabelas
+\renewcommand{\listtablename}{LISTA DE TABELAS}
+\pagestyle{fancy}
+\listoftables
+
+\newpage
+% Sumário
+\renewcommand{\contentsname}{SUMÁRIO}
+\pagestyle{fancy}
+\tableofcontents
+
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{1em}{}
+\newpage
+\pagenumbering{arabic}

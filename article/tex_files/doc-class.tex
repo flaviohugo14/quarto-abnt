@@ -14,6 +14,7 @@
 \usepackage{pdflscape}
 \usepackage{pdfpages}
 \usepackage{float}
+\usepackage{changepage}
 
 \usepackage{graphicx, xcolor, comment, enumerate, multirow, multicol}
 \usepackage{indentfirst}
@@ -56,8 +57,44 @@
    \endlist}%
 % ---
 
+
+% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
+\newlength{\aprovacao}% recuo de 4 cm da margem esquerda
+\setlength{\aprovacao}{10.5cm}
+\newcommand{\aprovacaofonte}{\normalsize}
+\newenvironment*{citacao2}[1][default]{%
+   \list{}%
+   \aprovacaofonte%
+   \addtolength{\leftskip}{\aprovacao}%
+   \item[]%
+   \singlespacing
+   \justify
+   \ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+ }{%
+   \endlist}%
+% ---
+
+
 \newcommand{\fig}[4]{%
   \begin{figure}[H]
+    \centering
+    \caption{#1}
+    \label{#2}
+    \includegraphics{#3}
+    
+    \vspace{0.5cm}
+    
+    \begin{footnotesize}
+      Fonte: #4
+    \end{footnotesize}
+  \end{figure}
+}
+
+\newcommand{\quadro}[4]{%
+  \renewcommand{\figurename}{Quadro}
+  \setcounter{figure}{0}
+  \begin{figure}[H]
+    \captionsetup{list=no}
     \centering
     \caption{#1}
     \label{#2}
