@@ -28,9 +28,11 @@ format:
         template-partials:
             - tex_files/before-body.tex
             - tex_files/doc-class.tex
+        mainfont: "Times New Roman"
 ---
 
 \pagestyle{fancy} <!-- Show the page number --> \justify
+\onehalfspacing
 
 # INTRODUÇÃO
 
@@ -163,7 +165,7 @@ $DT =$ depósitos totais (incluem depósitos a vista, depósitos de poupança[^5
 
 Quanto maior esse índice, maior é a preferência pela liquidez do público, pois aloca maior parcela de seus recursos em aplicações de maior liquidez.
 
-Para o índice de preferência de liquidez dos bancos (PLB), Crocco *et al*. [-@crocco2006] diz que o sistema bancário aloca seus recursos entre ativos de maior ou menor liquidez levando em conta o grau de desenvolvimento da região em que se encontra. Dessa forma, utilizaram a conta de operações de crédito para captar a disposição do banco à emprestar, e a conta de depósitos à vista, que representa a intenção do público bancarizado em manter seus ativos mais líquidos possíveis. O objetivo é medir como os bancos gerenciam seus balancetes e sua preferência pela liquidez, tornando seus ativos mais ou menos líquidos de acordo com as características econômicas da região a que pertecem. Neste trabalho, o PLB foi definido como:
+Para o índice de preferência de liquidez dos bancos (PLB), Crocco *et al*. [-@crocco2006] diz que o sistema bancário aloca seus recursos entre ativos de maior ou menor liquidez levando em conta o grau de desenvolvimento da região em que se encontra. Dessa forma, utilizaram a conta de operações de crédito para captar a disposição do banco a emprestar, e a conta de depósitos à vista, que representa a intenção do público bancarizado em manter seus ativos mais líquidos possíveis. O objetivo é medir como os bancos gerenciam seus balancetes e sua preferência pela liquidez, tornando seus ativos mais ou menos líquidos de acordo com as características econômicas da região a que pertencem. Neste trabalho, o PLB foi definido como:
 
 ```{=tex}
 \begin{equation}
@@ -179,9 +181,9 @@ $OPC =$ operações de crédito[^7].
 
 Quanto maior o índice, maior a preferência pela liquidez dos bancos, pois estão emprestando menos (ficando com ativos mais líquidos).
 
-É esperado que PLP e PLB sejam mais baixos em regiões mais desenvolvidas, pois o público apresentaria menor preferência pela liquidez o que é sinônimo de prosperidade econômica segundo o arcabouço teórico pós-keynesiano. Da mesma forma, os bancos também terão menor preferência por liquidez e maior disposição à emprestar, dado o desempenho econômico dessas regiões.
+É esperado que PLP e PLB sejam mais baixos em regiões mais desenvolvidas, pois o público apresentaria menor preferência pela liquidez o que é sinônimo de prosperidade econômica segundo o arcabouço teórico pós-keynesiano. Da mesma forma, os bancos também terão menor preferência por liquidez e maior disposição a emprestar, dado o desempenho econômico dessas regiões.
 
-Cabe nessa análise, a introdução de um índice inédito na literatura, que complemente o PLB de Crocco *et al*. [-@crocco2006] e torne a preferência pela liquidez dos bancos dependente apenas de variáveis endógenas, ou seja, que considere apenas a escolha dos bancos entre seus ativos e desconsidere os depósitos à vista (variável exógena para os bancos). Isso é importante para que o índice não seja comprometido pelo volume de depósitos do público bancarizado, que tende a ser mais alto em regiões mais desenvolvidas, fazendo com que o PLB de Crocco *et al*. [-@crocco2006] fique alto nessas regiões. Dessa forma, pode-se definir um índicde de preferência pela liquidez dos bancos endógeno (PLBe), como a proporção de ativos líquidos sobre ativos totais:
+Cabe nessa análise, a introdução de um índice inédito na literatura, que complemente o PLB de Crocco *et al*. [-@crocco2006] e torne a preferência pela liquidez dos bancos dependente apenas de variáveis endógenas, ou seja, que considere apenas a escolha dos bancos entre seus ativos e desconsidere os depósitos à vista (variável exógena para os bancos). Isso é importante para que o índice não seja comprometido pelo volume de depósitos do público bancarizado, que tende a ser mais alto em regiões mais desenvolvidas, fazendo com que o PLB de Crocco *et al*. [-@crocco2006] fique alto nessas regiões. Dessa forma, pode-se definir um índice de preferência pela liquidez dos bancos endógeno (PLBe), como a proporção de ativos líquidos sobre ativos totais:
 
 ```{=tex}
 \begin{equation}
@@ -201,14 +203,14 @@ $A =$ Total do ativo[^10].
 
 Com interpretação semelhante ao PLB, espera-se que o PLBe seja menor em regiões mais desenvolvidas.
 
-Para mensurar a concentração, as centralidades financeiras e a desigualdade na oferta de crédito, calculou-se também alguns índices inpirados no "quociente locacional", como fez Tupy [-@igor], comparando a participação no crédito nacional de uma microrregião com sua participação relativa no PIB nacional. Esse índice foi chamado de Índice Regional de Crédito (IRC), definido como:
+Para mensurar a concentração, as centralidades financeiras e a desigualdade na oferta de crédito, calculou-se também alguns índices inspirados no "quociente locacional", como fez Tupy [-@igor], comparando a participação no crédito nacional de uma microrregião com sua participação relativa no PIB nacional. Esse índice foi chamado de Índice Regional de Crédito (IRC), definido como:
 
 ```{=tex}
 \begin{equation}
 IRC_{i} = \frac{\frac{cred_i}{\sum_{i=1}^n cred_i}}{\frac{pib_i}{\sum_{i=1}^n pib_i}}
 \end{equation}
 ```
-Aqui, utilizou-se a renda dos setores censitários no lugar do PIB, para identificar os padrões de concentração de dispersão do crédito no meio urbano. Além disso, diferentes tipos de contas de crédito foram incorporadas para criar outros índices baseados no IRC, com a finalidade de comparar qualitativamente os padrões de concentração e dispersão de cada tipo de crédito (a referência da conta da ESTBAN foi mencionada entre parênteses). São eles:
+Aqui, utilizou-se a renda dos setores censitários no lugar do PIB, para identificar os padrões de concentração de dispersão do crédito no meio urbano. Além disso, diferentes tipos de contas de crédito foram incorporados para criar outros índices baseados no IRC, com a finalidade de comparar qualitativamente os padrões de concentração e dispersão de cada tipo de crédito (a referência da conta da ESTBAN foi mencionada entre parênteses). São eles:
 
 -   O próprio Índice Regional de Crédito (IRC):
 
@@ -276,7 +278,7 @@ $PC_i =$ Provisão de crédito (174) no distrito $i$.
 
 $renda_i =$ Renda nominal do distrito $i$.
 
-Se os índices definidos acima são iguais a 1, a participação distrito $i$ no total da conta analisada é idêntica à sua participação na renda global. Se os índices recebem valores menores que 1, indica que o distrito $i$ participa menos do que o proporcial à sua participação na renda do que a conta analisada. Para o IRC, IRE, IRF, significaria menos crédito, empréstimo e financiamento, comparado a participação na renda global. Para valores maiores que 1, signifaria que a região recebe mais crédito do que participa da renda global [@igor]. A análise é semelhante para IRD, IRR e IRL, mas aqui, a precupação é com a distribuição dos depósitos em relação a distribuição da renda (IRD), com a percepção de risco que os bancos têm com cada região (IRR), e a distribuição dos lucros bancários em termos de resultado, comparada à distribuição da renda entre os setores censitários.
+Se os índices definidos acima são iguais a 1, a participação distrito $i$ no total da conta analisada é idêntica à sua participação na renda global. Se os índices recebem valores menores que 1, indica que o distrito $i$ participa menos do que o proporcional à sua participação na renda do que a conta analisada. Para o IRC, IRE, IRF, significaria menos crédito, empréstimo e financiamento, comparado a participação na renda global. Para valores maiores que 1, significaria que a região recebe mais crédito do que participa da renda global [@igor]. A análise é semelhante para IRD, IRR e IRL, mas aqui, a preocupação é com a distribuição dos depósitos em relação a distribuição da renda (IRD), com a percepção de risco que os bancos têm com cada região (IRR), e a distribuição dos lucros bancários em termos de resultado, comparada à distribuição da renda entre os setores censitários.
 
 Além desses índices de concentração e centralidade, foi calculado um índice de concentração de operações de crédito e um índice de concentração do setor bancário, ambos baseados no Índice de Hirschman-Herfindahl (IHH):
 
@@ -324,7 +326,7 @@ Todo o processo que se dá no espaço está sujeito à chamada Lei de Tobler, co
 
 A Econometria Espacial, por sua vez, é um ramo da econometria convencional, tendo como escopo, estimar, testar e prever modelos teóricos, influenciados pelos efeitos espaciais [@almeida]. O Modelo Clássico de Regressão Linear (MCRL) tem a limitação de não ser capaz de controlar esses efeitos espaciais e, portanto, deve ser relaxado para incorporar tais efeitos.
 
-Segundo Almeida [-@almeida], os processos espaciais de dependência espacial, ou seja, aqueles em que uma variável aleatória $y_i$ da região $i$ é influenciada pela variável $y_j$ da região vizinha $j$, são classificados como Processos Autorregressivos Espaciais (SAR). Para análise desse tipo de processo, é realizada uma defasagem espacial sobre uma variável $y$ aleatória da média da vizinhaça ponderada por uma matriz de pesos espaciais $W$. O modelo SAR, em sua versão pura, é expresso como a seguir:
+Segundo Almeida [-@almeida], os processos espaciais de dependência espacial, ou seja, aqueles em que uma variável aleatória $y_i$ da região $i$ é influenciada pela variável $y_j$ da região vizinha $j$, são classificados como Processos Autorregressivos Espaciais (SAR). Para análise desse tipo de processo, é realizada uma defasagem espacial sobre uma variável $y$ aleatória da média da vizinhança ponderada por uma matriz de pesos espaciais $W$. O modelo SAR, em sua versão pura, é expresso como a seguir:
 
 ```{=tex}
 \begin{equation}
@@ -340,7 +342,7 @@ A versão mista do modelo SAR, incorpora também uma matriz $X$ de variáveis ex
 y = \rho Wy + X \beta + \varepsilon
 \end{equation}
 ```
-Já os processos espaciais em que há influência de algo que não é capaz de ser modelado, podem ser encorporados na estrutura dos erros do modelo. Esses processos podem ser análisados pelo Modelo de Erro Autorregressivo Espacial (SEM), expresso por:
+Já os processos espaciais em que há influência de algo que não é capaz de ser modelado, podem ser incorporados na estrutura dos erros do modelo. Esses processos podem ser analisados pelo Modelo de Erro Autorregressivo Espacial (SEM), expresso por:
 
 ```{=tex}
 \begin{equation}
@@ -818,7 +820,7 @@ data |> write.csv("data/data.csv", row.names = FALSE)
 
 ## *Análise exploratória*
 
-As Figuras 2 à 11 mostram a distribuição geográfica dos índices de concentração e preferência por liquidez criados na seção 3.2 para os distritos de São Paulo, destacando-se os distritos centrais:
+As Figuras 2 a 11 mostram a distribuição geográfica dos índices de concentração e preferência por liquidez criados na seção 3.2 para os distritos de São Paulo, destacando-se os distritos centrais:
 
 ```{r, echo=FALSE}
 final <- sf::read_sf("data/shapefinal/shapefinal.shp")
@@ -874,14 +876,14 @@ irc_map <- ggplot2::ggplot(final2) +
     name = "Índice Regional do Crédito (IRC)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = (`160`/1e6))) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Operações de crédito (R$)",
+    name = "Operações de crédito (milhões de R$)",
     max_size = 5
   ) +
   theme_void() +
@@ -951,14 +953,14 @@ ire_map <- ggplot2::ggplot(final2) +
     name = "Índice Regional de Empréstimos (IRE)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `161`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = (`161`/1e6))) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Empréstimos e desconto de títulos (R$)",
+    name = "Empréstimos e desconto de títulos (milhões de R$)",
     max_size = 5
   ) +
   theme_void() +
@@ -1026,14 +1028,14 @@ irf_map <- ggplot2::ggplot(final2) +
     name = "Índice Regional de Financiamentos (IRF)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Financiamentos (R$)",
+    name = "Financiamentos (milhões de R$)",
     max_size = 5
   ) +
   theme_void() +
@@ -1101,14 +1103,14 @@ ird_map <- ggplot2::ggplot(final2) +
     name = "Índice Regional de Depósitos (IRD)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `401_402`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `401_402`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Depósitos (R$)",
+    name = "Depósitos (milhões de R$)",
     max_size = 5
   ) +
   theme_void() +
@@ -1127,8 +1129,6 @@ ird_map <- ggplot2::ggplot(final2) +
     height = unit(1, "cm"),
     width = unit(1, "cm")
   )
-
-ird_map
 
 ird_map <-
   ird_map + geom_rect(
@@ -1163,10 +1163,10 @@ ird_cow <- ird_map |> cowplot::ggdraw() +
 ggsave("exports/ird.pdf", plot = ird_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice Regional de Depósitos, presente na figura \ref{fig:ird}, mostra que os depósitos estão mais bem distribuídos do que o crédito. Isso pode ser um indício de que as agências sejam eficientes em captar depósitos em todo espaço geográfico, diferentemente do que acontece na oferta de crédito.mExistem algumas possíveis explicações para esse resultado: (i) os depósitos são mais fáceis de captar, pois podem ser captados por meio de diferentes canais, como caixas eletrônicos, internet banking e atendimento presencial; e,
+O Índice Regional de Depósitos, presente na figura \ref{fig:ird}, mostra que os depósitos estão mais bem distribuídos do que o crédito. Isso pode ser um indício de que as agências sejam eficientes em captar depósitos em todo espaço geográfico, diferentemente do que acontece na oferta de crédito. Existem algumas possíveis explicações para esse resultado: (i) os depósitos são mais fáceis de captar, pois podem ser captados por meio de diferentes canais, como caixas eletrônicos, internet banking e atendimento presencial; e,
 (ii) os depósitos são mais necessários para as agências, pois são utilizados pelos bancos para financiar a oferta de crédito.
 
-Já concentração um pouco maior nos regiões centrais pode ser explicada por alguns fatores, como a maior concentração de empresas e instituições nas regiões centrais e, maior presença de agências bancárias nessas regiões.
+Já concentração um pouco maior nas regiões centrais pode ser explicada por alguns fatores, como a maior concentração de empresas e instituições nas regiões centrais e, maior presença de agências bancárias nessas regiões.
 
 \fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird.pdf}{Elaboração própria.}
 
@@ -1254,14 +1254,14 @@ irr_map <- ggplot2::ggplot(final2) +
     guide = "legend",
     breaks = c(0, 5, 10, 100, 400, 500)
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`174`))) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`174`/1e6))) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Provisão de crédito (R$)",
+    name = "Provisão de crédito (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1333,14 +1333,14 @@ plp_map <- ggplot2::ggplot(final2) +
     name = "Preferência por liquidez do público (PLP)",
     na.value = "grey80"
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`420`))) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = abs(`420`)/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Poupança (R$)",
+    name = "Poupança (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1409,14 +1409,14 @@ plb_map <- ggplot2::ggplot(final2) +
     na.value = "grey80",
     trans = "log1p"
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Operações de crédito (R$)",
+    name = "Operações de crédito (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1475,7 +1475,7 @@ Assim como o PLP, o PLB também se mostrou maior nas regiões periféricas em co
 
 Existem várias explicações possíveis para esse fenômeno. Uma explicação é que as agências no centro da cidade têm acesso a uma maior diversidade de clientes e de fontes de financiamento. Isso lhes permite ser mais seletivos em suas decisões de empréstimo e, portanto, ter menos necessidade de manter reservas líquidas para atender às demandas de retirada dos clientes [@quaresma].
 
-Outra explicação é que as agências no centro da cidade estão sujeitos a um menor risco de liquidez. Isso ocorre porque eles estão localizados em áreas com maior densidade populacional e econômica, o que torna mais fácil para eles obterem financiamento de emergência [@drehmann].
+Outra explicação é que as agências no centro da cidade estão sujeitas a um menor risco de liquidez. Isso ocorre porque eles estão localizados em áreas com maior densidade populacional e econômica, o que torna mais fácil para eles obterem financiamento de emergência [@drehmann].
 
 Independentemente da explicação, o PLB menor das agências no centro da cidade tem implicações importantes para a política monetária. Isso ocorre porque a PLB é um fator que determina a quantidade de moeda que as agências estão dispostas a emprestar. Quando o PLB é menor, as agências estão dispostas a emprestar mais dinheiro, o que pode ajudar a estimular o crescimento econômico, dentro de uma perspectiva pós-keynesiana.
 
@@ -1491,14 +1491,14 @@ plbe_map <- ggplot2::ggplot(final2) +
     na.value = "grey80",
     trans = "log1p"
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `399`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `399`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Ativo (R$)",
+    name = "Ativo (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1553,7 +1553,7 @@ plbe_cow <- plbe_map |> cowplot::ggdraw() +
 ggsave("exports/plbe.pdf", plot = plbe_cow, width = 5700, height = 5000, units = "px", dpi = 320)
 ```
 
-As diferenças na Preferência por liquidez dos bancos entre as regiões ficaram ainda mais claras quando se olha para o PLBe da figura \ref{fig:plbe}. Como esse indicador isola a ação do público (depósitos) e considera apenas variáveis endógenas para a agência, vemos que de fato há maior preferêcia por liquidez nas regiões periféricas por parte das agências, contrastando com a baixa preferência por liquidez nas regiões centrais.
+As diferenças na Preferência por liquidez dos bancos entre as regiões ficaram ainda mais claras quando se olha para o PLBe da figura \ref{fig:plbe}. Como esse indicador isola a ação do público (depósitos) e considera apenas variáveis endógenas para a agência, vemos que de fato há maior preferência por liquidez nas regiões periféricas por parte das agências, contrastando com a baixa preferência por liquidez nas regiões centrais.
 
 Esse comportamento da agência em manter ativos mais líquidos na periferia pode estar ligado à maior incerteza econômica vivida nas regiões periféricas, o que também vai de encontro com a literatura pós-keynesiana apresentada [@dow82; @chick88; @crocco2006].
 
@@ -1568,14 +1568,14 @@ ico_map <- ggplot2::ggplot(final2) +
     name = "Índice de Concentração de Operações (ICO)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Operações de crédito (R$)",
+    name = "Operações de crédito (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1630,7 +1630,7 @@ ico_cow <- ico_map |> cowplot::ggdraw() +
 ggsave("exports/ico.pdf", plot = ico_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice de Concentração de Operações (ICO), presente na figura \ref{fig:ico}, mostra como há distritos com baixíssima diversidade de operações, localizados principalmente no extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nessas regiões as agências praticamente só oferecem empréstimos pessoais em 2010, zero financiamento ou operações de longo prazo. Vale lembrar o contexto histórico dessas regiões, visto que o extremo sul e o extremo leste de São Paulo são regiões historicamente marginalizadas, com altos índices de pobreza e desemprego.
+O Índice de Concentração de Operações (ICO), presente na figura \ref{fig:ico}, mostra como há distritos com baixíssima diversidade de operações, localizados principalmente no extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nessas regiões, as agências praticamente só oferecem empréstimos pessoais, pois não há financiamento ou operações de longo prazo. Vale lembrar o contexto histórico dessas regiões, visto que o extremo sul e o extremo leste de São Paulo são regiões historicamente marginalizadas, com altos índices de pobreza e desemprego.
 
 A grande questão é se pobreza e desemprego fizeram com que as agências não oferecessem crédito diversificado nessas regiões, ou, se a falta de crédito diversificado fez com que essas regiões enfrentassem pobreza e desemprego.
 
@@ -1647,14 +1647,14 @@ icb_map <- ggplot2::ggplot(final2) +
     name = "Índice de Concentração Bancária (ICB)",
     na.value = "grey80",
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Operações de crédito (R$)",
+    name = "Operações de crédito (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1789,7 +1789,7 @@ plot.BS = function(ACP) {
 plot.BS(acp)
 ```
 
-Como pode-se observar na @tbl-loadings, o primeiro componente se mostrou positivamente e bastante relacionado com os índices IRC, IRE, IRF, IRD, IRR e IRL. Logo, tal componente foi nomeado Índice de Concentração Financeira (ICF), pois é capaz de mensurar quanto cada distrito concentra em volume de empréstimos, financiamentos e depósitos em relação à renda. O segundo componente, no entanto, deu maior peso ao ICO, ICB, PLP, PLB, PLBe, que se relacionam de forma negativa com o componente, o que siginifica que maior preferência por liquidez (PLP, PLB e PLBe) e menor diversidade bancária e de operações de crédito (ICB e ICO) geram um componente menor, logo, tal componente pode ser nomeado Índice de Qualidade Financeira (IQF).
+Como pode-se observar na @tbl-loadings, o primeiro componente se mostrou positivamente e bastante relacionado com os índices IRC, IRE, IRF, IRD, IRR e IRL. Logo, tal componente foi nomeado Índice de Concentração Financeira (ICF), pois é capaz de mensurar quanto cada distrito concentra em volume de empréstimos, financiamentos e depósitos em relação à renda. O segundo componente, no entanto, deu maior peso ao ICO, ICB, PLP, PLB, PLBe, que se relacionam de forma negativa com o componente, o que significa que maior preferência por liquidez (PLP, PLB e PLBe) e menor diversidade bancária e de operações de crédito (ICB e ICO) geram um componente menor, logo, tal componente pode ser nomeado Índice de Qualidade Financeira (IQF).
 
 
 ```{r, echo=FALSE, results='asis'}
@@ -1892,7 +1892,7 @@ ggplot2::ggplot(scores,  aes(x = comp1, y = comp2, label = name_district)) +
   )
 ```
 
-É possível observar que o centro histórico de São Paulo (Sé) concentra quase toda atividade financeira do município, sendo portanto, o maior centro financeiro do município em termos quantitativos. Distritos à direita do eixo vertical também concentram oferta de crédito além de sua própria renda, mesmo estando muito abaixo do distrito Sé, que é um *outlier* em termos de centralidade. Nota-se que no primeiro quadrante, há distritos nobres e historicamente ricos da capital paulista: Jardim Paulista, Itaim Bibi, Consolação e Bela Vista; e os distritos com alta atividade comercial: Santo Amaro e Jabaquara. Em termos financeiros, apresentam maior índice de qualidade, dada a diversidade do crédito ofertado, maior competição bancária e menor preferência por liquidez. Isso nos dá indícios de que os pressupostos pós-keynesianos podem ser verificados em São Paulo, e que, de fato, numa economia monetária de produção, a oferta de moeda numa região pode determinar seu desenvolvimento. As figuras abaixo mostram a distribuição geográfica dos indicadores ICF e IQF:
+É possível observar que o centro histórico de São Paulo (Sé) concentra quase toda atividade financeira do município, sendo, portanto, o maior centro financeiro do município em termos quantitativos. Distritos à direita do eixo vertical também concentram oferta de crédito além de sua própria renda, mesmo estando muito abaixo do distrito Sé, que é um *outlier* em termos de centralidade. Nota-se que no primeiro quadrante, há distritos nobres e historicamente ricos da capital paulista: Jardim Paulista, Itaim Bibi, Consolação e Bela Vista; e os distritos com alta atividade comercial: Santo Amaro e Jabaquara. Em termos financeiros, apresentam maior índice de qualidade, dada a diversidade do crédito ofertado, maior competição bancária e menor preferência por liquidez. Isso nos dá indícios de que os pressupostos pós-keynesianos podem ser verificados em São Paulo, e que, de fato, numa economia monetária de produção, a oferta de moeda numa região pode determinar seu desenvolvimento. As figuras abaixo mostram a distribuição geográfica dos indicadores ICF e IQF:
 
 
 ```{r, echo=FALSE}
@@ -1911,14 +1911,14 @@ icf_map <- ggplot2::ggplot(final2) +
     oob = scales::squish,
     guide = "legend"
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Operações de crédito (R$)",
+    name = "Operações de crédito (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -1987,14 +1987,14 @@ iqf_map <- ggplot2::ggplot(final2) +
     limits = c(-1, 5),
     oob = scales::squish,
   ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`)) +
+  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`/1e6)) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
   ) +
   ggplot2::scale_size_area(
-    name = "Financiamentos (R$)",
+    name = "Financiamentos (milhões de R$)",
     max_size = 5,
     na.value = 0
   ) +
@@ -2181,7 +2181,7 @@ i_moran_icf |> stargazer::stargazer(
   )
 ```
 
-As figuras \ref{fig:moran} e \ref{fig:moranicf} mostram a relação entre $y$ e $Wy$ (*lagged*), sendo $y =$ IQF ou ICF e $W =$ matriz de pesos de 5 (IQF) e 6 (ICF) vizinhos mais próximos. Ambos índices de Moran foram estatisticamente diferentes de zero, o que significa que há autocorrelação espacial para IQF e ICF, no entanto, a autocorrelação espacial do IQF é muito mais forte, indicando que o espaço importa mais na difusão de qualidade e diversidade de crédito, do que na questão de centralidade e volume de crédito. Como o distrito Sé é um *outlier* na centralidade do crédito, é possível que ele esteja mascarando algum aspecto das demais centralidades de crédito.
+As figuras \ref{fig:moran} e \ref{fig:moranicf} mostram a relação entre $y$ e $Wy$ (*lagged*), sendo $y =$ IQF ou ICF e $W =$ matriz de pesos de 5 (IQF) e 6 (ICF) vizinhos mais próximos. Ambos os índices de Moran foram estatisticamente diferentes de zero, o que significa que há autocorrelação espacial para IQF e ICF, no entanto, a autocorrelação espacial do IQF é muito mais forte, indicando que o espaço importa mais na difusão de qualidade e diversidade de crédito, do que na questão de centralidade e volume de crédito. Como o distrito Sé é um *outlier* na centralidade do crédito, é possível que ele esteja mascarando algum aspecto das demais centralidades de crédito.
 
 ```{r, echo=FALSE,warning=FALSE}
 #| label: fig-moran
@@ -2306,7 +2306,7 @@ As figuras \ref{fig:moranlocal} e \ref{fig:moranlocalicf} mostram a dispersão g
 
 Pode-se observar uma formação de cluster *Low-Low* na Zona Leste (extremo leste) de São Paulo para o IQF, indicando que se trata de uma periferia em termos de qualidade de serviço financeiro, aglomerando distritos que compartilham dos mesmos baixos índices. Ainda em relação ao IQF, observa-se um cluster *High-High* contendo alguns dos distritos mais ricos da cidade de São Paulo: Campo Belo e Moema. Indicando que se trata de um forte centro financeiro, rodeado de distritos com qualidade financeira similar.
 
-Sobre o ICF, vemos a formação de um grupo bem no centro da cidade, composto exclusivamente por *outliers* em termos de centralidade financeira, e que formam um espécie de anel em torno do centro histórico (Sé). Os clusters *Low-High* nesse anel indicam que há distritos com baixa concentração de crédito, mas que estão cercados por distritos concentradores de crédito, que formam clusters *High-High*.
+Sobre o ICF, vemos a formação de um grupo bem no centro da cidade, composto exclusivamente por *outliers* em termos de centralidade financeira, e que formam uma espécie de anel em torno do centro histórico (Sé). Os clusters *Low-High* nesse anel indicam que há distritos com baixa concentração de crédito, mas que estão cercados por distritos concentradores de crédito, que formam clusters *High-High*.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 
@@ -2480,7 +2480,7 @@ ln(RPC) = \beta_0 + \beta_1 ICF + \beta_2 IQF + \beta_k X_k + \varepsilon
 
 Em que $ln(RPC)$ é a variável dependente (logaritmo natural da Renda *per capita*), $ICF$ é o Índice de Centralidade Financeira, $IQF$ é o Índice de Qualidade Financeira, $X$ é um conjunto de outras variáveis explicativas que servem de controle para o modelo, $\varepsilon$ é o termo de erro aleatório, enquanto $\beta_{h = \{0,1,2\}}$ e $\beta_k$ denotam o valor das estimativas das variáveis explicativas principais e de controle, respectivamente.
 
-Além das variáveis depedente e explicativas citadas acima, o conjunto de variáveis explicativas adicionais levadas em consideração na estimação do modelo empírico estão detalhadas no Quadro 1.
+Além das variáveis dependente e explicativas citadas acima, o conjunto de variáveis explicativas adicionais levadas em consideração na estimação do modelo empírico estão detalhadas no Quadro 1.
 
 \quadro{Relação de variáveis do modelo}{fig:quadro}{exports/quadro1.pdf}{Elaboração própria.}
 
@@ -2600,7 +2600,7 @@ lr_test_print |>
   stargazer::stargazer(type="latex", header=FALSE, summary = FALSE, notes = c(paste("LR: ", round(lr_test$statistic, 3)), paste("p.value: ", lr_test$p.value)))
 ```
 
-Como pode-se observar, o teste LR indica que os modelos são estatísticamente diferentes e o que tem melhor ajuste é o SLX. Logo, estimaremos e discutiremos os resultados detalhados na @tbl-slx.
+Como pode-se observar, o teste LR indica que os modelos são estatisticamente diferentes e o que tem melhor ajuste é o SLX. Logo, estimaremos e discutiremos os resultados detalhados na @tbl-slx.
 
 \newpage
 
@@ -2629,13 +2629,13 @@ stargazer::stargazer(
 
 A estimação do modelo com correção de *lag* espacial permite que se faça conclusões interessantes quanto à determinação da renda *per capita* de cada distrito do município de São Paulo, em particular corroborando com a tese de não neutralidade da moeda e sua capacidade de gerar diferenças regionais dada a sua distribuição no espaço, defendida pelo referencial teórico pós-keynesiano, sobretudo por Crocco *et al*., [-@crocco2006].
 
-Um ponto importante a se observar é o fato de que o ICF se mostrou negativamente relacionado com renda *per capita*, contrariando a expectativa. Destarte, já havíamos observado na análise exploratória que o distrito Sé era o que mais concentrava crédito apesar de sua baixa renda *per capita* em relação aos demais distritos. Além disso, por meio da análise exploratória, foi possível caracterizá-lo como um grande *outlier* que distorcia principalmente os resultados da ACP que produziram o ICF. Portanto, não podemos descartar a hipótese de que o impacto da centralidade financeira na renda *per capita* foi gravemente distorcido pela presença de um *outlier*. Além disso, o ICF dos distritos vizinhos (*lag* ICF) não se mostrou significativo para determinar a renda *per capita*. Mais uma vez, quando observamos a Figura \ref{fig:moranlocalicf} constatamos que os vizinhos mais próximos do *outlier* Sé são bem distintos quanto ao Índice de Centralidade Financeira, logo, não podemos descartar que essa aleatoridade no ICF dos vizinhos desse grande *outlier* tenha impactado no resultado.
+Um ponto importante a se observar é o fato de que o ICF se mostrou negativamente relacionado com renda *per capita*, contrariando a expectativa. Destarte, já havíamos observado na análise exploratória que o distrito Sé era o que mais concentrava crédito apesar de sua baixa renda *per capita* em relação aos demais distritos. Além disso, por meio da análise exploratória, foi possível caracterizá-lo como um grande *outlier* que distorcia principalmente os resultados da ACP que produziram o ICF. Portanto, não podemos descartar a hipótese de que o impacto da centralidade financeira na renda *per capita* foi gravemente distorcido pela presença de um *outlier*. Além disso, o ICF dos distritos vizinhos (*lag* ICF) não se mostrou significativo para determinar a renda *per capita*. Mais uma vez, quando observamos a Figura \ref{fig:moranlocalicf} constatamos que os vizinhos mais próximos do *outlier* Sé são bem distintos quanto ao Índice de Centralidade Financeira, logo, não podemos descartar que essa aleatoriedade no ICF dos vizinhos desse grande *outlier* tenha impactado no resultado.
 
-Por outro lado, o IQF foi fortemente significativo e positivamente relacionado com a renda *per capita*, o que fornece uma inferência robusta de que a qualidade financeira é muito relevante na produção de riqueza dos distritos. Como esse índice ressalta principalmente a preferência por liquidez dos bancos e do público, a diversidadade de operações, e a competição bancária, podemos intuir que os distritos mais ricos têm, em seu território, agências que prestam os melhores serviços financeiros do município e, que de fato, essa qualidade nos serviços induz o enriquecimento de sua população local. Além disso, os vizinhos mais próximos também são positivamente afetados (*lag* IQF), revelando que estar próximo dessas agências de qualidade é extremamente relevante para se ter incrementos na renda *per capita*. Esses resultados nos permitem inferir que o tipo de crédito e suas condições de oferta podem ser mais importantes para elevação da renda que o volume de crédito em si, o que condiz com as análises exploratórias sobre o IRL (Figura \ref{fig:irl}) e o IRF (Figura \ref{fig:irf}), que evidenciaram uma atuação bastante distinta das agências do centro e da periferia, levantando hipóteses de que possa haver uma discriminação de taxas entre os distritos.
+Por outro lado, o IQF foi fortemente significativo e positivamente relacionado com a renda *per capita*, o que fornece uma inferência robusta de que a qualidade financeira é muito relevante na produção de riqueza dos distritos. Como esse índice ressalta principalmente a preferência por liquidez dos bancos e do público, a diversidade de operações, e a competição bancária, podemos intuir que os distritos mais ricos têm, em seu território, agências que prestam os melhores serviços financeiros do município e, que de fato, essa qualidade nos serviços induz o enriquecimento de sua população local. Além disso, os vizinhos mais próximos também são positivamente afetados (*lag* IQF), revelando que estar próximo dessas agências de qualidade é extremamente relevante para se ter incrementos na renda *per capita*. Esses resultados nos permitem inferir que o tipo de crédito e suas condições de oferta podem ser mais importantes para elevação da renda que o volume de crédito em si, o que condiz com as análises exploratórias sobre o IRL (Figura \ref{fig:irl}) e o IRF (Figura \ref{fig:irf}), que evidenciaram uma atuação bastante distinta das agências do centro e da periferia, levantando hipóteses de que possa haver uma discriminação de taxas entre os distritos.
 
-Como era esperado, os distritos com maior porção de domicílios com banheiro e coleta de esgoto são os mais ricos, ficando evidente a relação positiva entre DBA e DEG com a renda *per capita*. Apesar da taxa de domicílios com banheiro ter uma relação endógena com a renda *per capita*, é muito interessante observar que o *lag* DBA (taxa de domicílios com banheiro dos vizinhos mais próximos) foram relavantes e positivamente relacionados com a renda, indicando que existe uma certa aglomeração espacial dos distritos mais ricos e mais pobres, principalmente em relação à infraestrutura dos domicílios. Já a porcão de domicílios com energia elétrica (DEE) não foi significativa, provavelmente por se tratar de uma variável quase constante, pois em 2010, o município de São Paulo dispunha de rede elétrica em quase toda extensão de seu território.
+Como era esperado, os distritos com maior porção de domicílios com banheiro e coleta de esgoto são os mais ricos, ficando evidente a relação positiva entre DBA e DEG com a renda *per capita*. Apesar da taxa de domicílios com banheiro ter uma relação endógena com a renda *per capita*, é muito interessante observar que o *lag* DBA (taxa de domicílios com banheiro dos vizinhos mais próximos) foram relevantes e positivamente relacionados com a renda, indicando que existe uma certa aglomeração espacial dos distritos mais ricos e mais pobres, principalmente em relação à infraestrutura dos domicílios. Já a porção de domicílios com energia elétrica (DEE) não foi significativa, provavelmente por se tratar de uma variável quase constante, pois em 2010, o município de São Paulo dispunha de rede elétrica em quase toda extensão de seu território.
 
-A densidade populacional foi bastante signifativa e negativamente relacionada com a renda *per capita* indicando que a densidade populacional elevada pode prejudicar a riqueza dos distritos. Isso pode ser explicado por fatores como: aumento da concorrência por recursos naturais e produtivos, que pode gerar uma queda na produtividade; dificuldade na prestação de serviços públicos como saúde e educação; urbanização descontrolada que pode acarretar em congestionamentos e falta de infraestrutura adequada. Além disso, a densidade populacional em distritos com áreas semelhantes são modificadas apenas pelo tamanho da população, que entra diretamente no denominador da renda *per capita*, o que também pode gerar essa relação negativa. Ademais, a *lag* DPP (densidade populacional dos vizinhos) foi bastante significativa e também negativamente relacionada com a renda, indicando que estar próximo de distritos densos pode ser prejudicial a geração de riqueza.
+A densidade populacional foi bastante significativa e negativamente relacionada com a renda *per capita* indicando que a densidade populacional elevada pode prejudicar a riqueza dos distritos. Isso pode ser explicado por fatores como: aumento da concorrência por recursos naturais e produtivos, que pode gerar uma queda na produtividade; dificuldade na prestação de serviços públicos como saúde e educação; urbanização descontrolada que pode acarretar congestionamentos e falta de infraestrutura adequada. Além disso, a densidade populacional em distritos com áreas semelhantes é modificada apenas pelo tamanho da população, que entra diretamente no denominador da renda *per capita*, o que também pode gerar essa relação negativa. Ademais, a *lag* DPP (densidade populacional dos vizinhos) foi bastante significativa e também negativamente relacionada com a renda, indicando que estar próximo de distritos densos pode ser prejudicial a geração de riqueza.
 
 Outro resultado bastante interessante foi em relação à densidade de empresas (DEM) do distrito que não foi significativa para determinação da renda *per capita*, diferente da densidade de empresas dos distritos vizinhos mais próximos (*lag* DEM), que foi bastante significativa e positivamente relacionado com a renda *per capita* dos distritos, o que nos leva a inferir que famílias mais ricas vão se posicionar em distritos residenciais que estão próximos de distritos empresariais e não necessariamente vão residir nos distritos com maior volume de empresas. A proximidade do local de trabalho e do ambiente de negócios pode estar ajudando na produção de riqueza desses distritos, o que vai de encontro com a Teoria do Lugar Central [@parr; @wood2005].
 
@@ -2647,9 +2647,9 @@ O presente trabalho buscou aprofundar as discussões sobre centralidade financei
 
 A partir dos índices financeiros regionais criados na análise exploratória e de sua análise feita principalmente de forma visual, foi possível detectar a alta concentração de agências e de crédito no centro do município. Além disso, distritos mais nobres possuem agências com maior diversidade de crédito e competição bancária, enquanto distritos da periferia contam com pouca competição bancária e baixa diversidade de operações. Ademais, foi possível observar que distritos com menor preferência por liquidez do banco e do público são os mais desenvolvidos e estão geograficamente mais próximos do centro, corroborando com Crocco et al [-@crocco2006], Amado [-@amado2006] e Carvalho [-@carvalho92].
 
-Os índices criados com Ánalise de Componentes Pricipais se mostraram bastante úteis para simplificar a grande base de dados da ESTBAN em apenas duas dimensões: Qualidade e Centralidade. Ao avaliar esses índices, percebeu-se que eles têm uma relação positiva (@fig-scores), principalmente se excluírmos o *outlier* Sé. Logo, locais que concentram muito volume de crédito, apresentam, na média, maior grau de qualidade financeira.
+Os índices criados com Análise de Componentes Principais se mostraram bastante úteis para simplificar a grande base de dados da ESTBAN em apenas duas dimensões: Qualidade e Centralidade. Ao avaliar esses índices, percebeu-se que eles têm uma relação positiva (@fig-scores), principalmente se excluirmos o *outlier* Sé. Logo, locais que concentram muito volume de crédito, apresentam, na média, maior grau de qualidade financeira.
 
-No entanto, ao estimar a renda *per capita* com um Modelo Regressivo Cruzado Espacial (SLX) foi possível inferir que qualidade financeira importa muito mais para a geração de riqueza do que a concentração de crédito em termos de volume, principalmente quando a qualidade é mensurada em termos de diversidade de operações, competição bancária e preferência por liquidez. Isso nos leva a formular hipóteses de que essa atuação diferenciada das agências podem estar contribuíndo para aumentar as desigualdades regionais dentro de um mesmo município.
+No entanto, ao estimar a renda *per capita* com um Modelo Regressivo Cruzado Espacial (SLX) foi possível inferir que qualidade financeira importa muito mais para a geração de riqueza do que a concentração de crédito em termos de volume, principalmente quando a qualidade é mensurada em termos de diversidade de operações, competição bancária e preferência por liquidez. Isso nos leva a formular hipóteses de que essa atuação diferenciada das agências podem estar contribuindo para aumentar as desigualdades regionais dentro de um mesmo município.
 
 Logo, as hipóteses levantadas, indicando um papel diferenciado das agências na ampliação dessas disparidades, constituem um chamado para futuras pesquisas, incentivando uma análise mais aprofundada ao longo do tempo e a consideração de modelos em painel para uma compreensão mais completa das variações na renda per capita resultantes da atuação bancária. Este estudo contribui, assim, não apenas para o entendimento da dinâmica financeira em ambientes urbanos, mas também para o embasamento de políticas públicas que visem mitigar as desigualdades socioeconômicas dentro das cidades.
 
