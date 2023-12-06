@@ -1,5 +1,5 @@
 ---
-title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL EMPÍRICA E EXPLORATÓRIA DO SETOR BANCÁRIO NO MUNICÍPIO DE SÃO PAULO, NO ANO DE 2010."
+title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL DO SETOR BANCÁRIO NO MUNICÍPIO DE SÃO PAULO."
 author: "Flávio Hugo Pangracio Silva"
 author-upper: "FLÁVIO HUGO PANGRACIO SILVA"
 registration_number: 99079
@@ -12,9 +12,9 @@ year: "2023"
 confirm_text: "Monografia apresentada ao Departamento de Economia da Universidade Federal de Viçosa como parte das exigências para obtenção do título de Bacharel em Ciências Econômicas."
 keywords: "Centralidade; Sistema Financeiro; Economia Regional e Urbana."
 dedication: "Aos meus pais, Marlene e Emerson, e a todos aqueles a quem esta pesquisa possa ajudar de alguma forma."
-confirm_date: "12/12/2023"
-examiner1: "Membro da banca"
-examiner2: "Membro da banca"
+confirm_date: "13/12/2023"
+examiner1: "Giovana Figueiredo Rossi"
+examiner2: "Alexandre de Queiroz Stein"
 advisor-name: "Igor Santos Tupy"
 bibliography: referencies/ref.bib
 csl: cite_styles/abnt.csl
@@ -44,14 +44,18 @@ Por conta disso, faz-se necessário um trabalho que dê palco central para a dis
 
 Nesse sentido, ainda há muitas questões a se explorar e responder sobre o tema da moeda no espaço: As concentrações bancárias já identificadas por Selmier [-@selmier2016], Tupy [-@igor], Dow [-@dow2012], Amado [-@amado2006] e outros autores se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre distritos de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole? Volume e qualidade do crédito impactam na renda per capita dos bairros/distritos da cidade?
 
-Diante dos questionamentos e da lacuna literária, o presente trabalho pretende aprofundar as discussões sobre centralidade financeira no espaço urbano, por meio de uma análise espacial empírica e exploratória do setor bancário do município de São Paulo, em 2010. Essa análise é importante para compreender como a oferta de crédito está dispersa no espaço e como ela influencia o desenvolvimento econômico e social das cidades, servindo de base para formulação de políticas de desenvolvimento regional no combate às desigualdades regionais.
+Diante dos questionamentos e da lacuna literária, o presente trabalho pretende aprofundar as discussões sobre centralidade financeira no espaço urbano, por meio de uma análise espacial do setor bancário do município de São Paulo. Essa análise é importante para compreender como a oferta de crédito está dispersa no espaço e como ela influencia o desenvolvimento econômico e social das cidades, servindo de base para formulação de políticas de desenvolvimento regional no combate às desigualdades regionais.
 
-Para atingir esses objetivos será necessário construir uma base de dados com os arquivos disponibilizados mensalmente pelo BACEN da estatística bancária de cada agência (ESTBAN) e georreferenciar esses dados. Com isso, será possível agrupar os dados por setor censitário da malha territorial de São Paulo (IBGE) e cruzar com os dados de renda e domicílio do CENSO 2010. Depois, calcularemos alguns índices de localização, distribuição, qualidade e diversidade do crédito, que serão apresentados na seção de metodologia. Em seguida, realizaremos uma análise exploratória desses dados, por meio de técnicas de clusters e análise de componentes principais. Além disso, estimaremos um modelo econométrico espacial (SLX) com os índices criados para mensurar o impacto da oferta de crédito local e dos vizinhos mais próximos na renda per capita das regiões. Por fim, avaliaremos e discutiremos os resultados encontrados, sob o referencial pós-keynesiano.
+Para atingir esses objetivos será necessário construir uma base de dados com os arquivos disponibilizados mensalmente pelo BACEN da estatística bancária de cada agência (ESTBAN) e georreferenciar esses dados. Com isso, será possível agrupar os dados por setor censitário da malha territorial de São Paulo (IBGE) e cruzar com os dados de renda e domicílio do CENSO mais recente[^1]. Depois, calcularemos alguns índices de localização, distribuição, qualidade e diversidade do crédito, que serão apresentados na seção de metodologia. Em seguida, realizaremos uma análise exploratória desses dados, por meio de técnicas de clusters e análise de componentes principais. Além disso, estimaremos um modelo econométrico espacial (SLX) com os índices criados para mensurar o impacto da oferta de crédito local e dos vizinhos mais próximos na renda per capita das regiões. Por fim, avaliaremos e discutiremos os resultados encontrados, sob o referencial pós-keynesiano.
 
 Esse trabalho divide-se em 5 capítulos, incluindo essa introdução. No próximo, são tratados os aspectos teóricos importantes para a análise exploratória e empírica que será realizada neste trabalho, abordando os fundamentos de Economia Monetária
 de Produção, da caracterização de Centro e Periferia e das principais questões existentes sobre os Serviços financeiros no meio urbano. A metodologia é apresentada no terceiro capítulo, subdividida em seções para tratar separadamente a fonte dos dados e cada um dos métodos utilizados. No capítulo 4 são apresentados os resultados, discutindo-os. Por fim, são apresentadas as considerações finais do trabalho.
 
+[^1]: O objetivo inicial era utilizar os dados do CENSO 2022 conjuntamente com os dados mais atuais da ESTBAN. No entanto, os dados por setor censitário do CENSO 2022 ainda não estão disponíveis, devido ao atraso eu sua realização. Por esse motivo, os dados do CENSO 2010 serão utilizados.
+
 # ASPECTOS TEÓRICOS
+
+Antes de apresentar os recursos metodológicos, faz-se necessário uma construção teórica para ancorar premissas fundamentais da Economia Monetária de Produção, explorando a interconexão intrínseca entre dinheiro, produção e emprego. Sob a lente conceitual proposta principalmente por Dow [-@dow82], mergulhamos nas nuances do debate sobre Centro e Periferia, onde a distribuição desigual de poder econômico e a dinâmica regional desempenham papéis cruciais na análise dos desequilíbrios regionais. Além disso, examinamos o papel da centralidade no meio urbano, destacando como fatores urbanos desempenham um papel vital na compreensão das dinâmicas econômicas modernas. Este mergulho teórico proporciona a base para uma análise crítica e aprofundada das relações econômicas contemporâneas, contextualizando os conceitos pós-keynesianos.
 
 ## *Economia Monetária de Produção*
 
@@ -111,17 +115,17 @@ Mesmo em grandes centros urbanos, com alta densidade populacional, há heterogen
 
 Para que fosse possível uma análise espacial empírica e exploratória da atividade bancária no meio urbano, foi construída uma base de dados inédita, que integra conjuntos de informações provenientes de várias fontes, a saber:
 
-ESTBAN: subsistema estatístico do Sistema COSIF que disponibiliza arquivos gerados mensalmente com a informação da Estatística Bancária Mensal, contendo a posição mensal dos saldos das principais rubricas de balancetes dos bancos comerciais e dos bancos múltiplos com carteira comercial[^1].
+ESTBAN: subsistema estatístico do Sistema COSIF que disponibiliza arquivos gerados mensalmente com a informação da Estatística Bancária Mensal, contendo a posição mensal dos saldos das principais rubricas de balancetes dos bancos comerciais e dos bancos múltiplos com carteira comercial[^2].
 
-[^1]: https://www4.bcb.gov.br/fis/cosif/estban.asp?frame=1
+[^2]: https://www4.bcb.gov.br/fis/cosif/estban.asp?frame=1
 
-Relação de Agências - BCB: arquivos com informações sobre todas as agências do Brasil, disponibilizados pelo Banco Central do Brasil e extraídos do Sistema de Informações sobre Entidades de Interesse do Banco Central -- UNICAD, mensalmente. Contém informações como endereço completo e CNPJ de cada agência[^2].
+Relação de Agências - BCB: arquivos com informações sobre todas as agências do Brasil, disponibilizados pelo Banco Central do Brasil e extraídos do Sistema de Informações sobre Entidades de Interesse do Banco Central -- UNICAD, mensalmente. Contém informações como endereço completo e CNPJ de cada agência[^3].
 
-[^2]: https://www.bcb.gov.br/fis/info/agencias.asp?frame=1
+[^3]: https://www.bcb.gov.br/fis/info/agencias.asp?frame=1
 
-Google Maps API: Os endereços das agências foram submetidos à API do Google Maps, com intuito de georreferenciar a base, obtendo latitude e longitude de cada agência da Relação de Agências[^3].
+Google Maps API: Os endereços das agências foram submetidos à API do Google Maps, com intuito de georreferenciar a base, obtendo latitude e longitude de cada agência da Relação de Agências[^4].
 
-[^3]: Vale destacar que foram encontrados endereços de agências incorretos nos dados disponibilizados pelo BCB, o que resultou em um georreferenciamento incorreto. Assumiu-se um erro de apenas 5% dos dados nesse procedimento.
+[^4]: Vale destacar que foram encontrados endereços de agências incorretos nos dados disponibilizados pelo BCB, o que resultou em um georreferenciamento incorreto. Assumiu-se um erro de apenas 5% dos dados nesse procedimento.
 
 Malha territorial do município de São Paulo, dividida em setores censitários (e por distritos) - IBGE: Foram utilizados alguns *shapefiles* contendo informações vetoriais (polígonos) de cada setor censitário.
 
@@ -133,7 +137,9 @@ Os dados da malha territorial do município de São Paulo foram obtidos através
 
 Por fim, os dados de domicílios do CENSO 2010 foram baixados diretamente do site IBGE Downloads, na seção de "Resultados do Universo" e "Agregados por Setor Censitário" e carregados no R para serem cruzados com os demais dados.
 
-Todos os procedimentos e base de dados desta metodologia são contribuições acadêmicas reprodutíveis e, portanto, estão disponibilizadas para o público no endereço: https://github.com/flaviohugo14/quarto-abnt.
+Todos os procedimentos e base de dados desta metodologia são contribuições acadêmicas reprodutíveis e, portanto, estão disponibilizadas para o público[^5].
+
+[^5]: O repositório contendo o código R e LateX e utilizado está disponível em https://github.com/flaviohugo14/quarto-abnt, que será atualizado e modificado com o tempo, sobretudo com correções e melhorias. Além disso, o site https://flaviohugo14.github.io/financial-centralities também será utilizado para hospedar o trabalho.
 
 A Figura \ref{fig:brasil} mostra a localização das agências bancárias no Brasil, resultado do desenvolvimento da base de dados descrita acima.
 
@@ -153,15 +159,15 @@ PLP = \frac{DV}{DT}
 \end{equation}
 ```
 
-$DV =$ depósitos à vista[^4].
+$DV =$ depósitos à vista[^6].
 
-[^4]: Na ESTBAN, é a soma das contas agregadas 400 (depósitos à vista do governo), que contém as subcontas: 401 (serviços públicos); 402 (atividades empresariais); 403 (especiais do tesouro nacional); 404 (saldo credores em contas de empréstimos e financiamentos - CFP). E 410 (depósitos à vista privado), que contém as subcontas: 411 (de pessoas físicas); 412 (de pessoas júridicas); 413 (de instituições do sistema financeiro); 414 (judiciais); 415 (obrigatórios); 416 (para investimentos); 417 (vinculados); 418 (demais depósitos); 419 (saldo credores em contas de empréstimos e financiamentos - Outros).
+[^6]: Na ESTBAN, é a soma das contas agregadas 400 (depósitos à vista do governo), que contém as subcontas: 401 (serviços públicos); 402 (atividades empresariais); 403 (especiais do tesouro nacional); 404 (saldo credores em contas de empréstimos e financiamentos - CFP). E 410 (depósitos à vista privado), que contém as subcontas: 411 (de pessoas físicas); 412 (de pessoas júridicas); 413 (de instituições do sistema financeiro); 414 (judiciais); 415 (obrigatórios); 416 (para investimentos); 417 (vinculados); 418 (demais depósitos); 419 (saldo credores em contas de empréstimos e financiamentos - Outros).
 
-$DT =$ depósitos totais (incluem depósitos a vista, depósitos de poupança[^5] e depósitos interfinanceiros[^6]).
+$DT =$ depósitos totais (incluem depósitos a vista, depósitos de poupança[^7] e depósitos interfinanceiros[^8]).
 
-[^5]: Conta 420 da ESTBAN.
+[^7]: Conta 420 da ESTBAN.
 
-[^6]: Conta 430 da ESTBAN, contém as subcontas: 431 (depósitos interfinanceiros), 432 (depósitos a prazo) e 433 (captações no mercado aberto).
+[^8]: Conta 430 da ESTBAN, contém as subcontas: 431 (depósitos interfinanceiros), 432 (depósitos a prazo) e 433 (captações no mercado aberto).
 
 Quanto maior esse índice, maior é a preferência pela liquidez do público, pois aloca maior parcela de seus recursos em aplicações de maior liquidez.
 
@@ -175,9 +181,9 @@ PLB = \frac{DV}{OPC}
 
 $DV =$ depósitos à vista.
 
-$OPC =$ operações de crédito[^7].
+$OPC =$ operações de crédito[^9].
 
-[^7]: Representa o somatório das seguintes contas da ESTBAN: (161) empréstimos e títulos descontados, (162) financiamentos, (163) financiamentos rurais à agricultura -- custeio/investimento, (164) financiamentos rurais à pecuária - custeio/investimento, (165) financiamentos rurais à agricultura -- comercialização, (166) financiamentos rurais à pecuária -- comercialização, (167) financiamentos agroindustriais, (168) (rendas a apropriar de operações de financiamentos agroindustriais), (169) financiamentos imobiliários, (171) outras operações de crédito, (172) outros créditos, (173) provisão para operações de crédito créditos em liquidação e (176) operações especiais.
+[^9]: Representa o somatório das seguintes contas da ESTBAN: (161) empréstimos e títulos descontados, (162) financiamentos, (163) financiamentos rurais à agricultura -- custeio/investimento, (164) financiamentos rurais à pecuária - custeio/investimento, (165) financiamentos rurais à agricultura -- comercialização, (166) financiamentos rurais à pecuária -- comercialização, (167) financiamentos agroindustriais, (168) (rendas a apropriar de operações de financiamentos agroindustriais), (169) financiamentos imobiliários, (171) outras operações de crédito, (172) outros créditos, (173) provisão para operações de crédito créditos em liquidação e (176) operações especiais.
 
 Quanto maior o índice, maior a preferência pela liquidez dos bancos, pois estão emprestando menos (ficando com ativos mais líquidos).
 
@@ -191,15 +197,15 @@ PLBen = \frac{D + E}{A}
 \end{equation}
 ```
 
-$D + E =$ Disponibilidades[^8] + Empréstimos e Títulos Descontados[^9].
+$D + E =$ Disponibilidades[^10] + Empréstimos e Títulos Descontados[^11].
 
-[^8]: Agregado das contas 111 (Caixa), 112 (Depósitos bancários), 113 (Reservas livres em espécie) e 114 (Aplicações temporárias em ouro).
+[^10]: Agregado das contas 111 (Caixa), 112 (Depósitos bancários), 113 (Reservas livres em espécie) e 114 (Aplicações temporárias em ouro).
 
-[^9]: Conta 161 da ESTBAN, representam o crédito mais líquido dentro das operações de crédito.
+[^11]: Conta 161 da ESTBAN, representam o crédito mais líquido dentro das operações de crédito.
 
-$A =$ Total do ativo[^10].
+$A =$ Total do ativo[^12].
 
-[^10]: Conta 399 da ESTBAN, contendo o somatório de todas as contas do ativo.
+[^12]: Conta 399 da ESTBAN, contendo o somatório de todas as contas do ativo.
 
 Com interpretação semelhante ao PLB, espera-se que o PLBe seja menor em regiões mais desenvolvidas.
 
@@ -818,7 +824,11 @@ data |> write.csv("data/data.csv", row.names = FALSE)
 
 # RESULTADOS E DISCUSSÃO
 
+Nesta seção, exploramos todos os resultados obtidos por meio dos recursos metodológicos descritos anteriormente.
+
 ## *Análise exploratória*
+
+Ao examinar os Índices Regionais de Crédito, Depósitos, Financiamentos e outros, desvendamos padrões distintos que permeiam o centro e a periferia, delineando as complexas relações entre a geografia econômica, a oferta de crédito e as condições socioeconômicas locais. Adentrando nas especificidades das regiões periféricas, confrontamos a concentração de operações financeiras, a preferência por liquidez e a influência dos grandes bancos. Essa seção não apenas apresenta resultados da exploração, mas também busca interpretar as implicações desses achados para o desenvolvimento econômico e a inclusão financeira na maior metrópole brasileira.
 
 As Figuras 2 a 11 mostram a distribuição geográfica dos índices de concentração e preferência por liquidez criados na seção 3.2 para os distritos de São Paulo, destacando-se os distritos centrais:
 
@@ -939,7 +949,11 @@ irc_cow
 ggsave("exports/irc.pdf", plot = irc_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-É possível observar, por meio da figura \ref{fig:irc}, a alta concentração de crédito ofertado no centro histórico de São Paulo (Sé), bastante dominado pelos 5 maiores bancos do Brasil, especialmente pelo Santander, maior ofertante de crédito nessa região, em 2010. Além do centro histórico (Sé), regiões como Vila Curuçá, Jabaquara, Consolação, Santo Amaro, Bela Vista e Itaim Bibi também concentraram a oferta de crédito acima da concentração de renda. A concentração de crédito em regiões próximas dos aeroportos de Guarulhos e Congonhas (Vila Curuçá e Jabaquara) pode ser explicada pela presença de empresas e instituições financeiras nessas regiões. Esses empreendimentos costumam ter maior necessidade de crédito, o que pode justificar a concentração de crédito nessas regiões.
+A análise da distribuição espacial do crédito, exemplificada pela figura \ref{fig:irc}, revela uma notável concentração no centro histórico de São Paulo (Sé), evidenciando um cenário onde os 5 maiores bancos do Brasil exercem significativa influência, especialmente o Santander, que desponta como o principal ofertante de crédito na região em 2010. Esta concentração não se limita apenas ao centro histórico (Sé), estendendo-se para outras áreas estratégicas da cidade, como Vila Curuçá, Jabaquara, Consolação, Santo Amaro, Bela Vista e Itaim Bibi, onde a oferta de crédito supera as médias de concentração de renda.
+
+Um fenômeno intrigante é a concentração de crédito em regiões próximas aos aeroportos de Guarulhos e Congonhas, notadamente em Vila Curuçá e Jabaquara. Essa peculiaridade pode ser explicada pela presença significativa de empresas e instituições financeiras nessas localidades, as quais, por sua natureza, demandam quantidades substanciais de crédito.
+
+Este padrão sugere uma interconexão entre a geografia econômica e a distribuição de serviços financeiros, ilustrando como as demandas específicas de determinadas atividades econômicas podem moldar a paisagem financeira de uma cidade. Assim, a observação atenta desses padrões contribui para uma compreensão mais profunda das dinâmicas que regem a distribuição de crédito em áreas urbanas complexas e diversificadas.
 
 \fig{Índice Regional do Crédito (IRC) no município de São Paulo (2010).}{fig:irc}{exports/irc.pdf}{Elaboração própria.}
 
@@ -1014,7 +1028,9 @@ ire_cow <- ire_map |> cowplot::ggdraw() +
 ggsave("exports/ire.pdf", plot = ire_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-A figura \ref{fig:ire} mostra que a concentração de empréstimos é semelhante à concentração de crédito como um todo. Isso significa que os bancos estão mais propensos a conceder empréstimos para clientes em regiões com maior renda. No entanto, há uma dispersão um pouco maior, comparada à oferta de crédito como um todo.
+Ao observar a figura \ref{fig:ire}, que ilustra a distribuição da concentração de empréstimos, percebemos uma notável semelhança com o padrão de concentração de crédito como um todo. Esta consistência sugere que os bancos tendem a direcionar sua oferta de empréstimos para regiões caracterizadas por uma maior concentração de renda. A relação intrínseca entre a distribuição de renda e a alocação de empréstimos evidencia uma dinâmica na qual as instituições financeiras privilegiam áreas com maior poder aquisitivo.
+
+No entanto, é interessante notar que, em comparação com a oferta total de crédito, a distribuição de empréstimos apresenta uma dispersão ligeiramente maior. Essa maior variabilidade pode indicar nuances na estratégia dos bancos ao considerar a concessão de empréstimos, refletindo possíveis abordagens diferenciadas para atender às demandas específicas de cada região. Tal observação instiga a uma análise mais aprofundada das razões subjacentes a essa dispersão, explorando fatores econômicos, sociais e demográficos que possam influenciar as decisões dos bancos na concessão de empréstimos em diferentes contextos urbanos. Assim, ao desvelar as complexidades dessa distribuição, a pesquisa ganha valiosos resultados sobre os mecanismos intricados que moldam a geografia financeira e a acessibilidade aos recursos de crédito nas diversas áreas analisadas.
 
 \fig{Índice Regional de Empréstimos (IRE) no município de São Paulo (2010).}{fig:ire}{exports/ire.pdf}{Elaboração própria.}
 
@@ -1089,7 +1105,11 @@ irf_cow <- irf_map |> cowplot::ggdraw() +
 ggsave("exports/irf.pdf", plot = irf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-A figura \ref{fig:irf} mostra um padrão ainda mais nítido de concentração financeira, em que pouquíssimos distritos contam com agências que fazem financiamentos. Distritos como Brasilândia, Cidade Tiradentes, Pedreira, Jardim Helena, Anhanguera e Marsilac não têm 1 centavo destinado à financiamento no momento da análise. As regiões centrais, por sua vez, concentram uma oferta de financiamento muito superior ao nível de renda da região.
+Ao examinar a figura \ref{fig:irf}, emerge um padrão ainda mais proeminente de concentração financeira, revelando que apenas alguns distritos contam com agências que oferecem serviços de financiamento. Distritos como Brasilândia, Cidade Tiradentes, Pedreira, Jardim Helena, Anhanguera e Marsilac destacam-se como áreas onde, no momento da análise, não há recursos destinados a financiamentos. Esta disparidade acentuada evidencia uma lacuna significativa na acessibilidade a serviços financeiros nessas localidades, apontando para uma clara desigualdade na disponibilidade de recursos para a realização de investimentos ou projetos de maior porte.
+
+Contrastando essa realidade, as regiões centrais emergem como polos de oferta de financiamento, apresentando níveis muito superiores à média de renda da região. Esse fenômeno sugere uma dinâmica na qual as instituições financeiras privilegiam áreas urbanas mais centrais em detrimento das periféricas, exacerbando as disparidades socioeconômicas. A ausência de recursos para financiamento em distritos periféricos pode estar associada a uma série de fatores, como a falta de infraestrutura econômica local, o que pode criar um ciclo vicioso de falta de investimento e desenvolvimento nessas comunidades.
+
+Desse modo, a análise da distribuição geográfica da oferta de financiamento adiciona uma camada crítica à compreensão das disparidades financeiras urbanas, destacando a necessidade de políticas e práticas financeiras mais inclusivas que busquem equilibrar a alocação de recursos e fomentar o desenvolvimento econômico em todas as regiões da cidade. Isso ressalta a importância de considerar não apenas a concentração de renda, mas também a distribuição equitativa de serviços financeiros como um indicador crucial para a construção de sociedades mais justas e sustentáveis.
 
 \fig{Índice Regional de Financiamentos (IRF) no município de São Paulo (2010).}{fig:irf}{exports/irf.pdf}{Elaboração própria.}
 
@@ -1163,10 +1183,15 @@ ird_cow <- ird_map |> cowplot::ggdraw() +
 ggsave("exports/ird.pdf", plot = ird_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice Regional de Depósitos, presente na figura \ref{fig:ird}, mostra que os depósitos estão mais bem distribuídos do que o crédito. Isso pode ser um indício de que as agências sejam eficientes em captar depósitos em todo espaço geográfico, diferentemente do que acontece na oferta de crédito. Existem algumas possíveis explicações para esse resultado: (i) os depósitos são mais fáceis de captar, pois podem ser captados por meio de diferentes canais, como caixas eletrônicos, internet banking e atendimento presencial; e,
-(ii) os depósitos são mais necessários para as agências, pois são utilizados pelos bancos para financiar a oferta de crédito.
+A análise do Índice Regional de Depósitos, como representado pela figura \ref{fig:ird}, evidencia uma distribuição mais equitativa em comparação com a oferta de crédito. Este fenômeno sugere que as agências bancárias possuem uma eficiência notável na captação de depósitos em todo o espectro geográfico, apresentando uma maior uniformidade na distribuição desse tipo de recurso em comparação com o crédito. Esta diferenciação pode apontar para a capacidade das instituições financeiras de atrair depósitos através de canais diversos, como caixas eletrônicos, internet banking e atendimento presencial, o que torna essa modalidade de recurso mais acessível e passível de ser captada de forma mais ampla.
 
-Já concentração um pouco maior nas regiões centrais pode ser explicada por alguns fatores, como a maior concentração de empresas e instituições nas regiões centrais e, maior presença de agências bancárias nessas regiões.
+Esse padrão pode ser explicado, em parte, pela natureza mais versátil dos depósitos, cuja captação não está tão diretamente vinculada a avaliações detalhadas de risco ou à análise minuciosa das condições econômicas de determinada região. A possibilidade de captar depósitos por meio de diferentes canais facilita a expansão da base de clientes em áreas geográficas diversas.
+
+Outra perspectiva relevante é a interconexão entre depósitos e a oferta de crédito. A presença de uma distribuição mais equilibrada de depósitos pode indicar que esses recursos são essenciais para os bancos no financiamento da oferta de crédito. Os depósitos, ao servirem como fonte de financiamento para as instituições bancárias, podem desempenhar um papel crucial na determinação da amplitude e acessibilidade do crédito em diferentes regiões.
+
+No entanto, mesmo com a distribuição relativamente mais uniforme de depósitos, observa-se uma concentração ligeiramente maior nas regiões centrais. Essa tendência pode ser atribuída à maior presença de empresas e instituições nessas áreas, que naturalmente resulta em uma demanda mais significativa por serviços financeiros. Além disso, a densidade de agências bancárias nas regiões centrais pode contribuir para essa concentração, refletindo uma estratégia das instituições de se posicionarem estrategicamente em áreas de maior atividade econômica.
+
+Essa compreensão mais holística pode informar práticas e políticas financeiras que visam não apenas à eficiência operacional, mas também à equidade na distribuição de recursos financeiros em diferentes estratos geográficos.
 
 \fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird.pdf}{Elaboração própria.}
 
@@ -1316,11 +1341,21 @@ irr_cow <- irr_map |> cowplot::ggdraw() +
 ggsave("exports/irr.pdf", plot = irr_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice Regional de Risco da figura \ref{fig:irr} nos dá indício de como os bancos enxergam centro e periferia. As regiões periféricas no entorno do centro têm agências que provisionam muito mais crédito, em relação à renda da região, para cobrir possíveis inadimplências. Essa percepção de risco dos bancos pode ser determinante na oferta de crédito, pois os bancos estão mais propensos a conceder crédito para clientes em regiões consideradas de menor risco, como o centro da cidade. Essa dinâmica pode ter um impacto negativo no desenvolvimento econômico das regiões periféricas. A falta de acesso ao crédito pode dificultar a geração de renda e a criação de empregos nessas regiões.
+A interpretação do Índice Regional de Risco, evidenciado pela figura \ref{fig:irr}, lança luz sobre a abordagem dos bancos em relação às áreas centrais e periféricas, desvendando uma dinâmica que reverbera na oferta de crédito. Observa-se que as regiões periféricas nas imediações do centro exibem agências bancárias que provisionam quantidades substanciais de crédito, em relação à renda local, como uma estratégia preventiva para lidar com eventuais inadimplências. Este padrão sugere que os bancos percebem um nível de risco mais elevado nessas áreas periféricas, uma variável crucial que impacta diretamente a disposição das instituições em disponibilizar recursos financeiros.
+
+A inclinação dos bancos em provisionar mais crédito em regiões periféricas reflete uma postura cautelosa, indicando que a percepção de risco nestas localidades desempenha um papel determinante nas decisões de concessão de crédito. Essa abordagem pode desencadear um ciclo prejudicial para o desenvolvimento econômico nas regiões periféricas, uma vez que a percepção elevada de risco resulta em uma oferta de crédito mais restrita. A falta de acesso a esses recursos pode representar uma barreira significativa para a geração de renda e a criação de empregos nessas comunidades, limitando o potencial econômico e perpetuando desigualdades socioeconômicas.
+
+A correlação entre percepção de risco e oferta de crédito destaca a necessidade de uma abordagem mais equitativa por parte das instituições financeiras, não apenas orientada pela maximização de lucros, mas também pelo estímulo ao desenvolvimento econômico em áreas historicamente desfavorecidas. Estratégias que compreendam e enfrentem as complexidades dessas dinâmicas regionais podem desempenhar um papel crucial na promoção de oportunidades econômicas mais amplas e na redução das disparidades entre o centro e a periferia. Portanto, a análise do Índice Regional de Risco não apenas revela as estratégias de mitigação de riscos dos bancos, mas também destaca os potenciais impactos socioeconômicos que essa abordagem pode ter nas comunidades periféricas.
 
 \fig{Índice Regional de Risco (IRR) no município de São Paulo (2010).}{fig:irr}{exports/irr.pdf}{Elaboração própria.}
 
-A observação do resultado das agências e sua distribuição no espaço pelo IRL da figura \ref{fig:irl}, confirma a percepção de risco dos bancos em relação às regiões periféricas. As agências localizadas nessas regiões, apesar de terem um índice de risco mais alto, apresentaram resultados financeiros melhores do que as agências localizadas em regiões centrais. Esse resultado pode ser explicado por duas hipóteses: (i) Operações mais lucrativas: as agências localizadas nas regiões periféricas podem ter realizado operações mais lucrativas, como empréstimos pessoais e cheque especial. Essas operações costumam ter taxas de juros mais altas, o que pode compensar o risco de inadimplência; (ii) Taxas diferentes: as agências localizadas nas regiões periféricas podem ter operado com taxas diferentes em cada região. Essas taxas podem ser mais altas nas regiões periféricas, o que também pode compensar o risco de inadimplência.
+A análise do Índice Regional de Lucratividade (IRL), conforme evidenciado na figura \ref{fig:irl}, corrobora a percepção de risco dos bancos em relação às regiões periféricas. Notavelmente, as agências situadas nessas áreas, embora apresentem um índice de risco mais elevado, demonstram desempenho financeiro superior em comparação com aquelas localizadas nas regiões centrais. Este cenário instigante suscita reflexões acerca das dinâmicas econômicas e estratégias operacionais que permeiam essas localidades.
+
+Uma hipótese plausível para esse fenômeno é a possibilidade de que as agências em regiões periféricas tenham conduzido operações mais lucrativas. Operações como empréstimos pessoais e cheque especial, frequentemente associadas a taxas de juros mais elevadas, podem ter sido mais proeminentes nessas áreas, compensando, assim, o risco percebido de inadimplência. Esse cenário sugere uma adaptação das estratégias bancárias às características específicas das regiões periféricas, onde a oferta de serviços financeiros mais rentáveis pode contribuir para a estabilidade financeira das agências.
+
+Outra possibilidade a ser considerada reside na variação das taxas praticadas pelas agências em diferentes regiões. As agências localizadas nas regiões periféricas podem ter adotado políticas de taxação mais elevadas, refletindo a dinâmica econômica dessas áreas e, por conseguinte, compensando o potencial risco de inadimplência. A flexibilidade na definição de taxas em resposta às peculiaridades regionais destaca a adaptabilidade das instituições financeiras, que podem ajustar suas estratégias de precificação conforme a demanda e as características locais.
+
+Assim, a análise do IRL não apenas confirma a percepção de risco diferenciada nas regiões periféricas, mas também revela um aspecto paradoxal: embora apresentem maior risco, as agências nessas localidades conseguem superar em desempenho financeiro aquelas situadas em áreas centrais. Este cenário complexo instiga uma reflexão mais profunda sobre as estratégias financeiras adaptativas, o papel das taxas de juros na compensação de riscos e o impacto dessas dinâmicas na sustentabilidade econômica das comunidades periféricas.
 
 \fig{Índice Regional de Lucros (IRL) no município de São Paulo (2010).}{fig:irl}{exports/irl.pdf}{Elaboração própria.}
 
@@ -1395,7 +1430,15 @@ plp_cow <- plp_map |> cowplot::ggdraw() +
 ggsave("exports/plp.pdf", plot = plp_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
-Como era esperado pela literatura [@dow82;@chick88;@crocco2006], as regiões periféricas apresentam maior preferência por liquidez (Figura \ref{fig:plp}). O que pode ser explicado por fatores, como: (i) A maior incerteza financeira: as pessoas que moram em regiões periféricas tendem a ter renda menor e a enfrentar mais incerteza financeira. Isso pode levar a uma maior preferência por liquidez, para garantir que haja dinheiro disponível para despesas inesperadas. (ii) A menor oferta de crédito: a oferta de crédito é mais limitada nas regiões periféricas. Isso pode levar as pessoas a manter mais dinheiro em conta corrente ou em aplicações de liquidez imediata, para evitar a necessidade de recorrer ao crédito. (iii) A menor penetração de serviços bancários: os serviços bancários são menos acessíveis nas regiões periféricas. Isso pode levar as pessoas a manter mais dinheiro em conta corrente ou em aplicações de liquidez imediata, para evitar a necessidade de se deslocar para agências bancárias.
+Como antecipado pela literatura especializada [@dow82; @chick88; @crocco2006], as regiões periféricas revelam uma marcante preferência por liquidez, conforme ilustrado na Figura \ref{fig:plp}. Este comportamento pode ser elucidado por diversos fatores interconectados, proporcionando uma compreensão abrangente das dinâmicas econômicas nessas localidades.
+
+Um fator preponderante é a maior incerteza financeira que permeia as regiões periféricas. Os residentes dessas áreas frequentemente enfrentam renda mais limitada e maior volatilidade econômica, o que instiga uma preferência acentuada por liquidez. A manutenção de ativos líquidos é percebida como uma salvaguarda essencial para fazer frente a despesas inesperadas, consolidando uma estratégia financeira adaptativa diante da instabilidade econômica.
+
+Além disso, a limitada oferta de crédito nas regiões periféricas desempenha um papel significativo nessa propensão à liquidez. A escassez de acesso ao crédito nessas localidades pode incentivar os residentes a manterem montantes substanciais em contas correntes ou investimentos de liquidez imediata. Essa prática visa mitigar a dependência do crédito, proporcionando uma reserva financeira prontamente disponível em face de necessidades emergenciais.
+
+A menor penetração de serviços bancários também contribui para a preferência por liquidez observada nas regiões periféricas. A acessibilidade reduzida a agências bancárias e serviços financeiros impulsiona a escolha de manter quantias substanciais em ativos líquidos, eliminando a necessidade de deslocamentos frequentes para realizar transações financeiras. Essa adaptação ao ambiente econômico local ressalta a influência significativa das condições infraestruturais na tomada de decisões financeiras cotidianas.
+
+Portanto, a análise desses fatores revela uma rede complexa de influências que moldam a preferência por liquidez nas regiões periféricas. A compreensão desses padrões não apenas contextualiza o comportamento financeiro dessas comunidades, mas também destaca a necessidade de estratégias econômicas e políticas financeiras que abordem efetivamente os desafios específicos enfrentados pelas regiões periféricas, visando promover maior inclusão financeira e estabilidade econômica.
 
 \fig{Preferência por liquidez do público (PLP) no município de São Paulo (2010).}{fig:plp}{exports/plp.pdf}{Elaboração própria.}
 
@@ -1630,11 +1673,13 @@ ico_cow <- ico_map |> cowplot::ggdraw() +
 ggsave("exports/ico.pdf", plot = ico_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice de Concentração de Operações (ICO), presente na figura \ref{fig:ico}, mostra como há distritos com baixíssima diversidade de operações, localizados principalmente no extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nessas regiões, as agências praticamente só oferecem empréstimos pessoais, pois não há financiamento ou operações de longo prazo. Vale lembrar o contexto histórico dessas regiões, visto que o extremo sul e o extremo leste de São Paulo são regiões historicamente marginalizadas, com altos índices de pobreza e desemprego.
+O Índice de Concentração de Operações (ICO), representado na figura \ref{fig:ico}, destaca de maneira acentuada as disparidades na diversidade de operações financeiras em diferentes distritos de São Paulo, especialmente nas áreas do extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nestas localidades, a predominância de empréstimos pessoais sugere uma oferta limitada de serviços financeiros, com praticamente ausência de operações de financiamento ou transações de longo prazo. Essa configuração reflete uma realidade que vai além do cenário bancário, adentrando as complexidades históricas e socioeconômicas dessas áreas, há muito tempo marcadas por índices significativos de pobreza e desemprego.
 
-A grande questão é se pobreza e desemprego fizeram com que as agências não oferecessem crédito diversificado nessas regiões, ou, se a falta de crédito diversificado fez com que essas regiões enfrentassem pobreza e desemprego.
+Ao considerar o histórico dessas regiões, emerge um cenário no qual a concentração na oferta de operações financeiras, majoritariamente centrada em empréstimos pessoais, pode ser tanto uma resposta às condições socioeconômicas desafiadoras desses distritos como também um fator contribuinte para a perpetuação dessas dificuldades. A inter-relação entre pobreza, desemprego e a limitação nas ofertas de crédito suscita uma questão intrincada: as agências financeiras estão reagindo às condições adversas dessas áreas ao oferecerem apenas operações mais seguras e de curto prazo, ou seria a oferta restrita de crédito diversificado um fator que contribui para os desafios econômicos locais?
 
-Independentemente da resposta, fica clara a grande diferença entre centro e periferia no que tange ao número de operações realizadas nas agências: As agências centrais oferecem todo tipo de crédito, enquanto agências periféricas oferecem pouquíssimas opções.
+Independentemente da resposta a essa indagação, a disparidade entre centro e periferia, no que diz respeito à diversidade de operações bancárias, emerge como um ponto crucial de reflexão. As agências no centro da cidade apresentam uma variedade extensa de opções de crédito, refletindo uma infraestrutura financeira robusta e adaptável. Em contraste, as agências nas regiões periféricas oferecem um escopo limitado de serviços, evidenciando uma lacuna significativa na acessibilidade a produtos financeiros mais variados.
+
+Essa discrepância aponta para uma possível falta de serviços financeiros adaptados às necessidades específicas das regiões periféricas, sugerindo a importância de estratégias bancárias mais inclusivas que abordem não apenas a demanda imediata, mas também promovam oportunidades de longo prazo e desenvolvimento econômico sustentável nessas comunidades historicamente marginalizadas. A análise do ICO, portanto, transcende as métricas puramente bancárias, englobando aspectos sociais e econômicos cruciais para a compreensão integral das dinâmicas financeiras urbanas.
 
 \fig{Índice de Concentração de Operações (ICO) no município de São Paulo (2010).}{fig:ico}{exports/ico.pdf}{Elaboração própria.}
 
@@ -1710,7 +1755,13 @@ icb_cow <- icb_map |> cowplot::ggdraw() +
 ggsave("exports/icb.pdf", plot = icb_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
-O Índice de Concentração Bancária (figura \ref{fig:icb}) ficou alto em distritos com poucas agências, como os da periferia, mas também ficou elevado em alguns distritos com grande volume de agências, como Sé, República e Consolação (Centro). Mesmo onde há maior diversificação, o ICB é próximo de $0.2$, o que significa que todo volume de operações de crédito é dividido entre aproximadamente 5 bancos, o que condiz com o conhecido domínio dos 5 grandes bancos no Brasil (Santander, Bradesco, Itaú, Banco do Brasil e Caixa).
+O Índice de Concentração Bancária (ICB), ilustrado na figura \ref{fig:icb}, oferece uma perspectiva reveladora sobre a distribuição do volume de operações de crédito em diferentes distritos de São Paulo. Destaca-se que, em distritos periféricos, onde o número de agências é mais reduzido, o ICB apresenta valores elevados, indicando uma concentração significativa do volume de operações em poucos bancos. Essa realidade reflete a limitada diversificação de instituições financeiras nessas regiões, aumentando a dependência de um número restrito de bancos para a oferta de serviços financeiros, particularmente no domínio do crédito.
+
+Curiosamente, observa-se uma dinâmica similar em alguns distritos centrais, notadamente em Sé, República e Consolação. Essas áreas, apesar de abrigarem um grande número de agências, também exibem um ICB elevado, indicando que, mesmo em locais com maior diversificação bancária, o volume de operações de crédito ainda está concentrado entre um número limitado de grandes instituições financeiras. Esse fenômeno ressalta a marcante influência e presença dominante dos chamados "cinco grandes bancos" no Brasil – Santander, Bradesco, Itaú, Banco do Brasil e Caixa Econômica Federal. A proximidade do ICB a $0.2$ mesmo em áreas mais diversificadas reflete a significativa participação dessas instituições no mercado financeiro brasileiro.
+
+Essa concentração bancária notável tem implicações importantes para a dinâmica econômica e financeira da cidade. Em distritos periféricos, a dependência de um número limitado de bancos pode restringir a oferta de serviços financeiros e limitar o acesso ao crédito, contribuindo para desafios econômicos nessas regiões. Por outro lado, nos distritos centrais, onde a diversificação bancária é maior, a persistência de um ICB elevado sugere que mesmo em áreas com mais opções, a influência dos grandes bancos continua preponderante.
+
+Essa análise do ICB oferece uma janela para a estrutura bancária em São Paulo, enfatizando a necessidade de estratégias que promovam maior concorrência e diversificação no setor financeiro. A concentração significativa evidenciada pelo ICB sublinha a importância de políticas que incentivem a entrada de instituições financeiras menores e promovam um ambiente mais competitivo, buscando assim ampliar o acesso a serviços financeiros e estimular o desenvolvimento econômico em todas as áreas da cidade.
 
 \fig{Índice de Concentração Bancária (ICB) no município de São Paulo (2010).}{fig:icb}{exports/icb.pdf}{Elaboração própria.}
 
@@ -2328,7 +2379,7 @@ moranlocal_map <- ggplot2::ggplot() +
     stat = "sf_coordinates",
     min.segment.length = 0,
     box.padding = 1,
-    size = 5
+    size = 4
   ) +
   ggplot2::geom_sf(
     data = subset(final2, !final2$cd_ds %in% shape$cd_ds),
@@ -2352,38 +2403,7 @@ moranlocal_map <- ggplot2::ggplot() +
     width = unit(1, "cm")
   )
 
-
-moranlocal_map <-
-  moranlocal_map + geom_rect(
-    xmin = -46.630000,
-    ymin = -23.550000,
-    xmax = -46.730000,
-    ymax = -23.650000,
-    fill = NA,
-    colour = "black",
-    size = 0.7
-  )
-
-
-moranlocal_cow <- moranlocal_map |> cowplot::ggdraw() +
-  draw_plot(
-    {
-      moranlocal_map +
-        coord_sf(
-          xlim = c(-46.730000, -46.630000),
-          ylim = c(-23.650000, -23.550000),
-          expand = FALSE
-        ) +
-        theme(legend.position = "none") +
-        annotation_scale(location = "bl", line_width = 0.4)
-    },
-    x = 0.6,
-    y = 0.1,
-    width = 0.4,
-    height = 0.4
-  )
-
-ggsave("exports/moranlocal.pdf", plot = moranlocal_map, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/moranlocal.pdf", plot = moranlocal_map, width = 1500, height = 1500, units = "px", dpi = 320)
 ```
 
 \fig{Clusters LISA (I de Moran Local) - IQF}{fig:moranlocal}{exports/moranlocal.pdf}{Elaboração própria.}
@@ -2408,7 +2428,7 @@ moranlocalicf_map <- ggplot2::ggplot() +
     stat = "sf_coordinates",
     min.segment.length = 0,
     box.padding = 1,
-    size = 5
+    size = 4
   ) +
   ggplot2::geom_sf(
     data = subset(final2, !final2$cd_ds %in% shape$cd_ds),
@@ -2432,38 +2452,7 @@ moranlocalicf_map <- ggplot2::ggplot() +
     width = unit(1, "cm")
   )
 
-
-moranlocalicf_map <-
-  moranlocalicf_map + geom_rect(
-    xmin = -46.630000,
-    ymin = -23.550000,
-    xmax = -46.730000,
-    ymax = -23.650000,
-    fill = NA,
-    colour = "black",
-    size = 0.7
-  )
-
-
-moranlocalicf_cow <- moranlocalicf_map |> cowplot::ggdraw() +
-  draw_plot(
-    {
-      moranlocalicf_map +
-        coord_sf(
-          xlim = c(-46.730000, -46.630000),
-          ylim = c(-23.650000, -23.550000),
-          expand = FALSE
-        ) +
-        theme(legend.position = "none") +
-        annotation_scale(location = "bl", line_width = 0.4)
-    },
-    x = 0.6,
-    y = 0.1,
-    width = 0.4,
-    height = 0.4
-  )
-
-ggsave("exports/moranlocalicf.pdf", plot = moranlocalicf_map, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/moranlocalicf.pdf", plot = moranlocalicf_map, width = 1500, height = 1500, units = "px", dpi = 320)
 ```
 
 \fig{Clusters LISA (I de Moran Local) - ICF}{fig:moranlocalicf}{exports/moranlocalicf.pdf}{Elaboração própria.}
@@ -2651,7 +2640,9 @@ Os índices criados com Análise de Componentes Principais se mostraram bastante
 
 No entanto, ao estimar a renda *per capita* com um Modelo Regressivo Cruzado Espacial (SLX) foi possível inferir que qualidade financeira importa muito mais para a geração de riqueza do que a concentração de crédito em termos de volume, principalmente quando a qualidade é mensurada em termos de diversidade de operações, competição bancária e preferência por liquidez. Isso nos leva a formular hipóteses de que essa atuação diferenciada das agências podem estar contribuindo para aumentar as desigualdades regionais dentro de um mesmo município.
 
-Logo, as hipóteses levantadas, indicando um papel diferenciado das agências na ampliação dessas disparidades, constituem um chamado para futuras pesquisas, incentivando uma análise mais aprofundada ao longo do tempo e a consideração de modelos em painel para uma compreensão mais completa das variações na renda per capita resultantes da atuação bancária. Este estudo contribui, assim, não apenas para o entendimento da dinâmica financeira em ambientes urbanos, mas também para o embasamento de políticas públicas que visem mitigar as desigualdades socioeconômicas dentro das cidades.
+Ademais, é fundamental reconhecer algumas limitações inerentes ao presente estudo. O uso de dados do CENSO de 2010 pode refletir uma realidade que pode ter evoluído ao longo do tempo, tornando necessária uma revisitação das análises quando dados mais recentes, como os do CENSO de 2022, estiverem disponíveis. Além disso, a abordagem estática adotada neste trabalho não permite capturar variações temporais das variáveis, limitando a compreensão das mudanças dinâmicas ao longo dos anos.
+
+Assim, as hipóteses formuladas, que sugerem um papel diferenciado das agências na ampliação de disparidades socioeconômicas, destacam a necessidade premente de futuras investigações. Uma abordagem mais abrangente, envolvendo análises longitudinais e considerando variações temporais das variáveis, seria fundamental para uma compreensão mais precisa e atualizada das relações entre a atuação bancária e as disparidades na renda per capita. Esses esforços futuros não apenas refinariam nossa compreensão da dinâmica financeira urbana, mas também subsidiariam a formulação de políticas públicas mais eficazes na mitigação das desigualdades socioeconômicas dentro das cidades.
 
 \newpage
 
