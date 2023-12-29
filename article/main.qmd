@@ -29,6 +29,7 @@ format:
             - tex_files/before-body.tex
             - tex_files/doc-class.tex
         mainfont: "Times New Roman"
+keep-tex: true
 ---
 
 \pagestyle{fancy} <!-- Show the page number --> \justify
@@ -40,13 +41,13 @@ Na literatura sobre economia regional, há poucos trabalhos analisando a moeda e
 
 Além disso, há uma lacuna na literatura quanto ao papel da moeda no desenvolvimento urbano, sobretudo quanto aos fatores distributivos e qualitativos na oferta de crédito dentro das cidades. Trabalhos como o de Hashimoto, Pažitka e Wójcik [-@hashimoto2022], Hashimoto e Wójcik [-@hashimoto2021], Tupy [-@tupy2016], Crocco [-@crocco2012] e Parr e Budd [-@parr] focaram na questão locacional e hierárquica dos serviços financeiros, utilizando-se de dados de emprego no setor financeiro e número de agências para determinar coeficientes de localização e centralidade dessas atividades. Outros trabalhos, como os de Memarian *et al*., [-@memarian2023] e Chauvet e Jacolin [-@chauvet2017] exploraram o impacto da concentração bancária no acesso ao crédito por parte das firmas, ao utilizarem dados do endividamento das firmas e obstáculos geográficos até a agência bancária. Todas essas contribuições tangenciam de alguma forma o papel da moeda no desenvolvimento urbano, mas não discutem concentração de crédito e desigualdade financeira dentro das cidades.
 
-Por conta disso, faz-se necessário um trabalho que dê palco central para a distribuição do crédito no espaço urbano, revisite as contribuições passadas sobre a questão regional do crédito e do setor bancário e utilize do grande volume de dados disponíveis nos dias atuais para testar hipóteses, realizar análises espaciais e dar condições para formulação de políticas públicas de acesso à crédito no âmbito urbano.
+Por conta disso, acredita-se ser necessário o desenvolvimento de estudos centrados na distribuição do crédito no espaço urbano, revisite as contribuições passadas sobre a questão regional do crédito e do setor bancário e utilize do grande volume de dados disponíveis nos dias atuais para testar hipóteses, realizar análises espaciais e dar condições para formulação de políticas públicas de acesso à crédito no âmbito urbano.
 
-Nesse sentido, ainda há muitas questões a se explorar e responder sobre o tema da moeda no espaço: As concentrações bancárias já identificadas por Selmier [-@selmier2016], Tupy [-@igor], Dow [-@dow2012], Amado [-@amado2006] e outros autores se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre distritos de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole? Volume e qualidade do crédito impactam na renda per capita dos bairros/distritos da cidade?
+Nesse sentido, ainda há muitas questões a se explorar e responder sobre o tema do crédito no espaço: As concentrações bancárias já identificadas por Selmier [-@selmier2016], Tupy [-@igor], Dow [-@dow2012], Amado [-@amado2006] e outros autores se repetem no meio urbano? Há diferenças quantitativas e qualitativas na oferta de crédito entre distritos de um mesmo município? Há discriminação na oferta de serviços financeiros entre regiões periféricas e centrais de uma metrópole? Volume e qualidade do crédito impactam na renda per capita dos bairros/distritos da cidade?
 
 Diante dos questionamentos e da lacuna literária, o presente trabalho pretende aprofundar as discussões sobre centralidade financeira no espaço urbano, por meio de uma análise espacial do setor bancário do município de São Paulo. Essa análise é importante para compreender como a oferta de crédito está dispersa no espaço e como ela influencia o desenvolvimento econômico e social das cidades, servindo de base para formulação de políticas de desenvolvimento regional no combate às desigualdades regionais.
 
-Para atingir esses objetivos será necessário construir uma base de dados com os arquivos disponibilizados mensalmente pelo BACEN da estatística bancária de cada agência (ESTBAN) e georreferenciar esses dados. Com isso, será possível agrupar os dados por setor censitário da malha territorial de São Paulo (IBGE) e cruzar com os dados de renda e domicílio do CENSO mais recente[^1]. Depois, calcularemos alguns índices de localização, distribuição, qualidade e diversidade do crédito, que serão apresentados na seção de metodologia. Em seguida, realizaremos uma análise exploratória desses dados, por meio de técnicas de clusters e análise de componentes principais. Além disso, estimaremos um modelo econométrico espacial (SLX) com os índices criados para mensurar o impacto da oferta de crédito local e dos vizinhos mais próximos na renda per capita das regiões. Por fim, avaliaremos e discutiremos os resultados encontrados, sob o referencial pós-keynesiano.
+Para atingir esses objetivos foi necessário construir uma base de dados com os arquivos disponibilizados mensalmente pelo BACEN da estatística bancária de cada agência (ESTBAN) e georreferenciar esses dados. Com isso, foi possível agrupar os dados por setor censitário da malha territorial de São Paulo (IBGE) e cruzar com os dados de renda e domicílio do CENSO mais recente[^1]. Depois, calculou-se alguns índices de localização, distribuição, qualidade e diversidade do crédito, apresentados na seção de metodologia. Em seguida, realizou-se uma análise exploratória desses dados, por meio de técnicas de clusters e análise de componentes principais. Além disso, estimou-se um modelo econométrico espacial (SLX) com os índices criados para mensurar o impacto da oferta de crédito local e dos vizinhos mais próximos na renda per capita das regiões. Por fim, avaliou-se e discutiu-se os resultados encontrados, sob o referencial pós-keynesiano.
 
 Esse trabalho divide-se em 5 capítulos, incluindo essa introdução. No próximo, são tratados os aspectos teóricos importantes para a análise exploratória e empírica que será realizada neste trabalho, abordando os fundamentos de Economia Monetária
 de Produção, da caracterização de Centro e Periferia e das principais questões existentes sobre os Serviços financeiros no meio urbano. A metodologia é apresentada no terceiro capítulo, subdividida em seções para tratar separadamente a fonte dos dados e cada um dos métodos utilizados. No capítulo 4 são apresentados os resultados, discutindo-os. Por fim, são apresentadas as considerações finais do trabalho.
@@ -55,11 +56,11 @@ de Produção, da caracterização de Centro e Periferia e das principais quest�
 
 # ASPECTOS TEÓRICOS
 
-Antes de apresentar os recursos metodológicos, faz-se necessário uma construção teórica para ancorar premissas fundamentais da Economia Monetária de Produção, explorando a interconexão intrínseca entre dinheiro, produção e emprego. Sob a lente conceitual proposta principalmente por Dow [-@dow82], mergulhamos nas nuances do debate sobre Centro e Periferia, onde a distribuição desigual de poder econômico e a dinâmica regional desempenham papéis cruciais na análise dos desequilíbrios regionais. Além disso, examinamos o papel da centralidade no meio urbano, destacando como fatores urbanos desempenham um papel vital na compreensão das dinâmicas econômicas modernas. Este mergulho teórico proporciona a base para uma análise crítica e aprofundada das relações econômicas contemporâneas, contextualizando os conceitos pós-keynesianos.
+Antes de apresentar os recursos metodológicos, faz-se necessário uma construção teórica para ancorar premissas fundamentais da Economia Monetária de Produção, explorando a interconexão intrínseca entre dinheiro, produção e emprego. Sob a lente conceitual proposta principalmente por Dow [-@dow82], mergulhou-se nas nuances do debate sobre Centro e Periferia, onde a distribuição desigual de poder econômico e a dinâmica regional desempenham papéis cruciais na análise dos desequilíbrios regionais. Além disso, examinou-se o papel da centralidade no meio urbano, destacando como fatores urbanos desempenham um papel vital na compreensão das dinâmicas econômicas modernas. Este mergulho teórico proporciona a base para uma análise crítica e aprofundada das relações econômicas contemporâneas, contextualizando os conceitos pós-keynesianos.
 
 ## *Economia Monetária de Produção*
 
-Segundo Keynes [-@keynes73b], vivemos em uma economia monetária de produção, em que a moeda exerce papel fundamental nas decisões econômicas dos agentes, pois empresários decidem produzir e contratar fatores de produção com expectativa de ganhar dinheiro com sua produção. Como não há nenhum mecanismo que garanta que a contratação de fatores será totalmente compensada pela venda do produto gerado e, considerando um contexto de incerteza sobre o futuro, os agentes podem optar por não gastar esse ativo, mantendo-o na sua forma líquida.
+Segundo Keynes [-@keynes73b], os agentes vivem em uma economia monetária de produção, em que a moeda exerce papel fundamental nas decisões econômicas dos agentes, pois empresários decidem produzir e contratar fatores de produção com expectativa de ganhar dinheiro com sua produção. Como não há nenhum mecanismo que garanta que a contratação de fatores será totalmente compensada pela venda do produto gerado e, considerando um contexto de incerteza sobre o futuro, os agentes podem optar por não gastar esse ativo, mantendo-o na sua forma líquida.
 
 Dessa forma, em uma economia monetária, o empresário possui interesse no dinheiro que será gerado a partir de suas atividades produtivas. Seu objetivo principal é aumentar sua riqueza de forma geral, ou seja, em sua forma monetária. Ele tomará a decisão de expandir sua produção se acreditar que isso resultará em um aumento de sua renda. A escolha entre oferecer ou não trabalho é, na verdade, uma decisão sobre como utilizar sua riqueza, seja investindo-a na produção ou mantendo-a na forma mais líquida (mantendo em dinheiro). Nesse tipo de economia, o produtor não é guiado pelo volume de produto que espera obter, mas sim pelas oportunidades alternativas de aumentar ou preservar sua riqueza [@keynes73a].
 
@@ -115,11 +116,11 @@ Mesmo em grandes centros urbanos, com alta densidade populacional, há heterogen
 
 Para que fosse possível uma análise espacial empírica e exploratória da atividade bancária no meio urbano, foi construída uma base de dados inédita, que integra conjuntos de informações provenientes de várias fontes, a saber:
 
-ESTBAN: subsistema estatístico do Sistema COSIF que disponibiliza arquivos gerados mensalmente com a informação da Estatística Bancária Mensal, contendo a posição mensal dos saldos das principais rubricas de balancetes dos bancos comerciais e dos bancos múltiplos com carteira comercial[^2].
+ESTBAN: subsistema estatístico do Sistema COSIF (Plano Contábil das Instituições do Sistema Financeiro Nacional) que disponibiliza arquivos gerados mensalmente com a informação da Estatística Bancária Mensal, contendo a posição mensal dos saldos das principais rubricas de balancetes dos bancos comerciais e dos bancos múltiplos com carteira comercial[^2].
 
 [^2]: https://www4.bcb.gov.br/fis/cosif/estban.asp?frame=1
 
-Relação de Agências - BCB: arquivos com informações sobre todas as agências do Brasil, disponibilizados pelo Banco Central do Brasil e extraídos do Sistema de Informações sobre Entidades de Interesse do Banco Central -- UNICAD, mensalmente. Contém informações como endereço completo e CNPJ de cada agência[^3].
+Relação de Agências - Banco Central do Brasil (BCB): arquivos com informações sobre todas as agências do Brasil, disponibilizados pelo Banco Central do Brasil e extraídos do Sistema de Informações sobre Entidades de Interesse do Banco Central -- UNICAD (Sistema de Informações sobre Entidades de Interesse do Banco Central), mensalmente. Contém informações como endereço completo e CNPJ de cada agência[^3].
 
 [^3]: https://www.bcb.gov.br/fis/info/agencias.asp?frame=1
 
@@ -127,13 +128,13 @@ Google Maps API: Os endereços das agências foram submetidos à API do Google M
 
 [^4]: Vale destacar que foram encontrados endereços de agências incorretos nos dados disponibilizados pelo BCB, o que resultou em um georreferenciamento incorreto. Assumiu-se um erro de apenas 5% dos dados nesse procedimento.
 
-Malha territorial do município de São Paulo, dividida em setores censitários (e por distritos) - IBGE: Foram utilizados alguns *shapefiles* contendo informações vetoriais (polígonos) de cada setor censitário.
+Malha territorial do município de São Paulo, dividida em setores censitários (e por distritos) - Instituto Brasileiro de Geografia e Estatística (IBGE): Foram utilizados alguns *shapefiles* contendo informações vetoriais (polígonos) de cada setor censitário.
 
 Dados de domicílio do CENSO 2010: Foram incluídos dados demográficos e socioeconômicos, agregados por setor censitário, disponibilizados pelo CENSO 2010 para a compreensão do contexto populacional subjacente às análises efetuadas no trabalho.
 
 Para os dados da ESTBAN e da Relação de Agências - BCB, foi desenvolvido um *script* em Python para automatizar o processo de download, descompactação, leitura dos arquivos .csv ou .xls, transformação (padronização de nome e ordem de colunas), enriquecimento (dados de geolocalização do Google Maps API) e carregamento em banco de dados adequado para a análise (BigQuery). Para processar o grande volume de arquivos, foi utilizado PySpark [@spark].
 
-Os dados da malha territorial do município de São Paulo foram obtidos através do pacote geobr do R [@geobr], utilizando as funções adequadas.
+Os dados da malha territorial do município de São Paulo foram obtidos através do pacote geobr do R [@geobr].
 
 Por fim, os dados de domicílios do CENSO 2010 foram baixados diretamente do site IBGE Downloads, na seção de "Resultados do Universo" e "Agregados por Setor Censitário" e carregados no R para serem cruzados com os demais dados.
 
@@ -141,13 +142,13 @@ Todos os procedimentos e base de dados desta metodologia são contribuições ac
 
 [^5]: O repositório contendo o código R e LateX e utilizado está disponível em https://github.com/flaviohugo14/quarto-abnt, que será atualizado e modificado com o tempo, sobretudo com correções e melhorias. Além disso, o site https://flaviohugo14.github.io/financial-centralities também será utilizado para hospedar o trabalho.
 
-A Figura \ref{fig:brasil} mostra a localização das agências bancárias no Brasil, resultado do desenvolvimento da base de dados descrita acima.
+A Figura \ref{fig:brasil} mostra a localização das 19770 agências bancárias em território brasileiro no ano de 2010, resultado do desenvolvimento da base de dados descrita acima. Das 19770 agências, 2419 (12,19%) estavam localizadas no município de São Paulo em 2010.
 
 \fig{Localização das agências bancárias no Brasil (2010).}{fig:brasil}{images/brasil.png}{Elaboração própria.}
 
 ## *Tratamento dos dados e construção de índices*
 
-Seguindo o referencial teórico pós-keynesiano de que vivemos em uma economia monetária de produção, o comportamento dos bancos e do público em relação à alocação de seus ativos pode ser mensurado em termos de preferência pela liquidez. Para tal mensuração, Crocco *et al*. [-@crocco2006] construíram dois indicadores financeiros: preferência pela liquidez do público (PLP) e preferência pela liquidez dos bancos (PLB).
+Seguindo o referencial teórico pós-keynesiano, de que os agentes vivem em uma economia monetária de produção, o comportamento dos bancos e do público em relação à alocação de seus ativos pode ser mensurado em termos de preferência pela liquidez. Para tal mensuração, Crocco *et al*. [-@crocco2006] construíram dois indicadores financeiros: preferência pela liquidez do público (PLP) e preferência pela liquidez dos bancos (PLB).
 
 Segundo Crocco *et al*. [-@crocco2006], no balanço dos bancos, a conta de operações de crédito representa a porção de ativos com baixa liquidez relacionada aos empréstimos concedidos. Por outro lado, as contas de depósitos à vista, poupança e depósitos a prazo são registradas no passivo do balanço dos bancos e refletem o comportamento geral do público, agindo como intermediários financeiros. Segundo o enfoque pós-keynesiano, o público realiza suas decisões de alocação de ativos entre as contas mencionadas acima levando em consideração o nível de incerteza e a quantidade de informações disponíveis nas regiões. A decisão de alocação de portfólio envolve a escolha entre manter ativos mais líquidos, com retorno financeiro menor, em situações de maior incerteza econômica, ou optar por ativos menos líquidos, porém com potencial de maior rendimento financeiro, quando o cenário econômico se mostra mais confiável.
 
@@ -322,13 +323,29 @@ Após a criação das variáveis e dos índices, será utilizada uma técnica es
 
 A técnica de ACP tem como objetivo construir um conjunto de variáveis estatisticamente independentes, formadas a partir de uma transformação linear do conjunto de variáveis e reduzir a dimensão da base de dados perdendo o mínimo de informação (variância) possível [@mingotti].
 
-Segundo Andrade [-@andrade], com $n$ variáveis, pode-se gerar até $n$ componentes. No entanto, quando há alta correlação entre as variáveis, o número de componentes necessários à explicação da maior parte da variância dos dados resume-se em a poucos componentes. Dessa forma, podemos até utilizar de técnicas de análise univariada, caso seja possível condensar as $n$ variáveis em poucos componentes.
+Segundo Andrade [-@andrade], com $n$ variáveis, pode-se gerar até $n$ componentes. No entanto, quando há alta correlação entre as variáveis, o número de componentes necessários à explicação da maior parte da variância dos dados resume-se em a poucos componentes. Dessa forma, pode-se utilizar de técnicas de análise univariada, caso seja possível condensar as $n$ variáveis em poucos componentes.
 
 Pretende-se criar, portanto, alguns índices de centralidade e qualidade financeira, que resumam o grande número de variáveis da base de dados original, juntamente com os índices criados na seção 3.2. Esses índices serão utilizados no modelo de Econometria de Espacial, definido na seção 3.4.
 
 ## *Análise Espacial*
 
-Todo o processo que se dá no espaço está sujeito à chamada Lei de Tobler, conhecida como a Primeira Lei da Geografia, que diz que "tudo depende de todo o restante, porém o que está mais próximo depende mais do que aquilo que está mais distante" [@almeida]. Logo, a proximidade influencia a interação dos agentes no espaço, de forma a tornar a distribuição dos eventos espaciais não-aleatórios. A análise espacial, portanto, consiste em revelar e interpretar essas relações de proximidade e influência entre regiões vizinhas.
+Na busca por compreender as dinâmicas espaciais dos processos financeiros e seus impactos na economia real, é imperativo adotar uma abordagem analítica que considere a natureza espacial desses fenômenos. Antes de adentrar nos modelos específicos de econometria espacial, é essencial realizar a estimação de um Modelo Clássico de Regressão Linear (MCRL) por Mínimos Quadrados Ordinários (MQO). A razão fundamental reside na limitação inerente ao MCRL, que não é capaz de controlar efetivamente os efeitos espaciais. Dessa forma, ao estabelecer uma base sólida por meio do MCRL, torna-se possível identificar e quantificar os padrões espaciais subjacentes antes de incorporar modelos mais avançados, como o Modelo Regressivo Cruzado Espacial (SLX) ou o Modelo de Durbin Espacial (SDM). A inserção dessa etapa inicial de estimação clássica proporciona uma abordagem metodológica abrangente para a análise econômica espacial, contribuindo para a robustez e interpretabilidade dos resultados obtidos nos modelos subsequentes.
+
+O modelo pode ser especificado como:
+
+```{=tex}
+\begin{equation}
+ln(RPC) = \beta_0 + \beta_1 ICF + \beta_2 IQF + \beta_k X_k + \varepsilon
+\end{equation}
+```
+
+Em que $ln(RPC)$ é a variável dependente (logaritmo natural da Renda *per capita*), $ICF$ é o Índice de Centralidade Financeira, $IQF$ é o Índice de Qualidade Financeira, $X$ é um conjunto de outras variáveis explicativas que servem de controle para o modelo, $\varepsilon$ é o termo de erro aleatório, enquanto $\beta_{h = \{0,1,2\}}$ e $\beta_k$ denotam o valor das estimativas das variáveis explicativas principais e de controle, respectivamente.
+
+Além das variáveis dependente e explicativas citadas acima, o conjunto de variáveis explicativas adicionais levadas em consideração na estimação do modelo empírico estão detalhadas no Quadro 1.
+
+\quadro{Relação de variáveis do modelo}{fig:quadro}{exports/quadro1.pdf}{Elaboração própria.}
+
+Adentrando nas particularidades da econometria espacial, pode-se começar dizendo que todo o processo que ocorre no espaço está sujeito à chamada Lei de Tobler, conhecida como a Primeira Lei da Geografia, que diz que "tudo depende de todo o restante, porém o que está mais próximo depende mais do que aquilo que está mais distante" [@almeida]. Logo, a proximidade influencia a interação dos agentes no espaço, de forma a tornar a distribuição dos eventos espaciais não-aleatórios. A análise espacial, portanto, consiste em revelar e interpretar essas relações de proximidade e influência entre regiões vizinhas.
 
 A Econometria Espacial, por sua vez, é um ramo da econometria convencional, tendo como escopo, estimar, testar e prever modelos teóricos, influenciados pelos efeitos espaciais [@almeida]. O Modelo Clássico de Regressão Linear (MCRL) tem a limitação de não ser capaz de controlar esses efeitos espaciais e, portanto, deve ser relaxado para incorporar tais efeitos.
 
@@ -395,7 +412,6 @@ I = \frac{n}{\sum_i\sum_j w_{ij}}\frac{\sum_{i}\sum_{j} w_{ij}z_i z_j}{\sum_{i=1
 ```
 Em que $n$ é o número de regiões, $z$ denota os valores da variável de interesse padronizada e $w_{ij}$ os pesos espaciais, que descrevem as interações entre as regiões $i$ e $j$ [@almeida].
 
-Por fim, a expectativa é de que seja possível constatar correlação espacial nos processos financeiros e aglomeração da atividade bancária nas regiões centrais.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(bigrquery)
@@ -611,7 +627,7 @@ shape_censo_agencias_bairros <- sf::st_join(shape_censo_bairros, agencias_2010_s
 # Dataframe próprio para análise.
 
 shape_final <- shape_censo_agencias_bairros |>
-  dplyr::group_by(code_district) |>
+  dplyr::group_by(code_district, name_district) |>
   dplyr::summarise(
     disponibilidades = sum(`110`, na.rm = TRUE),
     op_cred = sum(`160`, na.rm = TRUE),
@@ -789,6 +805,7 @@ shape_final |>
   dplyr::select(
     c(
       "cd_ds",
+      "name_district",
       "IRC",
       "IRE",
       "IRF",
@@ -824,11 +841,11 @@ data |> write.csv("data/data.csv", row.names = FALSE)
 
 # RESULTADOS E DISCUSSÃO
 
-Nesta seção, exploramos todos os resultados obtidos por meio dos recursos metodológicos descritos anteriormente.
+Nesta seção, explora-se todos os resultados obtidos por meio dos recursos metodológicos descritos anteriormente.
 
 ## *Análise exploratória*
 
-Ao examinar os Índices Regionais de Crédito, Depósitos, Financiamentos e outros, desvendamos padrões distintos que permeiam o centro e a periferia, delineando as complexas relações entre a geografia econômica, a oferta de crédito e as condições socioeconômicas locais. Adentrando nas especificidades das regiões periféricas, confrontamos a concentração de operações financeiras, a preferência por liquidez e a influência dos grandes bancos. Essa seção não apenas apresenta resultados da exploração, mas também busca interpretar as implicações desses achados para o desenvolvimento econômico e a inclusão financeira na maior metrópole brasileira.
+Ao examinar os Índices Regionais de Crédito, Depósitos, Financiamentos e outros, desvendou-se padrões distintos que permeiam o centro e a periferia, delineando as complexas relações entre a geografia econômica, a oferta de crédito e as condições socioeconômicas locais. Adentrando nas especificidades das regiões periféricas, confrontamos a concentração de operações financeiras, a preferência por liquidez e a influência dos grandes bancos. Essa seção não apenas apresenta resultados da exploração, mas também busca interpretar as implicações desses achados para o desenvolvimento econômico e a inclusão financeira na maior metrópole brasileira.
 
 As Figuras 2 a 11 mostram a distribuição geográfica dos índices de concentração e preferência por liquidez criados na seção 3.2 para os distritos de São Paulo, destacando-se os distritos centrais:
 
@@ -878,6 +895,10 @@ palette3 <- c("#9dbf9e", "#fcb97d", "#a84268")
 
 
 ```{r echo=FALSE, eval=FALSE}
+
+final2 <- final2[order(-final2$IRC), ]
+top5_irc <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 irc_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRC), lwd = 0, colour = NA) +
   ggplot2::scale_fill_gradientn(
@@ -886,15 +907,23 @@ irc_map <- ggplot2::ggplot(final2) +
     name = "Índice Regional do Crédito (IRC)",
     na.value = "grey80",
   ) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_irc),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+    ) +
+  ggplot2::scale_size_area(
+    name = "Operações de crédito (milhões de R$)",
+    max_size = 5
+  ) +
   ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = (`160`/1e6))) +
   ggplot2::scale_colour_manual(
     values = scales::alpha(cols, 0.5),
     na.value = "grey80",
     name = "Banco"
-  ) +
-  ggplot2::scale_size_area(
-    name = "Operações de crédito (milhões de R$)",
-    max_size = 5
   ) +
   theme_void() +
   theme(
@@ -913,7 +942,6 @@ irc_map <- ggplot2::ggplot(final2) +
     width = unit(1, "cm")
   )
 
-
 irc_map <-
   irc_map + geom_rect(
     xmin = -46.600000,
@@ -925,11 +953,13 @@ irc_map <-
     size = 0.7
   )
 
+irc_map2 <- irc_map
+irc_map2$layers[[2]] <- NULL
 
 irc_cow <- irc_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      irc_map +
+      irc_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -944,9 +974,7 @@ irc_cow <- irc_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-irc_cow
-
-ggsave("exports/irc.pdf", plot = irc_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/irc2.pdf", plot = irc_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 A análise da distribuição espacial do crédito, exemplificada pela figura \ref{fig:irc}, revela uma notável concentração no centro histórico de São Paulo (Sé), evidenciando um cenário onde os 5 maiores bancos do Brasil exercem significativa influência, especialmente o Santander, que desponta como o principal ofertante de crédito na região em 2010. Esta concentração não se limita apenas ao centro histórico (Sé), estendendo-se para outras áreas estratégicas da cidade, como Vila Curuçá, Jabaquara, Consolação, Santo Amaro, Bela Vista e Itaim Bibi, onde a oferta de crédito supera as médias de concentração de renda.
@@ -955,12 +983,23 @@ Um fenômeno intrigante é a concentração de crédito em regiões próximas ao
 
 Este padrão sugere uma interconexão entre a geografia econômica e a distribuição de serviços financeiros, ilustrando como as demandas específicas de determinadas atividades econômicas podem moldar a paisagem financeira de uma cidade. Assim, a observação atenta desses padrões contribui para uma compreensão mais profunda das dinâmicas que regem a distribuição de crédito em áreas urbanas complexas e diversificadas.
 
-\fig{Índice Regional do Crédito (IRC) no município de São Paulo (2010).}{fig:irc}{exports/irc.pdf}{Elaboração própria.}
+\fig{Índice Regional do Crédito (IRC) no município de São Paulo (2010).}{fig:irc}{exports/irc2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$IRE), ]
+top5_ire <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 ire_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRE), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_ire),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+    ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     trans = "log1p",
@@ -1006,11 +1045,13 @@ ire_map <-
     size = 0.7
   )
 
+ire_map2 <- ire_map
+ire_map2$layers[[2]] <- NULL
 
 ire_cow <- ire_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      ire_map +
+      ire_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1025,19 +1066,30 @@ ire_cow <- ire_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/ire.pdf", plot = ire_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/ire2.pdf", plot = ire_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 Ao observar a figura \ref{fig:ire}, que ilustra a distribuição da concentração de empréstimos, percebemos uma notável semelhança com o padrão de concentração de crédito como um todo. Esta consistência sugere que os bancos tendem a direcionar sua oferta de empréstimos para regiões caracterizadas por uma maior concentração de renda. A relação intrínseca entre a distribuição de renda e a alocação de empréstimos evidencia uma dinâmica na qual as instituições financeiras privilegiam áreas com maior poder aquisitivo.
 
 No entanto, é interessante notar que, em comparação com a oferta total de crédito, a distribuição de empréstimos apresenta uma dispersão ligeiramente maior. Essa maior variabilidade pode indicar nuances na estratégia dos bancos ao considerar a concessão de empréstimos, refletindo possíveis abordagens diferenciadas para atender às demandas específicas de cada região. Tal observação instiga a uma análise mais aprofundada das razões subjacentes a essa dispersão, explorando fatores econômicos, sociais e demográficos que possam influenciar as decisões dos bancos na concessão de empréstimos em diferentes contextos urbanos. Assim, ao desvelar as complexidades dessa distribuição, a pesquisa ganha valiosos resultados sobre os mecanismos intricados que moldam a geografia financeira e a acessibilidade aos recursos de crédito nas diversas áreas analisadas.
 
-\fig{Índice Regional de Empréstimos (IRE) no município de São Paulo (2010).}{fig:ire}{exports/ire.pdf}{Elaboração própria.}
+\fig{Índice Regional de Empréstimos (IRE) no município de São Paulo (2010).}{fig:ire}{exports/ire2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$IRF), ]
+top5_irf <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 irf_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRF), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_irf),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     trans = "log1p",
@@ -1083,11 +1135,13 @@ irf_map <-
     size = 0.7
   )
 
+irf_map2 <- irf_map
+irf_map2$layers[[2]] <- NULL
 
 irf_cow <- irf_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      irf_map +
+      irf_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1102,7 +1156,7 @@ irf_cow <- irf_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/irf.pdf", plot = irf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/irf2.pdf", plot = irf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 Ao examinar a figura \ref{fig:irf}, emerge um padrão ainda mais proeminente de concentração financeira, revelando que apenas alguns distritos contam com agências que oferecem serviços de financiamento. Distritos como Brasilândia, Cidade Tiradentes, Pedreira, Jardim Helena, Anhanguera e Marsilac destacam-se como áreas onde, no momento da análise, não há recursos destinados a financiamentos. Esta disparidade acentuada evidencia uma lacuna significativa na acessibilidade a serviços financeiros nessas localidades, apontando para uma clara desigualdade na disponibilidade de recursos para a realização de investimentos ou projetos de maior porte.
@@ -1111,12 +1165,23 @@ Contrastando essa realidade, as regiões centrais emergem como polos de oferta d
 
 Desse modo, a análise da distribuição geográfica da oferta de financiamento adiciona uma camada crítica à compreensão das disparidades financeiras urbanas, destacando a necessidade de políticas e práticas financeiras mais inclusivas que busquem equilibrar a alocação de recursos e fomentar o desenvolvimento econômico em todas as regiões da cidade. Isso ressalta a importância de considerar não apenas a concentração de renda, mas também a distribuição equitativa de serviços financeiros como um indicador crucial para a construção de sociedades mais justas e sustentáveis.
 
-\fig{Índice Regional de Financiamentos (IRF) no município de São Paulo (2010).}{fig:irf}{exports/irf.pdf}{Elaboração própria.}
+\fig{Índice Regional de Financiamentos (IRF) no município de São Paulo (2010).}{fig:irf}{exports/irf2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$IRD), ]
+top5_ird <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 ird_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRD), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_ird),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+    ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     trans = "log1p",
@@ -1161,11 +1226,13 @@ ird_map <-
     size = 0.7
   )
 
+ird_map2 <- ird_map
+ird_map2$layers[[2]] <- NULL
 
 ird_cow <- ird_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      ird_map +
+      ird_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1180,7 +1247,7 @@ ird_cow <- ird_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/ird.pdf", plot = ird_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/ird2.pdf", plot = ird_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 A análise do Índice Regional de Depósitos, como representado pela figura \ref{fig:ird}, evidencia uma distribuição mais equitativa em comparação com a oferta de crédito. Este fenômeno sugere que as agências bancárias possuem uma eficiência notável na captação de depósitos em todo o espectro geográfico, apresentando uma maior uniformidade na distribuição desse tipo de recurso em comparação com o crédito. Esta diferenciação pode apontar para a capacidade das instituições financeiras de atrair depósitos através de canais diversos, como caixas eletrônicos, internet banking e atendimento presencial, o que torna essa modalidade de recurso mais acessível e passível de ser captada de forma mais ampla.
@@ -1193,12 +1260,23 @@ No entanto, mesmo com a distribuição relativamente mais uniforme de depósitos
 
 Essa compreensão mais holística pode informar práticas e políticas financeiras que visam não apenas à eficiência operacional, mas também à equidade na distribuição de recursos financeiros em diferentes estratos geográficos.
 
-\fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird.pdf}{Elaboração própria.}
+\fig{Índice Regional de Depósitos (IRD) no município de São Paulo (2010).}{fig:ird}{exports/ird2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$IRL), ]
+top5_irl <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 irl_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRL), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_irl),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+    ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Índice Regional de Lucros (IRL)",
@@ -1231,8 +1309,6 @@ irl_map <- ggplot2::ggplot(final2) +
     width = unit(1, "cm")
   )
 
-irl_map
-
 irl_map <-
   irl_map + geom_rect(
     xmin = -46.600000,
@@ -1244,11 +1320,13 @@ irl_map <-
     size = 0.7
   )
 
+irl_map2 <- irl_map
+irl_map2$layers[[2]] <- NULL
 
 irl_cow <- irl_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      irl_map +
+      irl_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1263,14 +1341,25 @@ irl_cow <- irl_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/irl.pdf", plot = irl_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/irl2.pdf", plot = irl_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$IRR), ]
+top5_irr <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 irr_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = IRR), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_irr),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+    ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     trans = "log1p",
@@ -1319,11 +1408,13 @@ irr_map <-
     size = 0.7
   )
 
+irr_map2 <- irr_map
+irr_map2$layers[[2]] <- NULL
 
 irr_cow <- irr_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      irr_map +
+      irr_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1338,7 +1429,7 @@ irr_cow <- irr_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/irr.pdf", plot = irr_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/irr2.pdf", plot = irr_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 A interpretação do Índice Regional de Risco, evidenciado pela figura \ref{fig:irr}, lança luz sobre a abordagem dos bancos em relação às áreas centrais e periféricas, desvendando uma dinâmica que reverbera na oferta de crédito. Observa-se que as regiões periféricas nas imediações do centro exibem agências bancárias que provisionam quantidades substanciais de crédito, em relação à renda local, como uma estratégia preventiva para lidar com eventuais inadimplências. Este padrão sugere que os bancos percebem um nível de risco mais elevado nessas áreas periféricas, uma variável crucial que impacta diretamente a disposição das instituições em disponibilizar recursos financeiros.
@@ -1347,7 +1438,7 @@ A inclinação dos bancos em provisionar mais crédito em regiões periféricas 
 
 A correlação entre percepção de risco e oferta de crédito destaca a necessidade de uma abordagem mais equitativa por parte das instituições financeiras, não apenas orientada pela maximização de lucros, mas também pelo estímulo ao desenvolvimento econômico em áreas historicamente desfavorecidas. Estratégias que compreendam e enfrentem as complexidades dessas dinâmicas regionais podem desempenhar um papel crucial na promoção de oportunidades econômicas mais amplas e na redução das disparidades entre o centro e a periferia. Portanto, a análise do Índice Regional de Risco não apenas revela as estratégias de mitigação de riscos dos bancos, mas também destaca os potenciais impactos socioeconômicos que essa abordagem pode ter nas comunidades periféricas.
 
-\fig{Índice Regional de Risco (IRR) no município de São Paulo (2010).}{fig:irr}{exports/irr.pdf}{Elaboração própria.}
+\fig{Índice Regional de Risco (IRR) no município de São Paulo (2010).}{fig:irr}{exports/irr2.pdf}{Elaboração própria.}
 
 A análise do Índice Regional de Lucratividade (IRL), conforme evidenciado na figura \ref{fig:irl}, corrobora a percepção de risco dos bancos em relação às regiões periféricas. Notavelmente, as agências situadas nessas áreas, embora apresentem um índice de risco mais elevado, demonstram desempenho financeiro superior em comparação com aquelas localizadas nas regiões centrais. Este cenário instigante suscita reflexões acerca das dinâmicas econômicas e estratégias operacionais que permeiam essas localidades.
 
@@ -1357,12 +1448,23 @@ Outra possibilidade a ser considerada reside na variação das taxas praticadas 
 
 Assim, a análise do IRL não apenas confirma a percepção de risco diferenciada nas regiões periféricas, mas também revela um aspecto paradoxal: embora apresentem maior risco, as agências nessas localidades conseguem superar em desempenho financeiro aquelas situadas em áreas centrais. Este cenário complexo instiga uma reflexão mais profunda sobre as estratégias financeiras adaptativas, o papel das taxas de juros na compensação de riscos e o impacto dessas dinâmicas na sustentabilidade econômica das comunidades periféricas.
 
-\fig{Índice Regional de Lucros (IRL) no município de São Paulo (2010).}{fig:irl}{exports/irl.pdf}{Elaboração própria.}
+\fig{Índice Regional de Lucros (IRL) no município de São Paulo (2010).}{fig:irl}{exports/irl2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$PLP), ]
+top5_plp <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 plp_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = PLP), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_plp),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Preferência por liquidez do público (PLP)",
@@ -1408,11 +1510,13 @@ plp_map <-
     size = 0.7
   )
 
+plp_map2 <- plp_map
+plp_map2$layers[[2]] <- NULL
 
 plp_cow <- plp_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      plp_map +
+      plp_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1427,7 +1531,7 @@ plp_cow <- plp_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/plp.pdf", plot = plp_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/plp2.pdf", plot = plp_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 Como antecipado pela literatura especializada [@dow82; @chick88; @crocco2006], as regiões periféricas revelam uma marcante preferência por liquidez, conforme ilustrado na Figura \ref{fig:plp}. Este comportamento pode ser elucidado por diversos fatores interconectados, proporcionando uma compreensão abrangente das dinâmicas econômicas nessas localidades.
@@ -1440,12 +1544,23 @@ A menor penetração de serviços bancários também contribui para a preferênc
 
 Portanto, a análise desses fatores revela uma rede complexa de influências que moldam a preferência por liquidez nas regiões periféricas. A compreensão desses padrões não apenas contextualiza o comportamento financeiro dessas comunidades, mas também destaca a necessidade de estratégias econômicas e políticas financeiras que abordem efetivamente os desafios específicos enfrentados pelas regiões periféricas, visando promover maior inclusão financeira e estabilidade econômica.
 
-\fig{Preferência por liquidez do público (PLP) no município de São Paulo (2010).}{fig:plp}{exports/plp.pdf}{Elaboração própria.}
+\fig{Preferência por liquidez do público (PLP) no município de São Paulo (2010).}{fig:plp}{exports/plp2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$PLB), ]
+top5_plb <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 plb_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = PLB), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_plb),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Preferência por liquidez dos bancos (PLB)",
@@ -1492,11 +1607,13 @@ plb_map <-
     size = 0.7
   )
 
+plb_map2 <- plp_map
+plb_map2$layers[[2]] <- NULL
 
 plb_cow <- plb_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      plb_map +
+      plb_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1511,7 +1628,7 @@ plb_cow <- plb_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/plb.pdf", plot = plb_cow, width = 5000, height = 5000, units = "px", dpi = 320)
+ggsave("exports/plb2.pdf", plot = plb_cow, width = 5000, height = 5000, units = "px", dpi = 320)
 ```
 
 Assim como o PLP, o PLB também se mostrou maior nas regiões periféricas em comparação com as regiões centrais (Figura \ref{fig:plb}), indo de encontro com os resultados de Crocco *et al*. [-@crocco2006]. Isso significa que as agências no centro da cidade têm uma menor propensão a manter reservas em dinheiro ou ativos líquidos, como títulos do governo ou depósitos interbancários.
@@ -1522,12 +1639,23 @@ Outra explicação é que as agências no centro da cidade estão sujeitas a um 
 
 Independentemente da explicação, o PLB menor das agências no centro da cidade tem implicações importantes para a política monetária. Isso ocorre porque a PLB é um fator que determina a quantidade de moeda que as agências estão dispostas a emprestar. Quando o PLB é menor, as agências estão dispostas a emprestar mais dinheiro, o que pode ajudar a estimular o crescimento econômico, dentro de uma perspectiva pós-keynesiana.
 
-\fig{Preferência por liquidez dos bancos (PLB) no município de São Paulo (2010).}{fig:plb}{exports/plb.pdf}{Elaboração própria.}
+\fig{Preferência por liquidez dos bancos (PLB) no município de São Paulo (2010).}{fig:plb}{exports/plb2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2 <- final2[order(-final2$PLBe), ]
+top5_plbe <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 plbe_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = PLBe), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_plbe),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Preferência por liquidez dos bancos - endógena (PLBe)",
@@ -1574,11 +1702,13 @@ plbe_map <-
     size = 0.7
   )
 
+plbe_map2 <- plbe_map
+plbe_map2$layers[[2]] <- NULL
 
 plbe_cow <- plbe_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      plbe_map +
+      plbe_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1593,19 +1723,69 @@ plbe_cow <- plbe_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/plbe.pdf", plot = plbe_cow, width = 5700, height = 5000, units = "px", dpi = 320)
+ggsave("exports/plbe2.pdf", plot = plbe_cow, width = 5700, height = 5000, units = "px", dpi = 320)
 ```
 
 As diferenças na Preferência por liquidez dos bancos entre as regiões ficaram ainda mais claras quando se olha para o PLBe da figura \ref{fig:plbe}. Como esse indicador isola a ação do público (depósitos) e considera apenas variáveis endógenas para a agência, vemos que de fato há maior preferência por liquidez nas regiões periféricas por parte das agências, contrastando com a baixa preferência por liquidez nas regiões centrais.
 
 Esse comportamento da agência em manter ativos mais líquidos na periferia pode estar ligado à maior incerteza econômica vivida nas regiões periféricas, o que também vai de encontro com a literatura pós-keynesiana apresentada [@dow82; @chick88; @crocco2006].
 
-\fig{Preferência por liquidez dos bancos - endógena (PLBe) no município de São Paulo (2010).}{fig:plbe}{exports/plbe.pdf}{Elaboração própria.}
+A figura \ref{fig:plbxplbe} mostra uma visão adicional, da diferença entre o indicador de Crocco *et al*. [-@crocco2006] (PLB) e a Preferência por Liquidez dos Bancos calculada de forma endógena. Acima da bissetriz estão as regiões em que o PLBe é mais alto que o PLB e, abaixo da bissetriz, as regiões com PLBe menor que o PLB.
+
+\fig{Preferência por liquidez dos bancos - endógena (PLBe) no município de São Paulo (2010).}{fig:plbe}{exports/plbe2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
 
+final2$PLB <- (final2$PLB - min(final2$PLB))/(max(final2$PLB) - min(final2$PLB))
+final2$PLBe <- (final2$PLBe - min(final2$PLBe))/(max(final2$PLBe) - min(final2$PLBe))
+
+comparation_plb <- ggplot2::ggplot(final2,  aes(PLB, PLBe, label = nm_dstr)) +
+  ggplot2::labs(
+    x = "PLB",
+    y = "PLBe",
+    title = "PLB e PLBe"
+  ) +
+  ggplot2::geom_point(mapping = aes(colour = rpc)) +
+  ggplot2::scale_color_gradientn(
+    colors = palette1,
+    name = "RPC",
+  ) +
+  ggrepel::geom_text_repel(
+    data = subset(
+      final2,
+      nm_dstr %in% c(top5_plbe, top5_plb)
+    ),
+    box.padding = 0.5,
+    size = 3
+  ) +
+  ggplot2::geom_vline(xintercept = 0, color = "black") +
+  ggplot2::geom_hline(yintercept = 0, color = "black") +
+  ggplot2::geom_abline(slope = 1, color = "red", linewidth = 0.5) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    text = ggplot2::element_text(family = "serif", size = 10, face = "bold"),
+    legend.text = ggplot2::element_text(family = "serif", size = 10, face = "plain")
+  ) + coord_fixed(ratio = 1)
+
+ggsave("exports/plbXplbe.pdf", plot = comparation_plb, width = 15, height = 15, units = "cm", dpi = 320)
+````
+
+\fig{Comparação entre o PLB e o PLBe (2010).}{fig:plbxplbe}{exports/plbXplbe.pdf}{Elaboração própria.}
+
+```{r echo=FALSE, eval=FALSE}
+final2 <- final2[order(-final2$ICO), ]
+top5_ico <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
+
 ico_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = ICO), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_ico),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Índice de Concentração de Operações (ICO)",
@@ -1651,11 +1831,13 @@ ico_map <-
     size = 0.7
   )
 
+ico_map2 <- ico_map
+ico_map2$layers[[2]] <- NULL
 
 ico_cow <- ico_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      ico_map +
+      ico_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1670,7 +1852,7 @@ ico_cow <- ico_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/ico.pdf", plot = ico_cow, width = 5200, height = 5000, units = "px", dpi = 320)
+ggsave("exports/ico2.pdf", plot = ico_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
 O Índice de Concentração de Operações (ICO), representado na figura \ref{fig:ico}, destaca de maneira acentuada as disparidades na diversidade de operações financeiras em diferentes distritos de São Paulo, especialmente nas áreas do extremo sul (Parelheiros, Grajaú e Pedreira) e extremo leste paulista (São Rafael, São Mateus, Iguatemi, Cidade Tiradentes, José Bonifácio, entre outros). Nestas localidades, a predominância de empréstimos pessoais sugere uma oferta limitada de serviços financeiros, com praticamente ausência de operações de financiamento ou transações de longo prazo. Essa configuração reflete uma realidade que vai além do cenário bancário, adentrando as complexidades históricas e socioeconômicas dessas áreas, há muito tempo marcadas por índices significativos de pobreza e desemprego.
@@ -1681,12 +1863,22 @@ Independentemente da resposta a essa indagação, a disparidade entre centro e p
 
 Essa discrepância aponta para uma possível falta de serviços financeiros adaptados às necessidades específicas das regiões periféricas, sugerindo a importância de estratégias bancárias mais inclusivas que abordem não apenas a demanda imediata, mas também promovam oportunidades de longo prazo e desenvolvimento econômico sustentável nessas comunidades historicamente marginalizadas. A análise do ICO, portanto, transcende as métricas puramente bancárias, englobando aspectos sociais e econômicos cruciais para a compreensão integral das dinâmicas financeiras urbanas.
 
-\fig{Índice de Concentração de Operações (ICO) no município de São Paulo (2010).}{fig:ico}{exports/ico.pdf}{Elaboração própria.}
+\fig{Índice de Concentração de Operações (ICO) no município de São Paulo (2010).}{fig:ico}{exports/ico2.pdf}{Elaboração própria.}
 
 ```{r echo=FALSE, eval=FALSE}
+final2 <- final2[order(-final2$ICB), ]
+top5_icb <- c(final2$nm_dstr[1:5], tail(final2$nm_dstr, 5))
 
 icb_map <- ggplot2::ggplot(final2) +
   ggplot2::geom_sf(mapping = aes(fill = ICB), lwd = 0, colour = NA) +
+  ggrepel::geom_label_repel(
+    data = subset(final2, nm_dstr %in% top5_icb),
+    aes(label = nm_dstr, geometry = geometry),
+    stat = "sf_coordinates",
+    box.padding = 0.5,
+    size = 3,
+    max.overlaps = 100
+  ) +
   ggplot2::scale_fill_gradientn(
     colors = palette1,
     name = "Índice de Concentração Bancária (ICB)",
@@ -1720,8 +1912,6 @@ icb_map <- ggplot2::ggplot(final2) +
     width = unit(1, "cm")
   )
 
-icb_map
-
 icb_map <-
   icb_map + geom_rect(
     xmin = -46.600000,
@@ -1733,11 +1923,13 @@ icb_map <-
     size = 0.7
   )
 
+icb_map2 <- icb_map
+icb_map2$layers[[2]] <- NULL
 
 icb_cow <- icb_map |> cowplot::ggdraw() +
   draw_plot(
     {
-      icb_map +
+      icb_map2 +
         coord_sf(
           xlim = c(-46.700000, -46.600000),
           ylim = c(-23.600000, -23.500000),
@@ -1752,7 +1944,7 @@ icb_cow <- icb_map |> cowplot::ggdraw() +
     height = 0.4
   )
 
-ggsave("exports/icb.pdf", plot = icb_cow, width = 5200, height = 5000, units = "px", dpi = 320)
+ggsave("exports/icb2.pdf", plot = icb_cow, width = 5200, height = 5000, units = "px", dpi = 320)
 ```
 
 O Índice de Concentração Bancária (ICB), ilustrado na figura \ref{fig:icb}, oferece uma perspectiva reveladora sobre a distribuição do volume de operações de crédito em diferentes distritos de São Paulo. Destaca-se que, em distritos periféricos, onde o número de agências é mais reduzido, o ICB apresenta valores elevados, indicando uma concentração significativa do volume de operações em poucos bancos. Essa realidade reflete a limitada diversificação de instituições financeiras nessas regiões, aumentando a dependência de um número restrito de bancos para a oferta de serviços financeiros, particularmente no domínio do crédito.
@@ -1763,11 +1955,13 @@ Essa concentração bancária notável tem implicações importantes para a din�
 
 Essa análise do ICB oferece uma janela para a estrutura bancária em São Paulo, enfatizando a necessidade de estratégias que promovam maior concorrência e diversificação no setor financeiro. A concentração significativa evidenciada pelo ICB sublinha a importância de políticas que incentivem a entrada de instituições financeiras menores e promovam um ambiente mais competitivo, buscando assim ampliar o acesso a serviços financeiros e estimular o desenvolvimento econômico em todas as áreas da cidade.
 
-\fig{Índice de Concentração Bancária (ICB) no município de São Paulo (2010).}{fig:icb}{exports/icb.pdf}{Elaboração própria.}
+\fig{Índice de Concentração Bancária (ICB) no município de São Paulo (2010).}{fig:icb}{exports/icb2.pdf}{Elaboração própria.}
 
 \newpage
 
 ## *Resultados da ACP*
+
+A Análise de Componentes Principais revelou informações valiosas sobre a estrutura subjacente dos dados, destacando padrões significativos e evidenciando as relações mais impactantes entre as variáveis analisadas. Este método eficaz de redução dimensional proporcionou uma interpretação mais clara dos fatores contribuintes para a variabilidade observada, resultando em uma compreensão mais aprofundada do fenômeno em estudo. Os resultados apresentados nesta seção servirão como base para uma interpretação mais refinada, contribuindo para a construção de conclusões sólidas a cerca do conjunto de dados analisado.
 
 A @fig-cor-heatmap demonstra a correlação entre as variáveis criadas, fundamental para aplicação do método ACP.
 
@@ -1853,7 +2047,7 @@ acp$scores[, 2] <- - acp$scores[, 2]
 acp$loadings[, 2] <- - acp$loadings[, 2]
 
 acp$loadings[,c(1, 2)] %>%
-  round(4) %>%
+  round(3) %>%
   dplyr::as_tibble() %>%
   dplyr::mutate(
     `Variável` = row.names(acp$loadings[,c(1, 2)])
@@ -1943,164 +2137,13 @@ ggplot2::ggplot(scores,  aes(x = comp1, y = comp2, label = name_district)) +
   )
 ```
 
-É possível observar que o centro histórico de São Paulo (Sé) concentra quase toda atividade financeira do município, sendo, portanto, o maior centro financeiro do município em termos quantitativos. Distritos à direita do eixo vertical também concentram oferta de crédito além de sua própria renda, mesmo estando muito abaixo do distrito Sé, que é um *outlier* em termos de centralidade. Nota-se que no primeiro quadrante, há distritos nobres e historicamente ricos da capital paulista: Jardim Paulista, Itaim Bibi, Consolação e Bela Vista; e os distritos com alta atividade comercial: Santo Amaro e Jabaquara. Em termos financeiros, apresentam maior índice de qualidade, dada a diversidade do crédito ofertado, maior competição bancária e menor preferência por liquidez. Isso nos dá indícios de que os pressupostos pós-keynesianos podem ser verificados em São Paulo, e que, de fato, numa economia monetária de produção, a oferta de moeda numa região pode determinar seu desenvolvimento. As figuras abaixo mostram a distribuição geográfica dos indicadores ICF e IQF:
+É possível observar que o centro histórico de São Paulo (Sé) concentra quase toda atividade financeira do município, sendo, portanto, o maior centro financeiro do município em termos quantitativos. Distritos à direita do eixo vertical também concentram oferta de crédito além de sua própria renda, mesmo estando muito abaixo do distrito Sé, que é um *outlier* em termos de centralidade. Nota-se que no primeiro quadrante, há distritos nobres e historicamente ricos da capital paulista: Jardim Paulista, Itaim Bibi, Consolação e Bela Vista; e os distritos com alta atividade comercial: Santo Amaro e Jabaquara. Em termos financeiros, apresentam maior índice de qualidade, dada a diversidade do crédito ofertado, maior competição bancária e menor preferência por liquidez. Isso nos dá indícios de que os pressupostos pós-keynesianos podem ser verificados em São Paulo, e que, de fato, numa economia monetária de produção, a oferta de moeda numa região pode determinar seu desenvolvimento.
 
 
 ```{r, echo=FALSE}
 final2 <- final2 |>
   dplyr::left_join(scores, by = c("cd_ds" = "code_district"))
 ```
-
-```{r, echo=FALSE, eval=FALSE}
-
-icf_map <- ggplot2::ggplot(final2) +
-  ggplot2::geom_sf(mapping = aes(fill = comp1), lwd = 0, colour = NA) +
-  ggplot2::scale_fill_gradientn(
-    colors = palette1,
-    name = "Índice de Centralidade Financeira (ICF)",
-    na.value = "grey80",
-    oob = scales::squish,
-    guide = "legend"
-  ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `160`/1e6)) +
-  ggplot2::scale_colour_manual(
-    values = scales::alpha(cols, 0.5),
-    na.value = "grey80",
-    name = "Banco"
-  ) +
-  ggplot2::scale_size_area(
-    name = "Operações de crédito (milhões de R$)",
-    max_size = 5,
-    na.value = 0
-  ) +
-  theme_void() +
-  theme(
-    text = element_text(face = "plain"),
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 10, face = "plain"),
-    legend.position = "left",
-    legend.box.spacing = unit(0.5, "cm"),
-    legend.spacing.y = unit(1, "cm")
-  ) +
-  annotation_scale(location = "bl", line_width = 0.4) +
-  annotation_north_arrow(
-    location = "br",
-    style = north_arrow_fancy_orienteering(),
-    height = unit(1, "cm"),
-    width = unit(1, "cm")
-  )
-
-
-icf_map <-
-  icf_map + geom_rect(
-    xmin = -46.600000,
-    ymin = -23.500000,
-    xmax = -46.700000,
-    ymax = -23.600000,
-    fill = NA,
-    colour = "black",
-    size = 0.7
-  )
-
-
-icf_cow <- icf_map |> cowplot::ggdraw() +
-  draw_plot(
-    {
-      icf_map +
-        coord_sf(
-          xlim = c(-46.700000, -46.600000),
-          ylim = c(-23.600000, -23.500000),
-          expand = FALSE
-        ) +
-        theme(legend.position = "none") +
-        annotation_scale(location = "bl", line_width = 0.4)
-    },
-    x = 0.6,
-    y = 0.1,
-    width = 0.4,
-    height = 0.4
-  )
-
-ggsave("exports/icf.pdf", plot = icf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
-```
-
-\fig{Índice de Centralidade Financeira (ICF) no município de São Paulo (2010).}{fig:icf}{exports/icf.pdf}{Elaboração própria.}
-
-```{r, echo=FALSE, eval=FALSE}
-
-iqf_map <- ggplot2::ggplot(final2) +
-  ggplot2::geom_sf(mapping = aes(fill = comp2), lwd = 0, colour = NA) +
-  ggplot2::scale_fill_gradientn(
-    colors = palette1,
-    name = "Índice de Qualidade Financeira (IQF)",
-    na.value = "grey80",
-    guide = "legend",
-    limits = c(-1, 5),
-    oob = scales::squish,
-  ) +
-  ggplot2::geom_sf(agencias_sp, mapping = aes(colour = banco, size = `162`/1e6)) +
-  ggplot2::scale_colour_manual(
-    values = scales::alpha(cols, 0.5),
-    na.value = "grey80",
-    name = "Banco"
-  ) +
-  ggplot2::scale_size_area(
-    name = "Financiamentos (milhões de R$)",
-    max_size = 5,
-    na.value = 0
-  ) +
-  theme_void() +
-  theme(
-    text = element_text(face = "plain"),
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 10, face = "plain"),
-    legend.position = "left",
-    legend.box.spacing = unit(0.5, "cm"),
-    legend.spacing.y = unit(1, "cm")
-  ) +
-  annotation_scale(location = "bl", line_width = 0.4) +
-  annotation_north_arrow(
-    location = "br",
-    style = north_arrow_fancy_orienteering(),
-    height = unit(1, "cm"),
-    width = unit(1, "cm")
-  )
-
-
-iqf_map <-
-  iqf_map + geom_rect(
-    xmin = -46.600000,
-    ymin = -23.500000,
-    xmax = -46.700000,
-    ymax = -23.600000,
-    fill = NA,
-    colour = "black",
-    size = 0.7
-  )
-
-
-iqf_cow <- iqf_map |> cowplot::ggdraw() +
-  draw_plot(
-    {
-      iqf_map +
-        coord_sf(
-          xlim = c(-46.700000, -46.600000),
-          ylim = c(-23.600000, -23.500000),
-          expand = FALSE
-        ) +
-        theme(legend.position = "none") +
-        annotation_scale(location = "bl", line_width = 0.4)
-    },
-    x = 0.6,
-    y = 0.1,
-    width = 0.4,
-    height = 0.4
-  )
-
-ggsave("exports/iqf.pdf", plot = iqf_cow, width = 5000, height = 5000, units = "px", dpi = 320)
-```
-
-\fig{Índice de Qualidade Financeira (IQF) no município de São Paulo (2010).}{fig:iqf}{exports/iqf.pdf}{Elaboração própria.}
 
 \newpage
 
@@ -2190,7 +2233,7 @@ i_moran |> stargazer::stargazer(
     rownames = FALSE,
     style = "aer",
     notes = "Fonte: Elaboração própria.",
-    digits = 6
+    digits = 3
   )
 ```
 
@@ -2228,7 +2271,7 @@ i_moran_icf |> stargazer::stargazer(
     rownames = FALSE,
     style = "aer",
     notes = "Fonte: Elaboração própria.",
-    digits = 6
+    digits = 3
   )
 ```
 
@@ -2357,7 +2400,7 @@ As figuras \ref{fig:moranlocal} e \ref{fig:moranlocalicf} mostram a dispersão g
 
 Pode-se observar uma formação de cluster *Low-Low* na Zona Leste (extremo leste) de São Paulo para o IQF, indicando que se trata de uma periferia em termos de qualidade de serviço financeiro, aglomerando distritos que compartilham dos mesmos baixos índices. Ainda em relação ao IQF, observa-se um cluster *High-High* contendo alguns dos distritos mais ricos da cidade de São Paulo: Campo Belo e Moema. Indicando que se trata de um forte centro financeiro, rodeado de distritos com qualidade financeira similar.
 
-Sobre o ICF, vemos a formação de um grupo bem no centro da cidade, composto exclusivamente por *outliers* em termos de centralidade financeira, e que formam uma espécie de anel em torno do centro histórico (Sé). Os clusters *Low-High* nesse anel indicam que há distritos com baixa concentração de crédito, mas que estão cercados por distritos concentradores de crédito, que formam clusters *High-High*.
+Sobre o ICF, fica clara a formação de um grupo bem no centro da cidade, composto exclusivamente por *outliers* em termos de centralidade financeira, e que formam uma espécie de anel em torno do centro histórico (Sé). Os clusters *Low-High* nesse anel indicam que há distritos com baixa concentração de crédito, mas que estão cercados por distritos concentradores de crédito, que formam clusters *High-High*.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 
@@ -2378,8 +2421,8 @@ moranlocal_map <- ggplot2::ggplot() +
     aes(label = name_district, geometry=geometry),
     stat = "sf_coordinates",
     min.segment.length = 0,
-    box.padding = 1,
-    size = 4
+    box.padding = 0.5,
+    size = 3
   ) +
   ggplot2::geom_sf(
     data = subset(final2, !final2$cd_ds %in% shape$cd_ds),
@@ -2389,11 +2432,6 @@ moranlocal_map <- ggplot2::ggplot() +
   theme_void() +
   theme(
     text = element_text(face = "plain"),
-    # legend.title = element_text(size = 14, face = "bold"),
-    # legend.text = element_text(size = 14, face = "plain"),
-    # legend.position = "left",
-    # legend.box.spacing = unit(0.5, "cm"),
-    # legend.spacing.y = unit(1, "cm")
   ) +
   annotation_scale(location = "bl", line_width = 0.4) +
   annotation_north_arrow(
@@ -2403,7 +2441,7 @@ moranlocal_map <- ggplot2::ggplot() +
     width = unit(1, "cm")
   )
 
-ggsave("exports/moranlocal.pdf", plot = moranlocal_map, width = 1500, height = 1500, units = "px", dpi = 320)
+ggsave("exports/moranlocal.pdf", plot = moranlocal_map, width = 1500, height = 1200, units = "px", dpi = 320)
 ```
 
 \fig{Clusters LISA (I de Moran Local) - IQF}{fig:moranlocal}{exports/moranlocal.pdf}{Elaboração própria.}
@@ -2428,7 +2466,8 @@ moranlocalicf_map <- ggplot2::ggplot() +
     stat = "sf_coordinates",
     min.segment.length = 0,
     box.padding = 1,
-    size = 4
+    size = 3,
+    max.overlaps = 100
   ) +
   ggplot2::geom_sf(
     data = subset(final2, !final2$cd_ds %in% shape$cd_ds),
@@ -2438,11 +2477,6 @@ moranlocalicf_map <- ggplot2::ggplot() +
   theme_void() +
   theme(
     text = element_text(face = "plain"),
-    # legend.title = element_text(size = 14, face = "bold"),
-    # legend.text = element_text(size = 14, face = "plain"),
-    # legend.position = "left",
-    # legend.box.spacing = unit(0.5, "cm"),
-    # legend.spacing.y = unit(1, "cm")
   ) +
   annotation_scale(location = "bl", line_width = 0.4) +
   annotation_north_arrow(
@@ -2452,26 +2486,12 @@ moranlocalicf_map <- ggplot2::ggplot() +
     width = unit(1, "cm")
   )
 
-ggsave("exports/moranlocalicf.pdf", plot = moranlocalicf_map, width = 1500, height = 1500, units = "px", dpi = 320)
+ggsave("exports/moranlocalicf.pdf", plot = moranlocalicf_map, width = 1500, height = 1200, units = "px", dpi = 320)
 ```
 
 \fig{Clusters LISA (I de Moran Local) - ICF}{fig:moranlocalicf}{exports/moranlocalicf.pdf}{Elaboração própria.}
 
-Agora, podemos estimar alguns modelos de regressão e verificar o impacto dos índices de qualidade e centralidade financeira na renda *per capita* dos distritos.
-
-O modelo pode ser especificado como:
-
-```{=tex}
-\begin{equation}
-ln(RPC) = \beta_0 + \beta_1 ICF + \beta_2 IQF + \beta_k X_k + \varepsilon
-\end{equation}
-```
-
-Em que $ln(RPC)$ é a variável dependente (logaritmo natural da Renda *per capita*), $ICF$ é o Índice de Centralidade Financeira, $IQF$ é o Índice de Qualidade Financeira, $X$ é um conjunto de outras variáveis explicativas que servem de controle para o modelo, $\varepsilon$ é o termo de erro aleatório, enquanto $\beta_{h = \{0,1,2\}}$ e $\beta_k$ denotam o valor das estimativas das variáveis explicativas principais e de controle, respectivamente.
-
-Além das variáveis dependente e explicativas citadas acima, o conjunto de variáveis explicativas adicionais levadas em consideração na estimação do modelo empírico estão detalhadas no Quadro 1.
-
-\quadro{Relação de variáveis do modelo}{fig:quadro}{exports/quadro1.pdf}{Elaboração própria.}
+Agora, pode-se estimar alguns modelos de regressão e verificar o impacto dos índices de qualidade e centralidade financeira na renda *per capita* dos distritos.
 
 ```{r, echo=FALSE, warning=FALSE}
 
@@ -2496,7 +2516,7 @@ options(scipen=11)
 reg1_mqo <- lm(equacaoabsoluta, data=spatial)
 ```
 
-A primeira etapa consistiu em estimar um modelo MQO tradicional e, escolher uma matriz de peso que melhor capte a autocorrelação residual para realização do teste LM para dependência espacial. A @tbl-moranresiduos compara as matrizes de peso pelo I de Moran dos resíduos da regressão.
+A primeira etapa consistiu em estimar um modelo MQO tradicional e, escolher uma matriz de peso que melhor capte a autocorrelação residual para realização do teste LM para dependência espacial. A @tbl-moranresiduos compara as matrizes de peso pelo I de Moran dos resíduos da regressão [@almeida].
 
 ```{r, echo=FALSE, results='asis'}
 #| label: tbl-moranresiduos
@@ -2531,11 +2551,11 @@ residuals_imoran %>% stargazer::stargazer(
   rownames = FALSE,
   style = "aer",
   notes = "Fonte: Elaboração própria.",
-  digits = 6
+  digits = 3
 )
 ```
 
-Como pode-se verificar, a matriz de 5 vizinhos mais próximos é a que melhor captou a autocorrelação residual, logo, podemos utilizá-la nos modelos espaciais e prosseguir para os testes LM (*Lagrange Multiplier*) e LM Robusto, que nos ajudam a identificar qual tipo de erro deve ser corrigido: *lag* e/ou erro espacial.
+Como pode-se verificar, a matriz de 5 vizinhos mais próximos é a que melhor captou a autocorrelação residual, logo, pode-se utilizá-la nos modelos espaciais e prosseguir para os testes LM (*Lagrange Multiplier*) e LM Robusto, que ajudam a identificar qual tipo de erro deve ser corrigido: *lag* e/ou erro espacial.
 
 ```{r echo=FALSE, results='asis'}
 #| label: tbl-lmtestes
@@ -2557,7 +2577,7 @@ stargazer::stargazer(
   rownames = FALSE,
   style = "aer",
   notes = "Fonte: Elaboração própria.",
-  digits = 6
+  digits = 3
 )
 ```
 
@@ -2586,7 +2606,7 @@ lr_test_print <- data.frame(
 )
 
 lr_test_print |>
-  stargazer::stargazer(type="latex", header=FALSE, summary = FALSE, notes = c(paste("LR: ", round(lr_test$statistic, 3)), paste("p.value: ", lr_test$p.value)))
+  stargazer::stargazer(type="latex", header=FALSE, summary = FALSE, notes = c(paste("LR: ", round(lr_test$statistic, 3)), paste("p.value: ", round(lr_test$p.value, 3))))
 ```
 
 Como pode-se observar, o teste LR indica que os modelos são estatisticamente diferentes e o que tem melhor ajuste é o SLX. Logo, estimaremos e discutiremos os resultados detalhados na @tbl-slx.
@@ -2608,7 +2628,7 @@ stargazer::stargazer(
   style = "aer",
   notes = "Fonte: Elaboração própria.",
   dep.var.labels = c("MQO", "SLX"),
-  digits = 6,
+  digits = 3,
   font.size = "small",
   no.space = TRUE
 )
@@ -2618,9 +2638,9 @@ stargazer::stargazer(
 
 A estimação do modelo com correção de *lag* espacial permite que se faça conclusões interessantes quanto à determinação da renda *per capita* de cada distrito do município de São Paulo, em particular corroborando com a tese de não neutralidade da moeda e sua capacidade de gerar diferenças regionais dada a sua distribuição no espaço, defendida pelo referencial teórico pós-keynesiano, sobretudo por Crocco *et al*., [-@crocco2006].
 
-Um ponto importante a se observar é o fato de que o ICF se mostrou negativamente relacionado com renda *per capita*, contrariando a expectativa. Destarte, já havíamos observado na análise exploratória que o distrito Sé era o que mais concentrava crédito apesar de sua baixa renda *per capita* em relação aos demais distritos. Além disso, por meio da análise exploratória, foi possível caracterizá-lo como um grande *outlier* que distorcia principalmente os resultados da ACP que produziram o ICF. Portanto, não podemos descartar a hipótese de que o impacto da centralidade financeira na renda *per capita* foi gravemente distorcido pela presença de um *outlier*. Além disso, o ICF dos distritos vizinhos (*lag* ICF) não se mostrou significativo para determinar a renda *per capita*. Mais uma vez, quando observamos a Figura \ref{fig:moranlocalicf} constatamos que os vizinhos mais próximos do *outlier* Sé são bem distintos quanto ao Índice de Centralidade Financeira, logo, não podemos descartar que essa aleatoriedade no ICF dos vizinhos desse grande *outlier* tenha impactado no resultado.
+Um ponto importante a se observar é o fato de que o ICF se mostrou negativamente relacionado com renda *per capita*, contrariando a expectativa. Destarte, já havíamos observado na análise exploratória que o distrito Sé era o que mais concentrava crédito apesar de sua baixa renda *per capita* em relação aos demais distritos. Além disso, por meio da análise exploratória, foi possível caracterizá-lo como um grande *outlier* que distorcia principalmente os resultados da ACP que produziram o ICF. Portanto, não pode-se descartar a hipótese de que o impacto da centralidade financeira na renda *per capita* foi gravemente distorcido pela presença de um *outlier*. Além disso, o ICF dos distritos vizinhos (*lag* ICF) não se mostrou significativo para determinar a renda *per capita*. Mais uma vez, quando observamos a Figura \ref{fig:moranlocalicf} constatamos que os vizinhos mais próximos do *outlier* Sé são bem distintos quanto ao Índice de Centralidade Financeira, logo, não pode-se descartar que essa aleatoriedade no ICF dos vizinhos desse grande *outlier* tenha impactado no resultado.
 
-Por outro lado, o IQF foi fortemente significativo e positivamente relacionado com a renda *per capita*, o que fornece uma inferência robusta de que a qualidade financeira é muito relevante na produção de riqueza dos distritos. Como esse índice ressalta principalmente a preferência por liquidez dos bancos e do público, a diversidade de operações, e a competição bancária, podemos intuir que os distritos mais ricos têm, em seu território, agências que prestam os melhores serviços financeiros do município e, que de fato, essa qualidade nos serviços induz o enriquecimento de sua população local. Além disso, os vizinhos mais próximos também são positivamente afetados (*lag* IQF), revelando que estar próximo dessas agências de qualidade é extremamente relevante para se ter incrementos na renda *per capita*. Esses resultados nos permitem inferir que o tipo de crédito e suas condições de oferta podem ser mais importantes para elevação da renda que o volume de crédito em si, o que condiz com as análises exploratórias sobre o IRL (Figura \ref{fig:irl}) e o IRF (Figura \ref{fig:irf}), que evidenciaram uma atuação bastante distinta das agências do centro e da periferia, levantando hipóteses de que possa haver uma discriminação de taxas entre os distritos.
+Por outro lado, o IQF foi fortemente significativo e positivamente relacionado com a renda *per capita*, o que fornece uma inferência robusta de que a qualidade financeira é muito relevante na produção de riqueza dos distritos. Como esse índice ressalta principalmente a preferência por liquidez dos bancos e do público, a diversidade de operações, e a competição bancária, pode-se intuir que os distritos mais ricos têm, em seu território, agências que prestam os melhores serviços financeiros do município e, que de fato, essa qualidade nos serviços induz o enriquecimento de sua população local. Além disso, os vizinhos mais próximos também são positivamente afetados (*lag* IQF), revelando que estar próximo dessas agências de qualidade é extremamente relevante para se ter incrementos na renda *per capita*. Esses resultados nos permitem inferir que o tipo de crédito e suas condições de oferta podem ser mais importantes para elevação da renda que o volume de crédito em si, o que condiz com as análises exploratórias sobre o IRL (Figura \ref{fig:irl}) e o IRF (Figura \ref{fig:irf}), que evidenciaram uma atuação bastante distinta das agências do centro e da periferia, levantando hipóteses de que possa haver uma discriminação de taxas entre os distritos.
 
 Como era esperado, os distritos com maior porção de domicílios com banheiro e coleta de esgoto são os mais ricos, ficando evidente a relação positiva entre DBA e DEG com a renda *per capita*. Apesar da taxa de domicílios com banheiro ter uma relação endógena com a renda *per capita*, é muito interessante observar que o *lag* DBA (taxa de domicílios com banheiro dos vizinhos mais próximos) foram relevantes e positivamente relacionados com a renda, indicando que existe uma certa aglomeração espacial dos distritos mais ricos e mais pobres, principalmente em relação à infraestrutura dos domicílios. Já a porção de domicílios com energia elétrica (DEE) não foi significativa, provavelmente por se tratar de uma variável quase constante, pois em 2010, o município de São Paulo dispunha de rede elétrica em quase toda extensão de seu território.
 
