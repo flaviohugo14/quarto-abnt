@@ -83,14 +83,23 @@ Exemplo de *header* utilizado no artigo:
 
 ```
 ---
-title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL EMPÍRICA E EXPLORATÓRIA DO SETOR BANCÁRIO NO MUNICÍPIO DE SÃO PAULO, NO ANO DE 2010."
+title: "AS CENTRALIDADES FINANCEIRAS NO ESPAÇO URBANO: UMA ANÁLISE ESPACIAL DO SETOR BANCÁRIO NO MUNICÍPIO DE SÃO PAULO."
 author: "Flávio Hugo Pangracio Silva"
+author-upper: "FLÁVIO HUGO PANGRACIO SILVA"
 registration_number: 99079
-advisor: "Igor Santos Tupy"
+advisor: "Prof. Dr. Igor Santos Tupy"
 institution: "UNIVERSIDADE FEDERAL DE VIÇOSA"
 city: "VIÇOSA"
 state: "MG"
+month: "Dezembro"
 year: "2023"
+confirm_text: "Monografia apresentada ao Departamento de Economia da Universidade Federal de Viçosa como parte das exigências para obtenção do título de Bacharel em Ciências Econômicas."
+keywords: "Centralidade; Sistema Financeiro; Economia Regional e Urbana."
+dedication: "Aos meus pais, Marlene e Emerson, e a todos aqueles a quem esta pesquisa possa ajudar de alguma forma."
+confirm_date: "13/12/2023"
+examiner1: "Giovana Figueiredo Rossi"
+examiner2: "Alexandre de Queiroz Stein"
+advisor-name: "Igor Santos Tupy"
 bibliography: referencies/ref.bib
 csl: cite_styles/abnt.csl
 number-sections: true
@@ -103,6 +112,8 @@ format:
         template-partials:
             - tex_files/before-body.tex
             - tex_files/doc-class.tex
+        mainfont: "Times New Roman"
+keep-tex: true
 ---
 ```
 
