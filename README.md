@@ -10,7 +10,6 @@
 [![Use this template](https://img.shields.io/badge/Use_this_template-238636?style=for-the-badge&logo=github&logoColor=white)](https://github.com/flaviohugo14/quarto-abnt/generate)
 [![License: MIT](https://img.shields.io/github/license/flaviohugo14/quarto-abnt?style=for-the-badge)](LICENSE)
 
-[![Render PDF](https://img.shields.io/github/actions/workflow/status/flaviohugo14/quarto-abnt/render.yml?branch=main&style=flat-square&label=render&logo=github)](https://github.com/flaviohugo14/quarto-abnt/actions/workflows/render.yml)
 [![Quarto](https://img.shields.io/badge/Quarto-%E2%89%A5%201.4-39729E?style=flat-square&logo=quarto&logoColor=white)](https://quarto.org/)
 [![R](https://img.shields.io/badge/R-%E2%89%A5%204.2-276DC3?style=flat-square&logo=r&logoColor=white)](https://www.r-project.org/)
 [![LaTeX](https://img.shields.io/badge/LaTeX-XeLaTeX-008080?style=flat-square&logo=latex&logoColor=white)](https://www.latex-project.org/)
@@ -29,7 +28,6 @@ Escrever um trabalho acadêmico em conformidade com a ABNT envolve dezenas de pe
 - 📚 **Citações via CSL** — sem precisar lidar com `biblatex`. O arquivo `csl/abnt.csl` segue NBR 10520 e 6023, autor-data.
 - 🧩 **Tudo dirigido por YAML** — capa, folha de aprovação, dedicatória, agradecimentos, resumo, abstract, lista de siglas: você só preenche metadados.
 - 🔬 **Reprodutível** — chunks R/Python, figuras geradas em tempo de render, tabelas com `kable` ou `gt`.
-- 🤖 **CI incluso** — GitHub Action que renderiza o PDF a cada push e disponibiliza o artefato.
 - 🪶 **Sem dependências exóticas** — só XeLaTeX, Quarto e (opcionalmente) R. Sem `biblatex`/`biber`.
 
 ---
@@ -79,8 +77,6 @@ Edite o YAML no topo de `index.qmd` (capa, banca, resumo) e o conteúdo dos cap�
 ├── references/
 │   └── references.bib       Bibliografia BibTeX (substitua pelas suas referências)
 ├── images/                  Figuras estáticas
-├── .github/workflows/
-│   └── render.yml           CI: renderiza o PDF a cada push
 ├── LICENSE                  MIT
 └── README.md                Este arquivo
 ```
@@ -164,12 +160,6 @@ ggplot(df, aes(x, y)) + geom_line()
 Use `@tbl-exemplo` e `@fig-exemplo` no texto para referências cruzadas.
 
 > **Atenção:** Quarto não suporta forward references. Os chunks devem aparecer **antes** do texto que os referencia.
-
----
-
-## 🤖 Renderização contínua
-
-A action em `.github/workflows/render.yml` instala Quarto, TinyTeX, R e dependências, renderiza `index.qmd` e publica o PDF como artifact em cada push e PR. Para baixar o PDF mais recente, vá em **Actions → Render PDF → último run → Artifacts**.
 
 ---
 
