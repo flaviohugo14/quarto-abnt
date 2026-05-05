@@ -1,0 +1,270 @@
+% =================================================================
+% before-body.tex — Pre-textual elements (ABNT NBR 14724)
+% All content is driven by YAML metadata. Optional fields are
+% wrapped in $if(field)$ ... $endif$ and silently skipped when absent.
+% =================================================================
+
+% ---------------------------------------------------------------- Capa
+\thispagestyle{empty}
+\pagenumbering{roman}
+
+\begin{center}
+$institution$
+\end{center}
+
+\vspace{5.0cm}
+
+\begin{center}
+    \textbf{$title$}
+\end{center}
+
+\vspace{5.0cm}
+
+\begin{center}
+$author$
+$if(registration_number)$
+
+Matrícula: $registration_number$
+$endif$
+\end{center}
+
+\vspace{6cm}
+
+\begin{center}
+$if(advisor)$ORIENTADOR(A): $advisor$.$endif$
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+$city$$if(state)$ -- $state$$endif$
+
+$if(month)$$month$ -- $endif$$year$
+\end{center}
+
+\newpage
+
+% ------------------------------------------------------ Folha de aprovação
+\thispagestyle{empty}
+
+\begin{center}
+$author-upper$
+\end{center}
+
+\vspace{4.0cm}
+
+\begin{center}
+    \textbf{$title$}
+\end{center}
+
+\vspace{4.0cm}
+
+\begin{adjustwidth}{7.5cm}{0cm}
+    \justifying
+    $confirm_text$
+
+    \setlength{\parindent}{0pt}
+
+$if(advisor)$
+    Orientador: $advisor$.
+$endif$
+$if(coadvisor)$
+
+    Coorientador(a): $coadvisor$.
+$endif$
+\end{adjustwidth}
+
+$if(confirm_date)$
+\vspace{1.5cm}
+
+APROVADA: $confirm_date$
+$endif$
+
+$if(examiner1)$
+\vspace{1.5cm}
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \rule{6cm}{0.4pt} \\
+    $examiner1$
+\end{minipage}%
+$if(examiner2)$
+\hspace{0.05\textwidth}
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \rule{6cm}{0.4pt} \\
+    $examiner2$
+\end{minipage}
+$endif$
+$endif$
+
+$if(advisor-name)$
+\vspace{2.0cm}
+
+\centering
+\rule{6cm}{0.4pt} \\
+$advisor-name$ \\
+(Orientador)
+$endif$
+
+\vspace{2.0cm}
+
+\begin{center}
+$city$$if(state)$ -- $state$$endif$
+
+$if(month)$$month$ -- $endif$$year$
+\end{center}
+
+\newpage
+
+% --------------------------------------------- Folha de responsabilidade
+\thispagestyle{empty}
+
+\begin{invisible}.\end{invisible}
+
+\vspace{28\baselineskip}
+
+\textit{As opiniões expressas neste trabalho são de exclusiva responsabilidade do autor.}
+
+\newpage
+\pagestyle{fancy}
+
+% --------------------------------------------------------- Dedicatória
+$if(dedication)$
+\begin{invisible}.\end{invisible}
+
+\vspace{28\baselineskip}
+
+\begin{adjustwidth}{7.5cm}{0cm}
+    \justifying
+    \singlespacing
+    $dedication$
+\end{adjustwidth}
+
+\newpage
+\pagestyle{fancy}
+$endif$
+
+% Cabeçalho centralizado para seções pré-textuais
+\newcommand{\presec}{%
+\titleformat{\section}[block]{\bfseries\filcenter}{}{1em}{}
+}
+\presec
+
+% --------------------------------------------------------- Agradecimento
+$if(acknowledgement)$
+\section*{AGRADECIMENTOS}
+\justify
+
+$acknowledgement$
+
+\newpage
+\pagestyle{fancy}
+$endif$
+
+% --------------------------------------------------------- Epígrafe
+$if(epigraph)$
+\begin{invisible}.\end{invisible}
+\vspace{28\baselineskip}
+
+\begin{adjustwidth}{7.5cm}{0cm}
+    \justifying
+    \singlespacing
+    \itshape
+    $epigraph$$if(epigraph-author)$ \\[0.5em] \upshape --- $epigraph-author$$endif$
+\end{adjustwidth}
+
+\newpage
+\pagestyle{fancy}
+$endif$
+
+% --------------------------------------------------------- Resumo
+\section*{RESUMO}
+
+\begin{spacing}{1.0}
+\justify
+
+\setlength{\parindent}{0pt}
+
+$if(abstract)$$abstract$$else$Insira o resumo do trabalho via campo \texttt{abstract} no YAML.$endif$
+
+$if(keywords)$
+\vspace{1em}
+\textbf{Palavras-chave:} $keywords$
+$endif$
+
+\setlength{\parindent}{15pt}
+\end{spacing}
+
+\newpage
+\pagestyle{fancy}
+
+% --------------------------------------------------------- Abstract (opcional)
+$if(abstract-en)$
+\section*{ABSTRACT}
+
+\begin{spacing}{1.0}
+\justify
+
+\setlength{\parindent}{0pt}
+
+$abstract-en$
+
+$if(keywords-en)$
+\vspace{1em}
+\textbf{Keywords:} $keywords-en$
+$endif$
+
+\setlength{\parindent}{15pt}
+\end{spacing}
+
+\newpage
+\pagestyle{fancy}
+$endif$
+
+% --------------------------------------------------------- Lista de figuras
+\renewcommand{\listfigurename}{LISTA DE FIGURAS}
+\listoffigures
+
+\newpage
+\pagestyle{fancy}
+
+% --------------------------------------------------------- Lista de tabelas
+\renewcommand{\listtablename}{LISTA DE TABELAS}
+\listoftables
+
+\newpage
+\pagestyle{fancy}
+
+% --------------------------------------------------------- Lista de siglas
+$if(siglas)$
+\begin{spacing}{1.5}
+\begin{center}\textbf{LISTA DE SIGLAS}\end{center}
+\vspace{1em}
+
+\begin{list}{}{%
+  \setlength{\labelwidth}{2.5cm}%
+  \setlength{\labelsep}{0.5cm}%
+  \setlength{\leftmargin}{3cm}%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parsep}{0pt}%
+  \renewcommand{\makelabel}[1]{#1\hfill}%
+}
+$for(siglas)$\item[$siglas.short$] $siglas.long$
+$endfor$
+\end{list}
+\end{spacing}
+
+\newpage
+$endif$
+
+% --------------------------------------------------------- Sumário
+\renewcommand{\contentsname}{SUMÁRIO}
+\tableofcontents
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}{\normalfont}{\thesubsubsection.}{1em}{}
+
+\newpage
+\pagenumbering{arabic}

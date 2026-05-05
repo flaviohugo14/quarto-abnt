@@ -1,0 +1,177 @@
+---
+# ─── Identificação ───────────────────────────────────────────────────
+title: "Título do Trabalho: Subtítulo Opcional em Letras Minúsculas"
+author: "Nome Completo do Autor"
+author-upper: "NOME COMPLETO DO AUTOR"
+registration_number: "00000"
+
+# ─── Instituição ─────────────────────────────────────────────────────
+institution: "UNIVERSIDADE FEDERAL DE EXEMPLO"
+city: "Cidade"
+state: "UF"
+month: "Janeiro"
+year: "2025"
+
+# ─── Banca ───────────────────────────────────────────────────────────
+advisor: "Prof. Dr. Nome do Orientador"
+advisor-name: "Nome do Orientador"
+# coadvisor: "Prof. Dr. Nome do Coorientador"   # opcional
+examiner1: "Prof. Dr. Nome do Examinador 1"
+examiner2: "Prof. Dr. Nome do Examinador 2"
+confirm_date: "01/01/2025"
+confirm_text: >
+  Trabalho apresentado ao Programa de Pós-Graduação em [Área] da
+  [Instituição] como requisito parcial à obtenção do título de
+  [Mestre/Doutor] em [Área].
+
+# ─── Resumo / Abstract ───────────────────────────────────────────────
+keywords: "Palavra-chave 1. Palavra-chave 2. Palavra-chave 3."
+keywords-en: "Keyword 1. Keyword 2. Keyword 3."
+
+dedication: "Dedico este trabalho a..."
+
+acknowledgement: >
+  Agradeço a... [substitua por seus agradecimentos].
+
+# epigraph: "Texto da epígrafe."
+# epigraph-author: "Autor da epígrafe (Ano)"
+
+abstract: >
+  Insira aqui o resumo do trabalho (NBR 6028: 150–500 palavras para teses
+  e dissertações, 100–250 para artigos). Apresente o objetivo, método,
+  resultados e conclusões em um único parágrafo, em terceira pessoa.
+
+abstract-en: >
+  Insert the English abstract here. Mirror the structure of the
+  Portuguese resumo: objective, method, results, conclusions.
+
+# ─── Lista de siglas (opcional) ──────────────────────────────────────
+siglas:
+  - short: "ABNT"
+    long:  "Associação Brasileira de Normas Técnicas"
+  - short: "IBGE"
+    long:  "Instituto Brasileiro de Geografia e Estatística"
+  - short: "PIB"
+    long:  "Produto Interno Bruto"
+
+# ─── Bibliografia & estilo ───────────────────────────────────────────
+bibliography: references/references.bib
+csl: csl/abnt.csl
+link-citations: true
+
+# ─── Configurações Quarto ────────────────────────────────────────────
+number-sections: true
+lang: pt-BR
+linkcolor: "black"
+highlight-style: kate
+fig-cap-location: top
+tbl-cap-location: top
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    template-partials:
+      - tex/before-body.tex
+      - tex/doc-class.tex
+    # ABNT requer Times. "TeX Gyre Termes" é um clone livre, idêntico
+    # em métricas, distribuído com TinyTeX/TeX Live. Para usar a fonte
+    # original "Times New Roman" (presente em macOS/Windows), basta
+    # sobrescrever este valor para "Times New Roman".
+    mainfont: "TeX Gyre Termes"
+    keep-tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, message = FALSE, warning = FALSE,
+  fig.align = "center", fig.pos = "H"
+)
+options(knitr.table.format = "latex")
+```
+
+\pagestyle{fancy}
+\justify
+\onehalfspacing
+
+# INTRODUÇÃO {.unnumbered}
+
+Esta é uma demonstração mínima do template **quarto-abnt**. Substitua o
+conteúdo deste arquivo pelo texto do seu trabalho. Os elementos
+pré-textuais (capa, folha de aprovação, resumo, listas, sumário) são
+gerados automaticamente a partir dos campos do YAML acima.
+
+A formatação ABNT está totalmente parametrizada nos arquivos
+`tex/before-body.tex` e `tex/doc-class.tex`. As citações seguem a
+NBR 10520 via o estilo CSL em `csl/abnt.csl`.
+
+# CAPÍTULO 1 — REVISÃO DE LITERATURA
+
+## Citações no formato ABNT
+
+Citações indiretas no meio do texto: segundo @keynes1936, a moeda exerce
+papel central nas decisões econômicas. Quando o autor está entre
+parênteses, use a forma alternativa [@solow1956].
+
+Para citações com supressão do autor — útil quando o nome já está no
+texto: como mostrou Krugman [-@krugman1991], retornos crescentes
+explicam a aglomeração espacial.
+
+> Citações longas (mais de 3 linhas) devem usar o ambiente `citacao`,
+> com recuo de 4 cm da margem esquerda, fonte menor e espaçamento
+> simples, conforme a NBR 10520.
+
+## Tabelas
+
+```{r tbl-exemplo}
+#| tbl-cap: "Exemplo de tabela com kable"
+#| label: tbl-exemplo
+df <- data.frame(
+  Indicador = c("PIB per capita", "IDH", "Gini"),
+  Valor     = c(45000, 0.765, 0.534),
+  Fonte     = c("@ibge2022", "PNUD", "IBGE")
+)
+knitr::kable(df, booktabs = TRUE, align = "lrl")
+```
+
+A @tbl-exemplo apresenta indicadores fictícios para demonstrar a
+formatação. Note o uso de `tbl-cap` no chunk e a referência cruzada
+`@tbl-exemplo` na prosa.
+
+## Figuras
+
+```{r fig-exemplo, fig.width=5, fig.height=3.2}
+#| fig-cap: "Distribuição normal padrão (exemplo)"
+#| label: fig-exemplo
+x <- seq(-4, 4, length.out = 200)
+plot(x, dnorm(x), type = "l", lwd = 2,
+     xlab = "x", ylab = "densidade",
+     family = "serif", bty = "l")
+```
+
+A @fig-exemplo ilustra a curva da distribuição normal.
+
+# CAPÍTULO 2 — METODOLOGIA
+
+Esta seção descreveria os procedimentos metodológicos. Use as seções
+para estruturar o conteúdo segundo a norma do seu programa.
+
+## Equações
+
+A função densidade da distribuição normal é dada pela @eq-normal:
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+$$ {#eq-normal}
+
+# CAPÍTULO 3 — RESULTADOS
+
+Apresente aqui os resultados, articulando texto, tabelas e figuras.
+
+# CONSIDERAÇÕES FINAIS {.unnumbered}
+
+Síntese dos achados, limitações e agenda de pesquisa futura.
+
+# REFERÊNCIAS {.unnumbered}
+
+::: {#refs}
+:::

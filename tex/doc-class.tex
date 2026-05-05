@@ -1,0 +1,109 @@
+% =================================================================
+% doc-class.tex — Document class & ABNT formatting (NBR 14724/6024)
+% Citations are handled by pandoc + CSL (csl/abnt.csl), not biblatex.
+% =================================================================
+\documentclass[a4paper,12pt]{article}
+
+% Encoding & language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Page geometry: ABNT NBR 14724 (3cm top/left, 2cm bottom/right)
+\usepackage[lmargin=3cm,tmargin=3cm,rmargin=2cm,bmargin=2cm]{geometry}
+
+% Page numbering top-right (ABNT)
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Line spacing: 1.5 between lines (ABNT)
+\usepackage[onehalfspacing]{setspace}
+
+% Justified text (ABNT) + first-line indent on every paragraph
+\usepackage[document]{ragged2e}
+\usepackage{indentfirst}
+\usepackage[skip=5pt, indent=15pt]{parskip}
+
+% Layout helpers
+\usepackage{graphicx, xcolor}
+\usepackage{enumerate, multirow, multicol}
+\usepackage{adjustbox, changepage}
+\usepackage{float}
+\usepackage{pdflscape, pdfpages}
+
+% Math
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools}
+
+% TikZ (optional; comment out if not used)
+\usepackage{tikz}
+
+% SVG include support (requires Inkscape on the system)
+\usepackage[notransparent]{svg}
+
+% Section title formatting (ABNT NBR 6024)
+\usepackage{titlesec}
+\titleformat{\section}      {\normalsize\bfseries}{\thesection.}      {1em}{}
+\titleformat{\subsection}   {\normalsize}         {\thesubsection.}   {1em}{}
+\titleformat{\subsubsection}{\normalsize}         {\thesubsubsection.}{1em}{}
+
+% Conditional helper
+\usepackage{ifthen}
+
+% ----------------------------------------------------------------
+% ABNT NBR 10520 — long quote (citação direta com mais de 3 linhas)
+% ----------------------------------------------------------------
+\newlength{\ABNTEXcitacaorecuo}
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\newcommand{\ABNTEXfontereduzida}{\footnotesize}
+\newenvironment*{citacao}[1][default]{%
+   \list{}%
+   \ABNTEXfontereduzida%
+   \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+   \item[]%
+   \singlespacing
+   \ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+}{%
+   \endlist%
+}
+
+% ----------------------------------------------------------------
+% Convenience macros for figures and quadros (ABNT)
+%   \fig{caption}{label}{path}{source}
+% ----------------------------------------------------------------
+\newcommand{\fig}[4]{%
+  \begin{figure}[H]
+    \centering
+    \caption{#1}
+    \label{#2}
+    \includegraphics{#3}
+    \vspace{0.5cm}
+    \begin{footnotesize}Fonte: #4\end{footnotesize}
+  \end{figure}
+}
+
+\newcommand{\quadro}[4]{%
+  \renewcommand{\figurename}{Quadro}
+  \setcounter{figure}{0}
+  \begin{figure}[H]
+    \captionsetup{list=no}
+    \centering
+    \caption{#1}
+    \label{#2}
+    \includegraphics{#3}
+    \vspace{0.5cm}
+    \begin{footnotesize}Fonte: #4\end{footnotesize}
+  \end{figure}
+}
+
+% Footnotesize helper for tables
+\newcommand{\FontTable}[1]{\vspace{-\baselineskip}\begin{footnotesize}#1\end{footnotesize}}
+
+% Hidden text (used in pre-textual blocks for vertical alignment)
+\newenvironment{invisible}{\color{white}}{}
+
+% Common math macros
+\newcommand{\PR}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\PC}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\chav}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor #1\right\rfloor}}
