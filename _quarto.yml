@@ -1,0 +1,5 @@
+project:
+  title: "quarto-abnt"
+  output-dir: _output
+  render:
+    - index.qmd
