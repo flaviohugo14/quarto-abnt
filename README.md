@@ -25,7 +25,7 @@
 
 Escrever um trabalho acadêmico em conformidade com a ABNT envolve dezenas de pequenas regras (margens, espaçamento, formatação de citações, listas pré-textuais, sumário, etc.) que tendem a consumir tempo desproporcional ao seu valor. Este template entrega tudo isso pronto, com a flexibilidade do Quarto para integrar texto, código R/Python, figuras e tabelas em um único `.qmd`.
 
-- 📐 **ABNT pronto** — margens (3 cm/2 cm), Times New Roman 12pt, espaçamento 1,5, numeração no canto superior direito (NBR 14724).
+- 📐 **ABNT pronto** — margens (3 cm/2 cm), fonte serifada 12pt (TeX Gyre Termes — clone livre de Times Roman, ou Times New Roman real), espaçamento 1,5, numeração no canto superior direito (NBR 14724).
 - 📚 **Citações via CSL** — sem precisar lidar com `biblatex`. O arquivo `csl/abnt.csl` segue NBR 10520 e 6023, autor-data.
 - 🧩 **Tudo dirigido por YAML** — capa, folha de aprovação, dedicatória, agradecimentos, resumo, abstract, lista de siglas: você só preenche metadados.
 - 🔬 **Reprodutível** — chunks R/Python, figuras geradas em tempo de render, tabelas com `kable` ou `gt`.
@@ -52,7 +52,7 @@ cd meu-trabalho
 | [Quarto](https://quarto.org/docs/get-started/) | ≥ 1.4 | `brew install quarto` ou instalador oficial |
 | [TinyTeX](https://yihui.org/tinytex/) | qualquer | `quarto install tinytex` |
 | [R](https://www.r-project.org/) | ≥ 4.2 | apenas se usar chunks R |
-| Times New Roman | — | já presente em macOS/Windows; em Linux use `fonts-liberation` |
+| Fonte serifada | — | TeX Gyre Termes (default, vem com TinyTeX) ou Times New Roman |
 
 ### 3. Edite e renderize
 

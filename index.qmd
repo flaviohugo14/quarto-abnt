@@ -73,7 +73,11 @@ format:
     template-partials:
       - tex/before-body.tex
       - tex/doc-class.tex
-    mainfont: "Times New Roman"
+    # ABNT requer Times. "TeX Gyre Termes" é um clone livre, idêntico
+    # em métricas, distribuído com TinyTeX/TeX Live. Para usar a fonte
+    # original "Times New Roman" (presente em macOS/Windows), basta
+    # sobrescrever este valor para "Times New Roman".
+    mainfont: "TeX Gyre Termes"
     keep-tex: true
 ---
 
