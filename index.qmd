@@ -46,7 +46,7 @@ abstract-en: >
   Portuguese resumo: objective, method, results, conclusions.
 
 # ─── Lista de siglas (opcional) ──────────────────────────────────────
-abbreviations:
+siglas:
   - short: "ABNT"
     long:  "Associação Brasileira de Normas Técnicas"
   - short: "IBGE"

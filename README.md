@@ -121,7 +121,7 @@ keywords: "Palavra 1. Palavra 2."
 abstract-en: "English abstract..."        # opcional
 keywords-en: "Keyword 1. Keyword 2."     # opcional
 
-abbreviations:                            # opcional
+siglas:                                   # opcional
   - { short: "ABNT", long: "Associação Brasileira de Normas Técnicas" }
   - { short: "IBGE", long: "Instituto Brasileiro de Geografia e Estatística" }
 ```

@@ -237,7 +237,7 @@ $endif$
 \pagestyle{fancy}
 
 % --------------------------------------------------------- Lista de siglas
-$if(abbreviations)$
+$if(siglas)$
 \begin{spacing}{1.5}
 \begin{center}\textbf{LISTA DE SIGLAS}\end{center}
 \vspace{1em}
@@ -250,7 +250,7 @@ $if(abbreviations)$
   \setlength{\parsep}{0pt}%
   \renewcommand{\makelabel}[1]{#1\hfill}%
 }
-$for(abbreviations)$\item[$abbreviations.short$] $abbreviations.long$
+$for(siglas)$\item[$siglas.short$] $siglas.long$
 $endfor$
 \end{list}
 \end{spacing}
